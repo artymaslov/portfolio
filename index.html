@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artem Maslov — AI Art Director</title>
+<meta name="description" content="Portfolio of Artem Maslov, AI Art Director and Creative Technologist. New site coming soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #D9DFE3;
+    --ink: #1A2230;
+    --muted: #5B6675;
+    --line: #9AA6B2;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: clamp(24px, 5vw, 64px);
+  }
+  main { align-self: end; }
+  h1 {
+    font-weight: 700;
+    font-size: clamp(56px, 13vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+  }
+  p {
+    margin-top: clamp(20px, 3vw, 36px);
+    max-width: 34ch;
+    font-weight: 300;
+    font-size: clamp(18px, 2vw, 24px);
+    line-height: 1.4;
+    color: var(--muted);
+  }
+  footer {
+    margin-top: clamp(40px, 8vw, 96px);
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 16px;
+  }
+  a { color: var(--ink); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Artem<br>Maslov</h1>
+    <p>AI Art Director and Creative Technologist. The new portfolio is being built — back soon.</p>
+  </main>
+  <footer>
+    <span>Edmonton, Canada</span>
+    <a href="mailto:you@example.com">you@example.com</a>
+  </footer>
+</body>
+</html>

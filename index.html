@@ -2,66 +2,228 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Artem Maslov — AI Art Director</title>
-<meta name="description" content="Portfolio of Artem Maslov, AI Art Director and Creative Technologist. New site coming soon.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Artem Maslov — AI Art Director &amp; Creative Technologist</title>
+<meta name="description" content="Artem Maslov — AI Art Director and Creative Technologist based in Edmonton, Canada. Art direction where it meets technology: AI-driven production, AR, Apple Vision Pro and large-scale installations.">
+<meta name="theme-color" content="#0a0a0b">
+<meta property="og:title" content="Artem Maslov — AI Art Director &amp; Creative Technologist">
+<meta property="og:description" content="Art direction where it meets technology: AI-driven production, AR, Apple Vision Pro and large-scale installations.">
+<meta property="og:image" content="https://i.vimeocdn.com/video/2214607199-0a8b9fa46fbfe4b21226126cf5c78e082ed07c2fb2a29165d40d057bdc982d27-d?f=webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://player.vimeo.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #D9DFE3;
-    --ink: #1A2230;
-    --muted: #5B6675;
-    --line: #9AA6B2;
+  :root{
+    --ink:#ffffff;
+    --ink-soft:rgba(255,255,255,.74);
+    --ink-muted:rgba(255,255,255,.62);
+    --glass:rgba(0,0,0,.3);
+    --glass-strong:rgba(0,0,0,.5);
+    --hairline:rgba(255,255,255,.08);
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --reel-ar:1.7778;            /* updated from the real video size once the player reports it */
   }
-  * { box-sizing: border-box; margin: 0; }
-  html, body { height: 100%; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    padding: clamp(24px, 5vw, 64px);
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#0a0a0b;color:var(--ink);overflow:hidden}
+  body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  button{font:inherit;color:inherit}
+
+  /* Showreel — Vimeo iframe scaled to cover the viewport */
+  .reel{position:fixed;inset:0;overflow:hidden;background:#0a0a0b;z-index:0}
+  .reel iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;pointer-events:none;
+    width:100vw;height:calc(100vw / var(--reel-ar));
+    min-width:calc(100vh * var(--reel-ar));min-height:100vh}
+  @supports (height:100dvh){
+    .reel iframe{height:calc(100vw / var(--reel-ar));min-width:calc(100dvh * var(--reel-ar));min-height:100dvh}
   }
-  main { align-self: end; }
-  h1 {
-    font-weight: 700;
-    font-size: clamp(56px, 13vw, 200px);
-    line-height: 0.88;
-    letter-spacing: -0.04em;
+  .reel::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
+
+  /* Header */
+  .hdr{position:fixed;top:0;left:0;right:0;z-index:10;height:68px;padding:0 44px;padding-top:env(safe-area-inset-top);
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .mark{font-size:12px;font-weight:500;letter-spacing:.36em;color:var(--ink);text-decoration:none;margin-right:-.36em}
+  .nav{display:flex;align-items:center;gap:36px}
+  .nav button{background:none;border:0;padding:0 2px;min-height:44px;cursor:pointer;
+    font-size:11px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);transition:color .25s ease}
+  .nav button:hover,.nav button[aria-expanded="true"]{color:var(--ink)}
+
+  /* Icon buttons */
+  .icon-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;
+    color:var(--ink);transition:background-color .25s ease,border-color .25s ease}
+  .sound{position:fixed;right:32px;bottom:32px;z-index:10;border:1px solid rgba(255,255,255,.28);
+    background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    margin-bottom:env(safe-area-inset-bottom)}
+  .icon-btn:hover{background-color:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
+  .sound .on{display:none}
+  .sound[aria-pressed="true"] .on{display:block}
+  .sound[aria-pressed="true"] .off{display:none}
+
+  :focus{outline:none}
+  :focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:4px}
+
+  /* Overlays */
+  .ov{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:108px 24px 40px;
+    background:rgba(0,0,0,.38);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s linear .35s}
+  .ov.is-open{opacity:1;visibility:visible;transition:opacity .35s ease}
+  .panel{position:relative;width:100%;max-width:660px;max-height:100%;overflow-y:auto;padding:60px 60px 56px;
+    background:var(--glass-strong);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--hairline);
+    transform:translateY(14px);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
+  .ov.is-open .panel{transform:none;opacity:1}
+  .panel--sm{max-width:420px;padding:56px 52px 52px}
+  .close{position:absolute;top:14px;right:14px;border:1px solid transparent;background:transparent}
+  .ov h2{margin:0 0 28px;font-size:11px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-muted)}
+  .about p{margin:0;font-size:18px;line-height:1.7;font-weight:300;letter-spacing:.005em;color:rgba(255,255,255,.92)}
+  .about p + p{margin-top:20px}
+
+  .contacts h2{margin-bottom:36px}
+  .contacts dl{margin:0;display:flex;flex-direction:column;gap:28px}
+  .contacts dt{font-size:10px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px}
+  .contacts dd{margin:0}
+  .lnk{font-size:17px;font-weight:300;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:3px;transition:border-color .25s ease,color .25s ease}
+  .lnk:hover{border-color:rgba(255,255,255,.7)}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+  @media (max-width:640px){
+    .hdr{height:56px;padding-left:20px;padding-right:20px}
+    .nav{gap:22px}
+    .sound{right:20px;bottom:20px}
+    .ov{padding:0;background:transparent}
+    .panel,.panel--sm{max-width:none;width:100%;height:100%;border:0;padding:96px 28px 48px;
+      display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+    .about p{font-size:16px}
   }
-  p {
-    margin-top: clamp(20px, 3vw, 36px);
-    max-width: 34ch;
-    font-weight: 300;
-    font-size: clamp(18px, 2vw, 24px);
-    line-height: 1.4;
-    color: var(--muted);
+  @media (prefers-reduced-motion:reduce){
+    .ov,.ov.is-open,.panel{transition:none}
   }
-  footer {
-    margin-top: clamp(40px, 8vw, 96px);
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px;
-    font-size: 16px;
-  }
-  a { color: var(--ink); text-underline-offset: 3px; }
-  a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 </style>
 </head>
 <body>
-  <main>
-    <h1>Artem<br>Maslov</h1>
-    <p>AI Art Director and Creative Technologist. The new portfolio is being built — back soon.</p>
-  </main>
-  <footer>
-    <span>artmaslov.com · Edmonton, Canada</span>
-    <span class="links"><a href="mailto:artem@artmaslov.com">artem@artmaslov.com</a> &nbsp; <a href="https://www.linkedin.com/in/maslov-artem/" target="_blank" rel="noopener">LinkedIn</a></span>
-  </footer>
+
+<div class="reel">
+  <iframe id="reel" title="Showreel of Artem Maslov's work in AI video, 3D and AR" allow="autoplay; fullscreen" frameborder="0"
+    src="https://player.vimeo.com/video/1237730823?h=709ca24f6f&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;playsinline=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;dnt=1"></iframe>
+</div>
+
+<header class="hdr">
+  <a class="mark" href="/" aria-label="Art Maslov — home">ART MASLOV</a>
+  <nav class="nav" aria-label="Main">
+    <button type="button" data-open="about" aria-haspopup="dialog" aria-controls="about" aria-expanded="false">About</button>
+    <button type="button" data-open="contacts" aria-haspopup="dialog" aria-controls="contacts" aria-expanded="false">Contacts</button>
+  </nav>
+</header>
+
+<button type="button" class="icon-btn sound" id="sound" aria-pressed="false" aria-label="Unmute showreel">
+  <svg class="off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+  <svg class="on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</button>
+
+<div class="ov" id="about" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true">
+  <div class="panel about">
+    <button type="button" class="icon-btn close" data-close aria-label="Close About">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <h2 id="about-title">About</h2>
+    <p>I'm Artem Maslov, an AI Art Director and Creative Technologist based in Edmonton, Canada.</p>
+    <p>I work where art direction meets technology. Over 9 years I've moved from concept art for Snapchat lenses to leading AR activations, Apple Vision Pro prototypes and large-scale installations, and now to AI-driven production.</p>
+    <p>Clients include Dior, Universal Pictures, Paramount Animation, Cartier, Snapchat, L'Oréal, Amazon and Visit Dubai. Previously Art Director at Tactical (Rotterdam), founder of ARNI Studio, and Senior Concept Artist at Snap Inc. I also teach visual assets for games at NAIT.</p>
+  </div>
+</div>
+
+<div class="ov" id="contacts" role="dialog" aria-modal="true" aria-labelledby="contacts-title" aria-hidden="true">
+  <div class="panel panel--sm contacts">
+    <button type="button" class="icon-btn close" data-close aria-label="Close Contacts">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+    <h2 id="contacts-title">Contacts</h2>
+    <dl>
+      <div>
+        <dt>LinkedIn</dt>
+        <dd><a class="lnk" href="https://www.linkedin.com/in/maslov-artem/" target="_blank" rel="noopener noreferrer">in/maslov-artem<span class="sr-only"> (opens in a new tab)</span></a></dd>
+      </div>
+      <div>
+        <dt>Email</dt>
+        <dd><a class="lnk" href="mailto:artem@artmaslov.com">artem@artmaslov.com</a></dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+(function () {
+  var frame = document.getElementById('reel');
+  var sound = document.getElementById('sound');
+  var openBtns = document.querySelectorAll('[data-open]');
+  var current = null, lastTrigger = null;
+  var FOCUSABLE = 'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  var player = null, muted = true;
+
+  if (window.Vimeo && Vimeo.Player) {
+    player = new Vimeo.Player(frame);
+    // Size the iframe from the real video dimensions so it always covers, never letterboxes.
+    Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function (d) {
+      if (d[0] && d[1]) document.documentElement.style.setProperty('--reel-ar', d[0] / d[1]);
+    }).catch(function () {});
+    player.setLoop(true).catch(function () {});
+    player.play().catch(function () {});   // browsers may block until the first interaction
+  }
+
+  sound.addEventListener('click', function () {
+    muted = !muted;
+    if (player) {
+      player.setMuted(muted).catch(function () {});
+      if (!muted) { player.setVolume(1).catch(function () {}); player.play().catch(function () {}); }
+    }
+    sound.setAttribute('aria-pressed', muted ? 'false' : 'true');
+    sound.setAttribute('aria-label', muted ? 'Unmute showreel' : 'Mute showreel');
+  });
+
+  function open(id, trigger) {
+    if (current) close(true);
+    var ov = document.getElementById(id);
+    current = ov; lastTrigger = trigger || null;
+    ov.classList.add('is-open');
+    ov.setAttribute('aria-hidden', 'false');
+    openBtns.forEach(function (b) { b.setAttribute('aria-expanded', b.dataset.open === id ? 'true' : 'false'); });
+    setTimeout(function () { ov.querySelector('[data-close]').focus(); }, 30);
+  }
+
+  function close(silent) {
+    if (!current) return;
+    current.classList.remove('is-open');
+    current.setAttribute('aria-hidden', 'true');
+    openBtns.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+    current = null;
+    if (!silent && lastTrigger) lastTrigger.focus();
+  }
+
+  openBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (current && current.id === b.dataset.open) close(); else open(b.dataset.open, b);
+    });
+  });
+
+  document.querySelectorAll('.ov').forEach(function (ov) {
+    // Click outside the panel closes
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    ov.querySelector('[data-close]').addEventListener('click', function () { close(); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!current) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') {            // keep focus inside the open overlay
+      var f = current.querySelectorAll(FOCUSABLE);
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artem Maslov — AI art director and creative technologist</title>
+<meta name="description" content="Trained by hand, extended by machine. AI video, 3D, AR and generative pipelines. Edmonton, Alberta.">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<script type="module" src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="topbar__in">
+    <span style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <a class="mark" href="/"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+<circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1"/>
+<path d="M12 0.5v23M0.5 12h23" stroke="currentColor" stroke-width="1" opacity=".5"/>
+<path d="M12 8A4 4 0 0 0 12 16Z" fill="var(--sanguine)"/>
+<path d="M12 8A4 4 0 0 1 12 16Z" fill="var(--cyanotype)"/>
+</svg><span class="mark__name">Artem Maslov</span></a>
+      
+    </span>
+    <nav class="nav" aria-label="Sections">
+        <a href="/work/">work</a>
+        <a href="/lab/">lab</a>
+        <a href="/resources/">resources</a>
+        <a href="/about/">about</a>
+    </nav>
+  </div>
+</div>
+<main id="main">
+
+<section class="hero wrap">
+  <div class="hero__grid">
+    <div>
+      <h1><span class="hand">Trained by hand.</span><span class="machine">Extended by machine.</span></h1>
+      <div class="hero__body prose">
+        <p>For nine years I made images by hand — concept art at Snap, 3D and art direction for Dior, Nike and the Olympic Games. Since 2024 I build the pipelines that make them, and I measure what comes out.</p>
+      </div>
+      <div class="hero__cta">
+        <a class="btn" href="/work/">See the work</a>
+        <a class="btn-quiet" href="/lab/">Read the lab notes</a>
+      </div>
+    </div>
+
+    <figure class="instr">
+      <div class="instr__plate plate"><canvas id="interference" width="900" height="620"></canvas></div>
+      <div class="instr__bar">
+        <span class="instr__ends">
+          <span class="instr__end instr__end--a">drawn <span class="num" data-read="a">1.00</span></span>
+          <input id="mix" type="range" min="0" max="1" step="0.005" value="0.78"
+                 aria-label="Mix the hand-drawn field with the machine-ruled field">
+          <span class="instr__end instr__end--b">computed <span class="num" data-read="b">0.00</span></span>
+        </span>
+      </div>
+      <figcaption class="cap"><b>fig. 1</b> &mdash; two line systems, one wandering and one ruled. Move the control: the moir&eacute; only appears once the hand stops wandering. Neither field contains it alone.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section wrap">
+  <p class="note" style="margin-bottom:1rem">worked with</p>
+  <ul class="clients"><li>Dior</li><li>Nike</li><li>Amazon</li><li>L’Oréal</li><li>Cartier</li><li>Snap Inc.</li><li>Universal Pictures</li><li>Paramount Animation</li><li>Olympic Games</li></ul>
+</section>
+
+<section class="section wrap">
+  <div class="ledger">
+
+    <div class="lrow">
+      <div class="lrow__head">
+        <h2><a href="/work/">Selected client work</a></h2>
+        <p class="lrow__desc">AI video, 3D, AR and immersive production for brands, studios and film.</p>
+        <a class="link ui" href="/work/">All seven projects</a>
+      </div>
+      <div class="recent">
+      <a class="recent__item" href="/work/lexus/">
+        <figure class="plate"><canvas data-plate="lexus" data-family="wave" width="420" height="300" style="aspect-ratio:7/5"></canvas></figure>
+        <h3>Lexus — AI R&amp;D</h3>
+        <span class="key">Art Director, AI Artist, <span class="pending">[Year]</span></span>
+      </a>
+      <a class="recent__item" href="/work/nike/">
+        <figure class="plate"><canvas data-plate="nike" data-family="hatch" width="420" height="300" style="aspect-ratio:7/5"></canvas></figure>
+        <h3>Nike — AI R&amp;D</h3>
+        <span class="key">Art Director, AI Artist, <span class="pending">[Year]</span></span>
+      </a>
+      <a class="recent__item" href="/work/fish-and-cat/">
+        <figure class="plate"><canvas data-plate="fish-and-cat" data-family="concentric" width="420" height="300" style="aspect-ratio:7/5"></canvas></figure>
+        <h3>Fish and Cat</h3>
+        <span class="key">Director, AI Artist, <span class="pending">[Year]</span></span>
+      </a>
+      </div>
+    </div>
+
+    <div class="lrow">
+      <div class="lrow__head">
+        <h2><a href="/lab/">The lab notebook</a></h2>
+        <p class="lrow__desc">Pipelines and experiments, each written up the same way: question, method, result.</p>
+        <a class="link ui" href="/lab/#playground">Playground &mdash; nothing on the bench yet</a>
+      </div>
+      <div class="explist">
+      <div class="exprow">
+        <span class="exprow__t">Jewelry AI pipeline</span>
+        <span class="state state--shipped">shipped</span>
+        <span class="exprow__d">ComfyUI, multi-workflow, quality gates</span>
+      </div>
+      <div class="exprow">
+        <span class="exprow__t">Product configurator</span>
+        <span class="state state--demo">demo</span>
+        <span class="exprow__d">Real-time product visualization module</span>
+      </div>
+      <div class="exprow">
+        <span class="exprow__t">Meta Horizon Mobile Hackathon</span>
+        <span class="state state--winner">winner</span>
+        <span class="exprow__d"><span class="pending">[Project name]</span> — winning entry, 2025</span>
+      </div>
+      <div class="exprow">
+        <span class="exprow__t"><span class="pending">[Next experiment]</span></span>
+        <span class="state state--open">in progress</span>
+        <span class="exprow__d"><span class="pending">[One-line question]</span></span>
+      </div>
+      </div>
+    </div>
+
+    <div class="lrow lrow--split">
+      <div class="quiet">
+        <h2><a href="/resources/">Take what&rsquo;s useful</a></h2>
+        <p class="lrow__desc">Workflow files, tutorials and notes from the bench. Free to use.</p>
+        <a class="link ui" href="/resources/">Browse the shelf</a>
+      </div>
+      <div class="quiet">
+        <h2><a href="/about/">About</a></h2>
+        <p class="lrow__desc">Nine years of practice, a skill map before and after AI, and a CV.</p>
+        <span class="ui"><a class="link" href="/about/">Read it</a> <span style="color:var(--ink-3)">or</span> <a class="link" href="/about/nodes/">open it as a node graph</a></span>
+      </div>
+    </div>
+
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <span>AI art director and creative technologist. Edmonton, Alberta <span class="num">53.5461&deg;&thinsp;N, 113.4938&deg;&thinsp;W</span></span>
+    <span class="foot__links">
+      <a href="mailto:artem@artmaslov.com">artem@artmaslov.com</a>
+      <a href="https://www.linkedin.com/in/maslov-artem/">LinkedIn</a>
+      <a href="https://github.com/artymaslov">GitHub</a>
+      <span>&copy; 2026</span>
+    </span>
+  </div>
+</footer>
+</body>
+</html>

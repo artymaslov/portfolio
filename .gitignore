@@ -1,0 +1,5 @@
+.DS_Store
+.impeccable/
+
+# originals the webp/mp4 files were made from — referenced by nothing on the site
+assets/media/*/_source/

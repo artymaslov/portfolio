@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Artem Maslov — Home (Two Selves)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0B0D10}a:hover{color:#1967D2}
+.reel{position:absolute;inset:0;background-color:#15181D}
+.measure{background-image:linear-gradient(rgba(140,180,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(140,180,255,.16) 1px,transparent 1px),linear-gradient(rgba(140,180,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(140,180,255,.07) 1px,transparent 1px);background-size:96px 96px,96px 96px,12px 12px,12px 12px}
+.card{transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,13,16,.12)}
+.about-card .views{position:absolute;left:20px;right:20px;top:50%;display:flex;flex-direction:column;gap:8px;opacity:0;pointer-events:none;transform:translateY(-50%) translateY(8px);transition:opacity .2s ease,transform .2s ease}
+.about-card:hover .views,.about-card:focus-within .views{opacity:1;pointer-events:auto;transform:translateY(-50%)}
+.about-card .art{transition:opacity .2s ease}
+.about-card:hover .art,.about-card:focus-within .art{opacity:.1}
+@media (hover:none){.about-card .views{opacity:1;pointer-events:auto;transform:translateY(-50%)}.about-card .art{opacity:.1}}
+</style>
+</helmet>
+<div style="min-height: 1120px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px; font-family: 'Mona Sans', Inter, system-ui, sans-serif; color: #0B0D10; background: #F6F7F9; padding-bottom: 40px">
+
+<header style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 24px 40px 0">
+<a href="HomeB.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="fill: none; stroke: #0B0D10; stroke-width: 1"><circle cx="14" cy="14" r="12.5"></circle><path d="M14 1.5v25M1.5 14h25"></path><circle cx="14" cy="14" r="4" style="fill: #0B0D10; stroke: none"></circle></svg>
+<span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Artem Maslov</span>
+</a>
+<div role="group" aria-label="View mode" style="display: flex; padding: 4px; gap: 4px; border: 1px solid #DADDE3; border-radius: 999px; background: #FFFFFF; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">
+<button onClick="{{ pickHand }}" aria-pressed="{{ handPressed }}" style="min-height: 40px; padding: 0 16px; border: none; border-radius: 999px; font: inherit; cursor: pointer; background: {{ handBg }}; color: {{ handFg }}">HAND</button>
+<button onClick="{{ pickMachine }}" aria-pressed="{{ machinePressed }}" style="min-height: 40px; padding: 0 16px; border: none; border-radius: 999px; font: inherit; cursor: pointer; background: {{ machineBg }}; color: {{ machineFg }}">HAND + MACHINE</button>
+</div>
+<nav aria-label="Social" style="display: flex; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">
+<a href="https://www.linkedin.com/in/maslov-artem/" style="text-decoration: none">LINKEDIN ↗</a>
+<a href="https://github.com/artymaslov" style="text-decoration: none">GITHUB ↗</a>
+<a href="mailto:artem@artmaslov.com" style="text-decoration: none">EMAIL ↗</a>
+</nav>
+</header>
+
+<section aria-label="Showreel" style="position: relative; margin: 0 40px; height: 600px; border-radius: 28px; overflow: hidden; color: #FFFFFF">
+<div class="reel" aria-hidden="true"></div>
+<sc-if value="{{ machine }}" hint-placeholder-val="{{ true }}">
+<div class="measure" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 50%; right: 0"></div>
+</sc-if>
+<div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(255,255,255,0.5)"></div>
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); white-space: nowrap; background: #15181D; padding: 6px 10px">[ SHOWREEL 2026 ]</div>
+<div style="position: absolute; left: 32px; top: 28px; display: flex; flex-direction: column; gap: 10px; max-width: 40%">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.72)">A · 2016 → 2023</span>
+<span style="font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1">Hand. Eye. Taste.</span>
+</div>
+<div style="position: absolute; left: calc(50% + 32px); top: 28px; display: flex; flex-direction: column; gap: 10px; max-width: 40%">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #A9C6FF">B · 2024 → ∞</span>
+<span style="font-size: 36px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1">+ Code. Math. Systems.</span>
+</div>
+<div style="position: absolute; left: 50%; bottom: 150px; transform: translateX(-50%); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: 0.04em; color: #FFFFFF; background: rgba(21,24,29,0.85); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 8px 16px; white-space: nowrap">output = taste × compute</div>
+</section>
+
+<div style="position: relative; margin: -120px auto 0; width: calc(100% - 128px); max-width: 1320px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<a href="Work.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 220px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; text-decoration: none; color: #0B0D10; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>01 · A</span><span style="color: {{accent}}">→</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Commercial Work</span><span style="font-size: 14px; line-height: 1.4; color: #5A6270">Brands, studios, platforms.</span></span>
+</a>
+<a href="Lab.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 220px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; text-decoration: none; color: #0B0D10; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>02 · B</span><span style="color: {{accent}}">→</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Lab</span><span style="font-size: 14px; line-height: 1.4; color: #5A6270">Pipelines, tools, experiments.</span></span>
+</a>
+<a href="Lab.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 220px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; text-decoration: none; color: #0B0D10; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>03 · A × B</span><span style="color: {{accent}}">→</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Playground</span><span style="font-size: 14px; line-height: 1.4; color: #5A6270">Toys you can touch.</span></span>
+</a>
+<a href="Resources.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 220px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; text-decoration: none; color: #0B0D10; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>04 · SHARED</span><span style="color: {{accent}}">→</span></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Resources</span><span style="font-size: 14px; line-height: 1.4; color: #5A6270">Files, tutorials, tips.</span></span>
+</a>
+<div class="card about-card" style="position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; height: 220px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; text-decoration: none; color: #0B0D10; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>05 · SELF</span><span style="color: {{accent}}">⇄</span></span>
+<span class="art" style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">About</span><span style="font-size: 14px; line-height: 1.4; color: #5A6270">Bio, skills, awards, CV.</span></span>
+<span class="views"><a href="About.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; background: #0B0D10; color: #FFFFFF; text-decoration: none; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">CLASSIC VIEW</a><a href="AboutNodes.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border-radius: 999px; border: 1px solid #0B0D10; background: #FFFFFF; color: #0B0D10; text-decoration: none; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1"><rect x="0.5" y="0.5" width="5" height="5" rx="1"></rect><rect x="10.5" y="6.5" width="5" height="5" rx="1"></rect><path d="M5.5 3C8 3 8 9 10.5 9"></path></svg>NODE VIEW</a></span>
+</div>
+</div>
+
+<section aria-label="Clients" style="margin: 24px 40px 0; display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline; justify-content: center; padding: 28px 24px; border-top: 1px solid #DADDE3; border-bottom: 1px solid #DADDE3">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270">WORKED WITH</span>
+<span style="font-size: 20px; font-weight: 500">Dior</span><span style="font-size: 20px; font-weight: 500">Nike</span><span style="font-size: 20px; font-weight: 500">Amazon</span><span style="font-size: 20px; font-weight: 500">L’Oréal</span><span style="font-size: 20px; font-weight: 500">Cartier</span><span style="font-size: 20px; font-weight: 500">Snap Inc.</span><span style="font-size: 20px; font-weight: 500">Universal Pictures</span><span style="font-size: 20px; font-weight: 500">Paramount Animation</span><span style="font-size: 20px; font-weight: 500">Olympic Games</span>
+</section>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; padding: 8px 40px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; color: #5A6270">
+<span>ARTEM MASLOV — AI ART DIRECTOR · CREATIVE TECHNOLOGIST</span>
+<span>EDMONTON, AB · © 2026</span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1967D2","options":["#1967D2","#E8590C","#0B0D10","#188038"]},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { mode: 'machine' }; }
+renderVals() {
+const m = this.state.mode === 'machine';
+return {
+accent: this.props.accent ?? '#1967D2',
+machine: m,
+pickHand: () => this.setState({ mode: 'hand' }),
+pickMachine: () => this.setState({ mode: 'machine' }),
+handPressed: m ? 'false' : 'true',
+machinePressed: m ? 'true' : 'false',
+handBg: m ? 'transparent' : '#0B0D10',
+handFg: m ? '#0B0D10' : '#FFFFFF',
+machineBg: m ? '#0B0D10' : 'transparent',
+machineFg: m ? '#FFFFFF' : '#0B0D10'
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+:root { color-scheme: light dark; --bg:#fff; --fg:#111; --fg2:#555; --rule:#e3e3e0; }
+@media (prefers-color-scheme: dark) { :root { --bg:#0c0d0f; --fg:#ededea; --fg2:#9a9ea4; --rule:#222428; } }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 1rem/1.55 ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+main { max-width: 44rem; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+h1 { font-size: 1.75rem; letter-spacing: -0.03em; margin: 0; }
+.lead { color: var(--fg2); margin: .75rem 0 0; max-width: 60ch; }
+.dirs { list-style: none; padding: 0; margin: 3rem 0 0; }
+.dirs li { border-top: 1px solid var(--rule); padding: 1.25rem 0; }
+.dirs h2 { font-size: 1.125rem; margin: 0; }
+.dirs p { color: var(--fg2); margin: .25rem 0 0; }
+a { color: inherit; }
+.links { margin-top: .5rem; display: flex; gap: 1.25rem; }
+.links a { min-height: 44px; display: inline-flex; align-items: center; }
+.foot { margin-top: 3rem; color: var(--fg2); font-size: .875rem; }

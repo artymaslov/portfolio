@@ -1,0 +1,40 @@
+[
+  {
+    "id": "F-01",
+    "text": "On days when I don’t have to meet anyone, I eat something with garlic first thing in the morning."
+  },
+  {
+    "id": "F-02",
+    "text": "At 4–6 I wanted to be a scientist working at the edge of volcanoes, physics, chemistry and dinosaurs. This site is the closest I’ve come."
+  },
+  {
+    "id": "F-03",
+    "text": "My first-ever password was built on Hebrew numerals, where every letter is a number: 120091040. Guess what it spells."
+  },
+  {
+    "id": "F-04",
+    "text": "I’ve lived in Ukraine, Montenegro, Portugal, the Netherlands, and now Canada. One lesson from each:",
+    "lessons": [
+      {
+        "country": "Ukraine",
+        "lesson": "[Lesson]"
+      },
+      {
+        "country": "Montenegro",
+        "lesson": "[Lesson]"
+      },
+      {
+        "country": "Portugal",
+        "lesson": "[Lesson]"
+      },
+      {
+        "country": "Netherlands",
+        "lesson": "[Lesson]"
+      },
+      {
+        "country": "Canada",
+        "lesson": "[Lesson]"
+      }
+    ]
+  }
+]

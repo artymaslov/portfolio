@@ -1,0 +1,56 @@
+/* artmaslov.com — design tokens
+   Source: design exploration canvas (Nov 2026). Import once, use everywhere. */
+
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  /* Color */
+  --ink: #0B0D10;            /* primary text, dark buttons, hairline rules under section heads */
+  --text-2: #1F242C;         /* long-form body */
+  --text-3: #3C434E;         /* secondary body */
+  --muted: #5A6270;          /* mono labels, captions (passes 4.5:1 on white) */
+  --line: #DADDE3;           /* card borders, chip borders */
+  --line-soft: #E6E8EC;      /* row dividers */
+  --line-strong: #C9CED6;    /* node borders */
+  --wire: #8A93A0;           /* node graph wires */
+  --ground: #FFFFFF;
+  --ground-2: #F6F7F9;       /* tinted panels, node canvas */
+  --reel: #15181D;           /* showreel / media placeholder */
+  --accent: #1967D2;         /* single accent: links, arrows, active dots, CTA */
+  --accent-on-dark: #A9C6FF;
+  --node-process: #9A5B00;   /* node type label: process */
+  --node-output: #146C2E;    /* node type label: save/output */
+  --ok-bg: #E6F4EA;
+
+  /* Type */
+  --font-sans: "Mona Sans", Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --fs-display: 72px;   /* project title */
+  --fs-h1: 64px;        /* page title */
+  --fs-h2: 32px;        /* section title */
+  --fs-card: 26px;      /* home card title */
+  --fs-lead: 22px;
+  --fs-body: 18px;
+  --fs-small: 15px;
+  --fs-label: 12px;     /* mono labels, uppercase, letter-spacing .08em */
+  --tracking-tight: -0.035em;
+
+  /* Shape & space */
+  --r-card: 20px;
+  --r-media: 24px;
+  --r-node: 12px;
+  --r-pill: 999px;
+  --gap: 16px;
+  --page-pad: 40px;
+  --max-w: 1360px;
+  --touch: 44px;
+
+  /* Motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --t-fast: .2s;
+  --t-card: .25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0s; --t-card: 0s; }
+}

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab — Artem Maslov</title>
+<meta name="description" content="Generative pipelines, tools and experiments, each written up as a lab note: question, method, result.">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<script type="module" src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="topbar__in">
+    <span style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <a class="mark" href="/"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+<circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1"/>
+<path d="M12 0.5v23M0.5 12h23" stroke="currentColor" stroke-width="1" opacity=".5"/>
+<path d="M12 8A4 4 0 0 0 12 16Z" fill="var(--sanguine)"/>
+<path d="M12 8A4 4 0 0 1 12 16Z" fill="var(--cyanotype)"/>
+</svg><span class="mark__name">Artem Maslov</span></a>
+      
+    </span>
+    <nav class="nav" aria-label="Sections">
+        <a href="/work/">work</a>
+        <a href="/lab/" aria-current="page">lab</a>
+        <a href="/resources/">resources</a>
+        <a href="/about/">about</a>
+    </nav>
+  </div>
+</div>
+<main id="main">
+
+<section class="wrap" style="padding-top:clamp(2.5rem,6vw,5rem)">
+  <h1>Hypothesis, build, measure</h1>
+  <p class="lead" style="margin-top:1.25rem">Tools, pipelines and experiments where art direction meets code. Every entry is written up the same way, so the ones that failed are as readable as the ones that shipped.</p>
+</section>
+
+<section class="section wrap">
+  <div class="feature">
+    <figure style="margin:0">
+      <div class="plate"><canvas data-plate="exp-001-jewelry" data-family="concentric" width="760" height="570" style="aspect-ratio:4/3"></canvas></div>
+      <figcaption class="cap"><b>fig. 1</b> &mdash; multi-workflow generation graph with perceptual quality gates (LPIPS, SSIM).</figcaption>
+    </figure>
+    <div>
+      <p class="note">experiment 001, the one in production</p>
+      <h2 style="margin-top:.5rem">Jewelry AI pipeline</h2>
+      <dl class="qmr">
+        <div><dt>question</dt><dd>Can a generative pipeline hold product fidelity tightly enough for jewellery, where every facet matters?</dd></div>
+        <div><dt>method</dt><dd>ComfyUI workflows behind a mode switch, with perceptual-similarity checks rejecting any frame that drifts.</dd></div>
+        <div><dt>result</dt><dd><span class="pending">[Outcome in one line]</span></dd></div>
+      </dl>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.5rem;align-items:center">
+        <span class="state state--shipped">shipped mvp</span>
+        <ul class="chips" style="margin-left:auto"><li>ComfyUI</li><li>Python</li><li>LPIPS / SSIM</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--rule wrap">
+  <div class="section__head">
+    <h2>Everything else on the bench</h2>
+    <span class="key num">3 entries</span>
+  </div>
+  <div class="explist" style="border-top:1px solid var(--ink)">
+      <div class="exprow">
+        <span class="exprow__t">Product configurator</span>
+        <span class="state state--demo">demo</span>
+        <span class="exprow__d">Real-time product visualization module</span>
+      </div>
+      <div class="exprow">
+        <span class="exprow__t">Meta Horizon Mobile Hackathon</span>
+        <span class="state state--winner">winner</span>
+        <span class="exprow__d"><span class="pending">[Project name]</span> — winning entry, 2025</span>
+      </div>
+      <div class="exprow">
+        <span class="exprow__t"><span class="pending">[Next experiment]</span></span>
+        <span class="state state--open">in progress</span>
+        <span class="exprow__d"><span class="pending">[One-line question]</span></span>
+      </div>
+  </div>
+</section>
+
+<section class="section section--rule wrap" id="playground">
+  <div class="section__head">
+    <h2>Playground</h2>
+    <span class="key">no write-up, just play</span>
+  </div>
+  <div class="empty">
+    <p class="note">nothing on the bench yet</p>
+    <p class="prose" style="font-size:var(--fs-lead);line-height:1.5">The first toy will be Face Pong: the paddles are photographs of my face, and the expression changes on every hit. It will run in the browser, and the source will be open.</p>
+    <a class="btn-quiet" href="https://github.com/artymaslov">Watch the repo</a>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <span>AI art director and creative technologist. Edmonton, Alberta <span class="num">53.5461&deg;&thinsp;N, 113.4938&deg;&thinsp;W</span></span>
+    <span class="foot__links">
+      <a href="mailto:artem@artmaslov.com">artem@artmaslov.com</a>
+      <a href="https://www.linkedin.com/in/maslov-artem/">LinkedIn</a>
+      <a href="https://github.com/artymaslov">GitHub</a>
+      <span>&copy; 2026</span>
+    </span>
+  </div>
+</footer>
+</body>
+</html>

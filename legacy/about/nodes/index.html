@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About, as a node graph — Artem Maslov</title>
+<meta name="description" content="The bio as a node graph: two inputs, nine years of sampling, one model loaded in 2024, and a merge.">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="icon" href="/assets/mark.svg" type="image/svg+xml">
+<script type="module" src="/assets/site.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="topbar__in">
+    <span style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+      <a class="mark" href="/"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+<circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1"/>
+<path d="M12 0.5v23M0.5 12h23" stroke="currentColor" stroke-width="1" opacity=".5"/>
+<path d="M12 8A4 4 0 0 0 12 16Z" fill="var(--sanguine)"/>
+<path d="M12 8A4 4 0 0 1 12 16Z" fill="var(--cyanotype)"/>
+</svg><span class="mark__name">Artem Maslov</span></a>
+      
+    </span>
+    <nav class="nav" aria-label="Sections">
+        <a href="/work/">work</a>
+        <a href="/lab/">lab</a>
+        <a href="/resources/">resources</a>
+        <a href="/about/" aria-current="page">about</a>
+    </nav>
+  </div>
+</div>
+<main id="main">
+
+<section class="wrap" style="padding-top:clamp(2rem,4vw,3rem)">
+  <div style="display:flex;gap:1rem 1.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between">
+    <nav class="viewtoggle" aria-label="About view">
+      <a href="/about/">written</a>
+      <a href="/about/nodes/" aria-current="page"><svg width="15" height="11" viewBox="0 0 16 12" aria-hidden="true" fill="none" stroke="currentColor"><rect x=".5" y=".5" width="5" height="5" rx="1"/><rect x="10.5" y="6.5" width="5" height="5" rx="1"/><path d="M5.5 3C8 3 8 9 10.5 9"/></svg>graph</a>
+    </nav>
+    <a class="btn" href="#" data-cv>Download CV (PDF)</a>
+  </div>
+</section>
+
+<section class="wrap" style="margin-top:clamp(2rem,4vw,3rem)">
+  <h1 style="font-size:clamp(2rem,3.6vw,2.75rem)">The same bio, wired up</h1>
+  <p class="lead" style="margin-top:1rem">This is how I actually think about it: two inputs, nine years of sampling, one model loaded in 2024, and a merge. Drag any node.</p>
+</section>
+
+<section class="wrap" style="margin-top:clamp(1.75rem,3.5vw,2.5rem)">
+  <div class="canvasfield" data-nodes data-edges="[[&quot;n-origin&quot;,&quot;n-career&quot;,&quot;hand&quot;],[&quot;n-craft&quot;,&quot;n-career&quot;,&quot;hand&quot;],[&quot;n-career&quot;,&quot;n-teach&quot;,&quot;plain&quot;],[&quot;n-career&quot;,&quot;n-merge&quot;,&quot;hand&quot;],[&quot;n-ai&quot;,&quot;n-merge&quot;,&quot;machine&quot;],[&quot;n-merge&quot;,&quot;n-out&quot;,&quot;plain&quot;],[&quot;n-out&quot;,&quot;n-awards&quot;,&quot;plain&quot;]]">
+    <div class="canvasfield__inner">
+      <svg aria-hidden="true" preserveAspectRatio="none"></svg>
+      
+    <div class="node " id="n-origin" data-x="0" data-y="20">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--hand">load · origin</div>
+      <div class="node__bd">
+        <span class="node__t">Odesa, Ukraine</span>
+        <span class="node__k">BFA, Odesa State Academy of Civil Engineering and Architecture</span>
+        
+      </div>
+    </div>
+    <div class="node " id="n-craft" data-x="0" data-y="272">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--hand">load · craft</div>
+      <div class="node__bd">
+        <span class="node__t">The hand</span>
+        <span class="node__k">Concept art, 3D, AR and VR, immersive production</span><span class="node__k">2016 to 2023</span>
+        
+      </div>
+    </div>
+    <div class="node node--machine" id="n-ai" data-x="0" data-y="524">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--machine">load model · ai · 2024</div>
+      <div class="node__bd">
+        <span class="node__t">The second instrument</span>
+        <span class="node__k">Code, math, generative pipelines</span>
+        
+      </div>
+    </div>
+    <div class="node " id="n-career" data-x="300" data-y="62">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--hand">sampler · career</div>
+      <div class="node__bd">
+        <span class="node__t">Nine years in production</span>
+        
+        <span class="node__rows"><span><span>Snap Inc.</span><span>3.5 yrs</span></span><span><span>ARNI Studio</span><span>founder</span></span><span><span>Tactical, Rotterdam</span><span>2023–25</span></span></span>
+      </div>
+    </div>
+    <div class="node " id="n-teach" data-x="600" data-y="20">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--out">save · teaching</div>
+      <div class="node__bd">
+        <span class="node__t">NAIT, Edmonton</span>
+        <span class="node__k">Visual Assets for Games, since 2026</span>
+        
+      </div>
+    </div>
+    <div class="node node--machine" id="n-merge" data-x="600" data-y="384">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--machine">merge · a + b</div>
+      <div class="node__bd">
+        <span class="node__t">Hand plus machine</span>
+        
+        <span class="node__rows"><span><span>taste</span><span>1.00</span></span><span><span>craft</span><span>1.00</span></span><span><span>compute</span><span>1.00</span></span><span><span>curiosity</span><span>∞</span></span></span>
+      </div>
+    </div>
+    <div class="node node--out" id="n-out" data-x="880" data-y="296">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--out">output · 2026</div>
+      <div class="node__bd">
+        <span class="node__t">Artem Maslov</span>
+        <span class="node__k">AI art director and creative technologist</span><span class="node__k">Edmonton, AB</span><span class="node__k">artem@artmaslov.com</span>
+        
+      </div>
+    </div>
+    <div class="node " id="n-awards" data-x="880" data-y="596">
+      <span class="node__port node__port--in" aria-hidden="true"></span>
+      <span class="node__port node__port--out" aria-hidden="true"></span>
+      <div class="node__hd node__hd--out">preview · awards</div>
+      <div class="node__bd">
+        <span class="node__t">Winner, Meta Horizon Mobile Innovation Hackathon</span>
+        <span class="node__k">2025</span><span class="node__k"><span class="pending">[More awards]</span></span>
+        
+      </div>
+    </div>
+    </div>
+  </div>
+  <p class="hint" style="margin-top:.85rem">Drag a node by its header. <a class="link" href="/about/">Read the written version</a> if you would rather not.</p>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <span>AI art director and creative technologist. Edmonton, Alberta <span class="num">53.5461&deg;&thinsp;N, 113.4938&deg;&thinsp;W</span></span>
+    <span class="foot__links">
+      <a href="mailto:artem@artmaslov.com">artem@artmaslov.com</a>
+      <a href="https://www.linkedin.com/in/maslov-artem/">LinkedIn</a>
+      <a href="https://github.com/artymaslov">GitHub</a>
+      <span>&copy; 2026</span>
+    </span>
+  </div>
+</footer>
+</body>
+</html>

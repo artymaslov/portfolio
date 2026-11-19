@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Artem Maslov — Home (Lab Bench)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#FFFFFF}a:hover{color:#C9DBFF}
+.reel{position:absolute;inset:0;background-color:#15181D;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:48px 48px}
+.card{transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.about-card .views{position:absolute;left:20px;right:20px;top:50%;display:flex;flex-direction:column;gap:8px;opacity:0;pointer-events:none;transform:translateY(-50%) translateY(8px);transition:opacity .2s ease,transform .2s ease}
+.about-card:hover .views,.about-card:focus-within .views{opacity:1;pointer-events:auto;transform:translateY(-50%)}
+.about-card .art{transition:opacity .2s ease}
+.about-card:hover .art,.about-card:focus-within .art{opacity:.1}
+@media (hover:none){.about-card .views{opacity:1;pointer-events:auto;transform:translateY(-50%)}.about-card .art{opacity:.1}}
+</style>
+</helmet>
+<div style="position: relative; min-height: 1040px; width: 100%; overflow: hidden; display: flex; flex-direction: column; font-family: 'Mona Sans', Inter, system-ui, sans-serif; color: #FFFFFF; background: #15181D">
+<div class="reel" aria-hidden="true"></div>
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.12em; color: rgba(255,255,255,0.35); white-space: nowrap; margin-top: -260px">[ SHOWREEL 2026 — FULL-BLEED VIDEO, MUTED LOOP ]</div>
+
+<header style="position: relative; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 28px 40px">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #FFFFFF">
+<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="fill: none; stroke: #FFFFFF; stroke-width: 1"><circle cx="14" cy="14" r="12.5"></circle><path d="M14 1.5v25M1.5 14h25"></path><circle cx="14" cy="14" r="4" style="fill: #FFFFFF; stroke: none"></circle></svg>
+<span style="font-size: 17px; font-weight: 600; letter-spacing: -0.01em">Artem Maslov</span>
+</a>
+<nav aria-label="Social" style="display: flex; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">
+<a href="https://www.linkedin.com/in/maslov-artem/" style="text-decoration: none">LINKEDIN ↗</a>
+<a href="https://github.com/artymaslov" style="text-decoration: none">GITHUB ↗</a>
+<a href="mailto:artem@artmaslov.com" style="text-decoration: none">EMAIL ↗</a>
+</nav>
+</header>
+
+<main style="position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; padding: 24px 40px 48px">
+<p style="margin: 0; max-width: 640px; text-align: center; font-size: 20px; line-height: 1.45; font-weight: 400; color: rgba(255,255,255,0.88)">Art director trained by hand. Technologist extended by machine.</p>
+<div style="width: 100%; max-width: 1320px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+
+<a href="Work.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px; height: 340px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; color: #0B0D10; text-decoration: none; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>01 / WORK</span><span style="color: {{accent}}">→</span></span>
+<svg viewBox="0 0 200 120" aria-hidden="true" style="width: 100%; height: 130px; fill: none; stroke: #0B0D10; stroke-width: 1"><path d="M20 20h16M20 20v16M180 20h-16M180 20v16M20 100h16M20 100v-16M180 100h-16M180 100v-16"></path><rect x="44" y="32" width="112" height="56" rx="6"></rect><path d="M92 49 L114 60 L92 71 Z" style="fill: {{accent}}; stroke: none"></path><path d="M44 98h112" style="stroke-dasharray: 2 4"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Commercial Work</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">Client projects · 2016—2026</span></span>
+</a>
+
+<a href="Lab.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px; height: 340px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; color: #0B0D10; text-decoration: none; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>02 / LAB</span><span style="color: {{accent}}">→</span></span>
+<svg viewBox="0 0 200 120" aria-hidden="true" style="width: 100%; height: 130px; fill: none; stroke: #0B0D10; stroke-width: 1"><path d="M86 12h28M92 12v32L64 100a6 6 0 0 0 5 8h62a6 6 0 0 0 5-8L108 44V12"></path><path d="M74 80h52" style="stroke: {{accent}}"></path><path d="M112 58h8M112 68h5M112 78h8M112 88h5"></path><circle cx="92" cy="94" r="3"></circle><circle cx="104" cy="88" r="2"></circle><circle cx="98" cy="68" r="1.5"></circle></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Lab</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">Experiments · pipelines · R&amp;D</span></span>
+</a>
+
+<a href="Lab.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px; height: 340px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; color: #0B0D10; text-decoration: none; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>03 / PLAYGROUND</span><span style="color: {{accent}}">→</span></span>
+<svg viewBox="0 0 200 120" aria-hidden="true" style="width: 100%; height: 130px; fill: none; stroke: #0B0D10; stroke-width: 1"><ellipse cx="100" cy="60" rx="70" ry="26"></ellipse><ellipse cx="100" cy="60" rx="70" ry="26" transform="rotate(60 100 60)"></ellipse><ellipse cx="100" cy="60" rx="70" ry="26" transform="rotate(-60 100 60)"></ellipse><circle cx="100" cy="60" r="5" style="fill: {{accent}}; stroke: none"></circle><circle cx="170" cy="60" r="4" style="fill: #0B0D10; stroke: none"></circle></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Playground</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">Small interactive toys</span></span>
+</a>
+
+<a href="Resources.dc.html" class="card" style="display: flex; flex-direction: column; justify-content: space-between; gap: 16px; height: 340px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; color: #0B0D10; text-decoration: none; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>04 / RESOURCES</span><span style="color: {{accent}}">→</span></span>
+<svg viewBox="0 0 200 120" aria-hidden="true" style="width: 100%; height: 130px; fill: none; stroke: #0B0D10; stroke-width: 1"><path d="M58 32v70a6 6 0 0 0 6 6h58"></path><path d="M70 20h46l16 16v62a4 4 0 0 1-4 4H70a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" style="fill: #FFFFFF"></path><path d="M116 20v16h16"></path><path d="M76 50h44M76 60h44M76 70h30"></path><path d="M156 52v36M144 76l12 12 12-12" style="stroke: {{accent}}"></path><path d="M142 100h28" style="stroke: {{accent}}"></path></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">Resources</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">Files · tutorials · tips · articles</span></span>
+</a>
+
+<div class="card about-card" style="position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; height: 340px; box-sizing: border-box; padding: 20px; border-radius: 20px; background: #FFFFFF; color: #0B0D10; text-decoration: none; border: 1px solid #DADDE3">
+<span style="display: flex; justify-content: space-between; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270"><span>05 / ABOUT</span><span style="color: {{accent}}">⇄</span></span>
+<svg class="art" viewBox="0 0 200 120" aria-hidden="true" style="width: 100%; height: 130px; fill: none; stroke: #0B0D10; stroke-width: 1"><rect x="22" y="34" width="62" height="52" rx="8"></rect><rect x="116" y="34" width="62" height="52" rx="8"></rect><path d="M22 46h62M116 46h62"></path><path d="M84 66C100 66 100 74 116 74" style="stroke: {{accent}}"></path><circle cx="84" cy="66" r="3" style="fill: #FFFFFF"></circle><circle cx="116" cy="74" r="3" style="fill: #FFFFFF"></circle></svg>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em">About</span><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">Bio · skills · awards · CV</span></span>
+<span class="views"><a href="About.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; background: #0B0D10; color: #FFFFFF; text-decoration: none; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">CLASSIC VIEW</a><a href="AboutNodes.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border-radius: 999px; border: 1px solid #0B0D10; background: #FFFFFF; color: #0B0D10; text-decoration: none; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em"><svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true" style="fill: none; stroke: currentColor; stroke-width: 1"><rect x="0.5" y="0.5" width="5" height="5" rx="1"></rect><rect x="10.5" y="6.5" width="5" height="5" rx="1"></rect><path d="M5.5 3C8 3 8 9 10.5 9"></path></svg>NODE VIEW</a></span>
+</div>
+
+</div>
+<section aria-label="Clients" style="width: 100%; max-width: 1320px; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; justify-content: center; padding-top: 16px">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: rgba(255,255,255,0.6)">WORKED WITH</span>
+<span style="font-size: 18px; color: rgba(255,255,255,0.9)">Dior</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Nike</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Amazon</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">L’Oréal</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Cartier</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Snap Inc.</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Universal Pictures</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Paramount Animation</span><span style="font-size: 18px; color: rgba(255,255,255,0.9)">Olympic Games</span>
+</section>
+</main>
+
+<footer style="position: relative; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; align-items: center; padding: 18px 40px; border-top: 1px solid rgba(255,255,255,0.14); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; color: rgba(255,255,255,0.72)">
+<span>AI ART DIRECTOR · CREATIVE TECHNOLOGIST</span>
+<span>EDMONTON, AB — 53.5461° N, 113.4938° W</span>
+<span style="display: flex; align-items: center; gap: 16px"><span><span style="color: {{accent}}">●</span> REEL 2026 · LOOP</span>
+<button aria-label="Turn showreel sound on" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #FFFFFF; font: inherit; cursor: pointer">SOUND OFF</button></span>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1967D2","options":["#1967D2","#E8590C","#0B0D10","#188038"]},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#1967D2' };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1151 @@
+/* ──────────────────────────────────────────────────────────
+   artmaslov.com
+   A working catalogue. The list of work is the navigation;
+   the sheet on the right is the evidence. One typeface.
+   Colour only marks state.
+   ────────────────────────────────────────────────────────── */
+
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light dark;
+
+  --bg:    #FFFFFF;
+  --fg:    #0F1114;
+  --fg2:   #52565D;
+  --fg3:   #70757C;
+  --rule:  #E2E2DF;
+  --rule2: #EFEFEC;
+  --accent:#1A3CFF;
+  --ph:    #DCDCD9;
+  --ph-l:  #55554F;
+  --hl:    #EFEFEB;
+  --edge:  #D2D2CE;   /* the line a white picture needs to have an edge */
+
+  --sans: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Type. Five steps, and nothing sets a size outside them. Anything that
+     wants to be "a little smaller" takes the next step down or stays put;
+     a sixth step between 14 and 16 is not a hierarchy, it is a wobble. */
+  --t1: .75rem;    /* 12 — labels, meta, captions, state */
+  --t2: .875rem;   /* 14 — secondary text, list rows, the rail */
+  --t3: 1rem;      /* 16 — body, section headings */
+  --t4: 1.25rem;   /* 20 — a standfirst under a title */
+  --t5: clamp(2rem, 1.35rem + 2.6vw, 2.75rem);   /* 32 → 44 — the page title */
+
+  /* Measure. A block is either the full column, or one of these. The point is
+     that two blocks on a page never stop one near the other: they stop in the
+     same place, or in places far enough apart to read as a decision. */
+  --w-read: 52rem;   /* a page that is mostly reading: a case */
+  --w-text: 42rem;   /* a run of prose inside a wide column */
+
+  --s1: .25rem; --s2: .5rem;  --s3: .75rem; --s4: 1rem;
+  --s5: 1.5rem; --s6: 2rem;   --s7: 3rem;   --s8: 4rem;  --s9: 6rem;
+
+  /* Corner radii. One scale, picked by the size of the box it sits on:
+     small controls stay tight, large media gets a softer corner, and
+     anything pill-shaped uses --r-full. */
+  --r1: 6px;    /* chips, hover bands, small hit targets */
+  --r2: 10px;   /* list thumbnails, small stills, inputs */
+  --r3: 14px;   /* figures, video, cards, panels */
+  --r4: 20px;   /* hero and full-width media */
+  --r-full: 999px;
+
+  --t: 140ms cubic-bezier(.3,.7,.3,1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0C0D0F; --fg: #ECEDEE; --fg2: #A0A5AB; --fg3: #868B92;
+    --rule: #222428; --rule2: #16181B; --accent: #8FA4FF;
+    --ph: #1C1E22; --ph-l: #91969D; --hl: #141619; --edge: #2A2D32;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: var(--t3);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
+p, ul, ol, dl, dd { margin: 0; }
+/* One gap between paragraphs, on every page. Three values for the same
+   relationship was three different pages. Named rather than global: the footer
+   and the rail set two paragraphs side by side, and they are not prose. */
+.intro__b p + p, .case__p p + p, .bio__p p + p, .cta p + p,
+.empty p + p, .ph1__lead + p, .block__lead p + p { margin-top: .85em; }
+ul, ol { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* A link inside running text is underlined. Colour on this site is reserved for
+   state, so an unmarked link in a paragraph is not readable as a link at all;
+   the rule is quiet at rest and the whole thing goes accent on hover. */
+.case__p a, .block__lead a, .empty a, .cap a, .exp__d a, .case__sum a,
+.case__meta dd a, .spec dd a, .credits dd a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg3);
+  text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.case__p a:hover, .block__lead a:hover, .empty a:hover, .cap a:hover,
+.exp__d a:hover, .case__sum a:hover,
+.case__meta dd a:hover, .spec dd a:hover, .credits dd a:hover { color: var(--accent); text-decoration-color: currentColor; }
+/* :where() keeps this at zero specificity, so a component's own radius
+   wins and nothing changes shape when it takes focus. */
+:where(a, button, input):focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r1);
+}
+
+.vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 20;
+  background: var(--fg); color: var(--bg); padding: var(--s3) var(--s4);
+  border-radius: var(--r2);
+}
+.skip:focus { left: var(--s4); top: var(--s2); }
+
+/* unfinished copy, deliberately visible */
+.todo {
+  color: var(--fg3);
+  border-bottom: 1px dotted currentColor;
+  overflow-wrap: break-word;
+}
+
+/* grey media placeholder */
+.ph {
+  background: var(--ph);
+  display: grid; place-items: center;
+  width: 100%;
+  border-radius: var(--r3);
+}
+.ph__l {
+  font-size: var(--t1); letter-spacing: .01em; color: var(--ph-l);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ── shell ───────────────────────────────────────────────── */
+.shell { padding: var(--s5) var(--s4) var(--s8); }
+
+@media (min-width: 64rem) {
+  .shell {
+    display: grid;
+    grid-template-columns: 16.5rem minmax(0, 1fr);
+    gap: var(--s7);
+    padding: var(--s6) var(--s6) var(--s9);
+    max-width: 90rem; margin-inline: auto;
+  }
+}
+
+/* ── rail ────────────────────────────────────────────────── */
+.rail { font-size: var(--t2); line-height: 1.38; }
+
+@media (min-width: 64rem) {
+  .rail {
+    position: sticky; top: var(--s6); align-self: start;
+    max-height: calc(100vh - var(--s8)); overflow-y: auto;
+    padding-right: var(--s3);
+    scrollbar-width: thin;
+  }
+}
+
+.id a { display: inline-block; }
+.id a:hover { color: var(--accent); }
+.id__sub { color: var(--fg2); margin-top: var(--s2); font-size: var(--t1); }
+/* The one thing a recruiter needs on every page, not only the home one. */
+.id__avail { color: var(--fg); margin-top: var(--s1); font-size: var(--t1); }
+
+/* The wordmark. No fill in the file, so it follows the text colour and
+   flips with the theme on its own. */
+.logo {
+  display: block;
+  /* The box is geometrically tight, but its left and bottom edges are touched
+     only by the point of the M, so the mark reads inset beside the flush-left
+     rail. Hang it out by that gap, measured in viewBox units. */
+  --logo-w: 10rem;
+  --logo-vw: 1385.86;
+  width: var(--logo-w); height: auto;
+  margin-left:   calc(var(--logo-w) * -16 / var(--logo-vw));
+  margin-bottom: calc(var(--logo-w) * -17 / var(--logo-vw));
+  fill: currentColor;
+  transition: fill var(--t);
+}
+
+.rail__links { display: flex; flex-direction: column; margin-top: var(--s4); }
+.rail__links a {
+  color: var(--fg2); padding: 2px 0;
+  text-decoration: underline; text-decoration-color: transparent;
+  text-underline-offset: 2px; transition: color var(--t), text-decoration-color var(--t);
+}
+.rail__links a:hover { color: var(--fg); text-decoration-color: currentColor; }
+.rail__links--end { margin-top: var(--s5); padding-top: var(--s3); border-top: 1px solid var(--rule); }
+
+/* touch: comfortable targets on small screens */
+@media (max-width: 63.99rem) {
+  .rail__links { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s5); }
+  .rail__links a { min-height: 44px; display: inline-flex; align-items: center; }
+  .rail__links--end { display: none; }
+  .foot a { min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* On a phone the rail is a masthead the reader scrolls past, not a column
+     they navigate from, so it gives up height: a smaller mark, and the two
+     rows of links told apart by weight and size rather than by distance. */
+  .logo { --logo-w: 7rem; }
+  .rail__nav { margin-top: var(--s3); }
+  .rail__links { margin-top: var(--s1); font-size: var(--t1); }
+  .rail__links a { color: var(--fg3); }
+  .rail__links a:hover { color: var(--fg); }
+}
+
+.worklead {
+  margin-top: var(--s8);
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s2) var(--s5); flex-wrap: wrap;
+  padding-bottom: var(--s2); border-bottom: 1px solid var(--rule);
+}
+.worklead h2 { font-size: var(--t3); }
+
+.seg { display: flex; flex-wrap: wrap; gap: var(--s1); margin: 0 -6px; }
+.seg button {
+  font: inherit; font-size: var(--t1); color: var(--fg2);
+  background: none; border: 0; cursor: pointer;
+  padding: 6px 10px; border-radius: var(--r-full);
+  display: inline-flex; gap: 5px; align-items: baseline;
+  transition: background var(--t), color var(--t);
+}
+.seg button:hover { background: var(--hl); color: var(--fg); }
+.seg button[aria-pressed="true"] {
+  color: var(--fg); background: var(--hl);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.seg__n { color: var(--fg3); font-variant-numeric: tabular-nums; }
+.seg button[aria-pressed="true"] .seg__n { color: var(--accent); }
+
+/* filtered out */
+body[data-filter="hand"] [data-made]:not([data-made~="hand"]),
+body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: none; }
+
+/* ── sheet ───────────────────────────────────────────────── */
+.sheet { margin-top: var(--s6); min-width: 0; }   /* the masthead's tap targets already carry air */
+@media (min-width: 64rem) { .sheet { margin-top: 0; } }
+
+.intro { max-width: var(--w-text); }
+.intro__h {
+  font-size: var(--t5);
+  letter-spacing: -0.03em; line-height: 1.12; text-wrap: balance;
+}
+.intro__b { margin-top: var(--s4); color: var(--fg2); }
+
+
+.figures {
+  margin-top: var(--s5);
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6) var(--s5);
+}
+@media (min-width: 40rem) { .figures { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 90rem) { .figures { grid-template-columns: 1fr 1fr 1fr; } }
+
+.fig { margin: 0; }
+.fig a { display: block; }
+.fig .ph { transition: opacity var(--t); }
+.fig.is-linked .ph, .fig a:hover .ph { opacity: .82; }
+.fig figcaption { margin-top: var(--s3); }
+.fig__t { font-size: var(--t3); }
+.fig a:hover .fig__t, .fig.is-linked .fig__t { color: var(--accent); }
+.fig__d { color: var(--fg2); font-size: var(--t2); margin-top: 1px; }
+/* The year is all this line carries now, so it no longer needs a rule to hold
+   it apart from a role sitting on the other end of the row. */
+.fig__m { margin-top: var(--s2); color: var(--fg3); font-size: var(--t1); }
+.fig__y { font-variant-numeric: tabular-nums; }
+
+/* ── blocks ──────────────────────────────────────────────── */
+.block { margin-top: var(--s9); }
+.block__h { font-size: var(--t4); }
+.block__lead { color: var(--fg2); max-width: var(--w-text); margin-top: var(--s2); font-size: var(--t3); }
+.block__lead--end { margin-top: var(--s4); }
+.block__lead a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.exp { margin-top: var(--s5); }
+.exp li + li .exp__row { border-top: 1px solid var(--rule); }
+.exp li:first-child .exp__row { border-top: 1px solid var(--rule); }
+.exp li:last-child .exp__row { border-bottom: 1px solid var(--rule); }
+.exp__row {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px var(--s4);
+  padding: var(--s3) var(--s2); margin: 0 calc(var(--s2) * -1);
+  min-height: 44px; align-content: center;
+  font-size: var(--t2);
+  transition: background var(--t);
+}
+/* The hover band is a rounded block, so no rule may cross it: the row hides its
+   own borders and the rule the next row draws. Transparent rather than none, so
+   nothing shifts by a pixel. Without this the last row looked right and the rest
+   had a straight line flush under their rounded corners. */
+.exp__row:hover { background: var(--hl); border-radius: var(--r2); border-color: transparent; }
+.exp li:has(.exp__row:hover) + li .exp__row { border-top-color: transparent; }
+@media (min-width: 46rem) {
+  .exp__row { grid-template-columns: 15rem minmax(0, 1fr) 7rem; align-items: baseline; align-content: initial; }
+}
+.exp__t { font-weight: 500; }
+.exp__row:hover .exp__t { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.exp__d { color: var(--fg2); }
+.exp__s { color: var(--fg3); font-size: var(--t1); }
+.exp__s[data-state="shipped"], .exp__s[data-state="winner"] { color: var(--accent); }
+
+.clients {
+  margin-top: var(--s4);
+  display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5);
+  color: var(--fg2); font-size: var(--t3);
+}
+
+.foot {
+  margin-top: var(--s9); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  color: var(--fg3); font-size: var(--t1);
+}
+.foot__c { font-variant-numeric: tabular-nums; margin-left: var(--s4); }
+
+/* ── case ────────────────────────────────────────────────── */
+.case { max-width: var(--w-read); }
+.case__head h1 {
+  font-size: var(--t5);
+  letter-spacing: -0.03em; text-wrap: balance;
+}
+.case__tag { margin-top: var(--s3); color: var(--fg2); font-size: var(--t4); max-width: var(--w-text); }
+.case__meta {
+  margin-top: var(--s5); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  display: grid; gap: var(--s3) var(--s5);
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  font-size: var(--t2);
+}
+.case__meta dt { color: var(--fg3); }
+.case__meta dd { margin: 0; }
+
+.ph--hero { margin-top: var(--s5); border-radius: var(--r4); }
+
+.case__sum {
+  margin-top: var(--s6);
+  display: grid; gap: var(--s4);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+.case__sum h2 { font-size: var(--t2); font-weight: 500; color: var(--fg3); }
+.case__sum p { margin-top: var(--s1); font-size: var(--t3); color: var(--fg2); }
+
+.case__body { margin-top: var(--s8); }
+.case__sec {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2) var(--s5);
+  padding: var(--s4) 0; border-top: 1px solid var(--rule);
+}
+@media (min-width: 46rem) { .case__sec { grid-template-columns: 11rem minmax(0, 1fr); } }
+.case__sec h2 { font-size: var(--t3); }
+.case__p { color: var(--fg2); }
+/* Evidence for a section runs the full width under it, rather than squeezing
+   into the column the heading sits in. */
+.case__ev { grid-column: 1 / -1; }
+.case__ev > :first-child { margin-top: var(--s4); }
+
+
+.tools { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); }
+.credits { display: grid; gap: var(--s2); }
+.credits dt { color: var(--fg3); font-size: var(--t2); }
+
+.stills { margin-top: var(--s7); display: grid; gap: var(--s4); grid-template-columns: 1fr 1fr; }
+
+.pager {
+  margin-top: var(--s8); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  display: grid; gap: var(--s4); grid-template-columns: 1fr 1fr;
+  font-size: var(--t3);
+}
+.pager a { display: block; min-height: 44px; }
+.pager a:last-child { text-align: right; }
+.pager span { display: block; color: var(--fg3); font-size: var(--t1); }
+.pager a:hover { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
+}
+
+/* ── page nav ────────────────────────────────────────────── */
+.rail__nav { display: flex; flex-direction: column; margin-top: var(--s5); }
+.rail__nav a {
+  padding: 4px 0; min-height: 32px; display: flex; align-items: center;
+  font-weight: 500;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.rail__nav a:hover { text-decoration-color: currentColor; }
+.rail__nav a[aria-current] { color: var(--accent); }
+
+@media (max-width: 63.99rem) {
+  .rail__nav { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s5); margin-top: var(--s4); }
+  .rail__nav a { min-height: 44px; }
+}
+
+/* ── page head ───────────────────────────────────────────── */
+.ph1 h1 {
+  font-size: var(--t5);
+  letter-spacing: -0.03em; text-wrap: balance;
+}
+.ph1__lead { margin-top: var(--s4); color: var(--fg2); max-width: var(--w-text); font-size: var(--t4); }
+
+/* ── section head ────────────────────────────────────────── */
+.block__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s2) var(--s5); flex-wrap: wrap;
+  padding-bottom: var(--s2); border-bottom: 1px solid var(--rule);
+}
+.block__head h2 { font-size: var(--t3); }
+.more { color: var(--fg2); font-size: var(--t2); text-decoration: underline; text-underline-offset: 3px; }
+.more:hover { color: var(--accent); }
+/* The other thing that sits at the end of a section head: not a way out of the
+   section, but the facts about what is in it. Year, running time, whether it
+   makes a sound — the same meta line a figure carries, moved up to the rule.
+   It stays on a wide screen, where `.more` goes, because the rail cannot say
+   how long a video is.
+   No tabular figures here: this line stands alone rather than in a column, and
+   tabular spacing pushes the colon in a running time out to `0 : 23`. */
+.block__meta { color: var(--fg3); font-size: var(--t1); }
+/* On a wide screen the rail carries Work and Lab at all times and the whole
+   section is a way in, so this second route to the same page is only noise.
+   On a phone the rail has scrolled away, and then it earns its place. */
+@media (min-width: 64rem) { .more { display: none; } }
+.block > .figures, .block > .exp, .block > .block__lead, .block > .vid { margin-top: var(--s4); }
+
+.note { color: var(--fg3); font-size: var(--t2); margin-top: var(--s4); max-width: var(--w-text); }
+
+/* ── call to action ──────────────────────────────────────── */
+.cta { margin-top: var(--s9); padding-top: var(--s4); border-top: 1px solid var(--rule); }
+.cta h2 { font-size: var(--t4); }
+.cta p { margin-top: var(--s3); color: var(--fg2); max-width: var(--w-text); }
+.btn {
+  display: inline-flex; align-items: center; gap: .45em; min-height: 44px;
+  padding: 0 var(--s4); margin-top: var(--s2);
+  background: var(--fg); color: var(--bg);
+  font-size: var(--t3); font-weight: 500;
+  transition: background var(--t);
+}
+.btn { border-radius: var(--r-full); }
+.btn:hover { background: var(--accent); }
+.btn .todo { color: inherit; opacity: .7; }
+
+.crumb { margin-bottom: var(--s5); font-size: var(--t2); }
+.crumb a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
+.crumb a:hover { color: var(--accent); }
+
+/* ── empty / under construction ───────────────────────── */
+.empty {
+  margin-top: var(--s4); padding: var(--s6) var(--s5);
+  border: 1px dashed var(--rule);
+  border-radius: var(--r3);
+  color: var(--fg2); max-width: var(--w-read);
+}
+.empty--page { margin-top: var(--s7); }
+.empty__h { color: var(--fg); font-weight: 500; margin-bottom: var(--s2); }
+.empty a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── about ───────────────────────────────────────────────── */
+.abar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s4); flex-wrap: wrap; margin-bottom: var(--s7);
+}
+.viewtoggle { display: flex; gap: var(--s1); }
+.viewtoggle a {
+  min-height: 44px; display: inline-flex; align-items: center;
+  padding: 0 var(--s4); font-size: var(--t3); color: var(--fg2);
+  border-radius: var(--r-full);
+  transition: background var(--t), color var(--t);
+}
+.viewtoggle a:hover { background: var(--hl); color: var(--fg); }
+.viewtoggle a[aria-current] { background: var(--hl); color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule); }
+.abar .btn { margin-top: 0; }
+
+/* Same gap between a page title and its first block as /work/ uses. */
+.bio { margin-top: var(--s8); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); }
+@media (min-width: 58rem) { .bio { grid-template-columns: minmax(14rem, 1fr) minmax(0, 1.75fr); gap: var(--s8); align-items: start; } }
+.bio__p { margin-top: var(--s5); color: var(--fg2); max-width: var(--w-text); }
+.bio__txt .spec { margin-top: var(--s7); }
+
+
+.portrait { margin: 0; }
+.cap { margin-top: var(--s2); font-size: var(--t1); color: var(--fg3); }
+.spec { margin-top: var(--s5); }
+.spec > div { padding: var(--s3) 0; border-top: 1px solid var(--rule); }
+.spec > div:last-child { border-bottom: 1px solid var(--rule); }
+.spec dt { font-size: var(--t1); color: var(--fg3); }
+.spec dd { margin: 2px 0 0; font-size: var(--t2); }
+
+/* ── awards ──────────────────────────────────────────────── */
+.awards { margin-top: var(--s4); border-collapse: collapse; width: 100%; font-size: var(--t3); }
+.awards th, .awards td { text-align: left; padding: var(--s3) var(--s4) var(--s3) 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.awards th { font-size: var(--t1); font-weight: 400; color: var(--fg3); border-bottom-color: var(--fg3); }
+.awards td:first-child { font-variant-numeric: tabular-nums; width: 6rem; }
+.awards td:last-child { color: var(--fg2); }
+.awards a {
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg3); text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.awards a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.awards__n { display: block; margin-top: var(--s1); color: var(--fg3); font-size: var(--t2); }
+
+/* ── node graph ──────────────────────────────────────────────
+   The page is a node editor, so it takes a node editor's own language
+   rather than the site's: a flat grey canvas, a title bar per node, boxed
+   parameter rows, round sockets on the border. Those colours live only
+   inside .nodeui, so nothing else on the site inherits them. */
+.nodeui {
+  --canvas:    #EDEDED;
+  --nbg:       #F7F7F7;
+  --nbr:       #BDBDBD;
+  --ntitle:    #DADADA;
+  --ntext:     #333333;
+  /* The prototype's #777 sits at 3.2:1 on a parameter well at 9px. Darkened
+     until every grey label clears 4.5:1 on the lightest surface it lands on. */
+  --nmuted:    #5F5F5F;
+  --wire:      #9E9E9E;
+  --socket:    #B4B4B4;
+  --socket-br: #8C8C8C;
+  --fill:      #E2E2E2;
+  --nactive:   #3A3A3A;
+  --nmono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+/* Dark keeps the same steps between the greys, flipped: the canvas is the
+   darkest surface, a node sits above it, its title bar above that, and a
+   parameter well sinks back below the node. */
+@media (prefers-color-scheme: dark) {
+  .nodeui {
+    --canvas:    #17191C;
+    --nbg:       #26292D;
+    --nbr:       #41454A;
+    --ntitle:    #313539;
+    --ntext:     #E4E6E8;
+    --nmuted:    #969BA1;
+    --wire:      #70757B;
+    --socket:    #70757B;
+    --socket-br: #9AA0A6;
+    --fill:      #1E2124;
+    --nactive:   #E4E6E8;
+  }
+}
+
+.graph__hint { color: var(--fg3); font-size: var(--t2); margin-bottom: var(--s4); }
+.graph__hint a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
+.graph__hint a:hover { color: var(--accent); }
+@media (max-width: 57.99rem) { .canvasonly { display: none; } }
+
+/* The window. It is sized so the whole graph fits inside it on load and the
+   window itself fits on screen, which is why its height is capped against the
+   viewport: the reader sees everything at once, then zooms in on what they
+   want. The dot grid is painted here rather than on the canvas so panning and
+   zooming can slide it, the way an infinite sheet behaves. */
+.graphbox {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--nbr);
+  border-radius: 4px;
+  background-color: var(--canvas);
+  background-image: radial-gradient(var(--nbr) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+@media (min-width: 58rem) {
+  .graphbox { height: clamp(320px, 44vh, 400px); cursor: grab; touch-action: none; }
+  .graphbox.is-panning { cursor: grabbing; }
+}
+/* Between these two widths the masthead is stacked above the page instead of
+   sitting in the rail, which costs about 240px of height. The window gives that
+   back, so it still lands whole on a short screen. */
+@media (min-width: 58rem) and (max-width: 63.99rem) {
+  .graphbox { height: clamp(260px, 36vh, 340px); }
+}
+
+.graph { position: relative; }
+@media (min-width: 58rem) {
+  .graph {
+    width: var(--gw); height: var(--gh);
+    transform-origin: 0 0;
+    transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--k, 1));
+  }
+}
+@media (max-width: 57.99rem) {
+  .graph { padding: var(--s4); display: grid; gap: var(--s4); }
+}
+
+.graph__wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.graph__wires path { fill: none; stroke: var(--wire); stroke-width: 2; }
+.graph__wires path.is-live { stroke: var(--nactive); }
+
+/* ── zoom controls ───────────────────────────────────────── */
+.zoom {
+  position: absolute; left: 10px; bottom: 10px; z-index: 4;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--nbr); border-radius: 3px; overflow: hidden;
+}
+@media (max-width: 57.99rem) { .zoom { display: none; } }
+.zoom button {
+  width: 26px; height: 26px; padding: 0;
+  display: grid; place-items: center;
+  border: 0; border-bottom: 1px solid var(--nbr);
+  background: var(--nbg); color: var(--ntext);
+  font: 500 13px/1 var(--sans); cursor: pointer;
+}
+.zoom button:last-child { border-bottom: 0; font: 600 9px/1 var(--nmono); letter-spacing: .04em; }
+.zoom button:hover { background: var(--fill); }
+.zoom button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ── node ────────────────────────────────────────────────── */
+.node {
+  width: 240px;
+  background: var(--nbg);
+  border: 1px solid var(--nbr);
+  border-radius: 4px;
+  color: var(--ntext);
+  font: 400 12px/1.4 var(--sans);
+}
+@media (min-width: 58rem) {
+  .node { position: absolute; left: 0; top: 0; transform: translate(var(--x), var(--y)); cursor: grab; }
+  .node.is-dragging { cursor: grabbing; border-color: var(--nactive); z-index: 3; }
+}
+@media (max-width: 57.99rem) { .node { width: 100%; } }
+.node:focus-visible { outline: 2px solid var(--nactive); outline-offset: 2px; }
+
+.node__title {
+  display: flex; align-items: center; gap: 6px;
+  height: 26px; padding: 0 10px;
+  background: var(--ntitle);
+  border-bottom: 1px solid var(--nbr);
+  border-radius: 3px 3px 0 0;
+  font-weight: 600;
+}
+.node__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--wire); flex: none; }
+.node__name { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.node__tag {
+  flex: none;
+  padding: 1px 5px;
+  border: 1px solid var(--nmuted); border-radius: 2px;
+  font: 600 9px/1.4 var(--nmono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--nmuted);
+}
+.node__body { padding: 6px 0 8px; }
+
+/* Every row is a positioning context, because a socket hangs off the node's
+   edge from inside the row it belongs to. */
+.row { position: relative; padding: 3px 12px; }
+.sockets__row { display: flex; justify-content: space-between; gap: 8px; color: var(--nmuted); font-size: 11px; }
+.sockets__out { text-align: right; }
+.sock {
+  position: absolute; top: 50%; margin-top: -4.5px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--socket); border: 1px solid var(--socket-br);
+}
+.sockets__in .sock { left: -5px; }
+.sockets__out .sock { right: -5px; }
+
+.field {
+  display: flex; justify-content: space-between; gap: 12px;
+  margin: 2px 10px; padding: 3px 8px;
+  background: var(--fill); border-radius: 3px;
+}
+.field__label { flex: none; color: var(--nmuted); }
+.field__value { font-family: var(--nmono); font-size: 11px; text-align: right; overflow-wrap: anywhere; }
+
+.node__f { margin: 6px 12px 0; padding-top: 6px; border-top: 1px solid var(--nbr); font-size: 11px; color: var(--nmuted); }
+@media (min-width: 58rem) { .node__f { display: none; } }
+
+/* The one node that is a result rather than a step wears the active colour in
+   its title bar; the box itself stays a node like any other. */
+.node--output { border-color: var(--nactive); }
+.node--output .node__title { background: var(--nactive); border-bottom-color: var(--nactive); color: var(--nbg); }
+.node--output .node__dot { background: var(--nbg); }
+.node--output .node__tag { color: var(--nbg); border-color: var(--nbg); }
+
+.nodeui .todo { color: var(--nmuted); }
+
+/* Touch: every control reaches 44px on small screens. Padding rather than
+   min-height, so baseline alignment inside the flex rows survives. */
+@media (max-width: 63.99rem) {
+  .more { padding-block: 12px; }
+  .crumb a { padding-block: 14px; }
+  .seg button { padding-block: 13px; }
+}
+
+/* ── thumbnails ──────────────────────────────────────────── */
+.thumb { position: relative; overflow: hidden; background: var(--ph); border-radius: var(--r3); }
+.thumb__still, .thumb__clip {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.thumb__clip { opacity: 0; transition: opacity var(--t); }
+.thumb.is-playing .thumb__clip { opacity: 1; }
+
+/* ── lab list with previews ──────────────────────────────── */
+.exp__thumb { display: block; }
+.exp__thumb .thumb { border-radius: var(--r2); }
+@media (min-width: 46rem) {
+  .exp__row { grid-template-columns: 9rem 13rem minmax(0, 1fr) 7rem; align-items: center; }
+  .exp__row .exp__t, .exp__row .exp__d, .exp__row .exp__s { align-self: center; }
+}
+@media (max-width: 45.99rem) {
+  .exp__thumb { max-width: 12rem; margin-bottom: var(--s2); }
+}
+
+/* ── media on a case page ────────────────────────────────── */
+.vid, .fig-media { margin: var(--s5) 0 0; }
+.vid video, .fig-media img, .fig-media video {
+  display: block; width: 100%; height: auto; background: var(--ph);
+  border-radius: var(--r4);
+  box-shadow: inset 0 0 0 1px var(--edge);
+}
+.fig-media video { max-width: 40rem; }
+.cap { margin-top: var(--s2); font-size: var(--t1); color: var(--fg3); max-width: var(--w-text); }
+
+.built { margin-top: var(--s7); }
+.built h2 { font-size: var(--t3); padding-bottom: var(--s2); border-bottom: 1px solid var(--rule); }
+.built .spec { margin-top: 0; }
+@media (min-width: 46rem) {
+  .built .spec { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s6); }
+  /* Two columns means two rows of different height side by side, so a rule per
+     row breaks into segments that stop in different places. The label above the
+     value already says where one entry ends and the next begins. */
+  .built .spec > div { border: 0; padding: 0 0 var(--s4); }
+}
+
+/* ── before / after ──────────────────────────────────────── */
+.bas { margin-top: var(--s5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); }
+@media (min-width: 46rem) {
+  .bas { grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr)); gap: var(--s6) var(--s5); }
+}
+.ba { margin: 0; max-width: var(--ba-max, 56rem); }
+.ba__box {
+  position: relative; overflow: hidden; background: var(--ph);
+  border-radius: var(--r4);
+  cursor: ew-resize;
+  touch-action: pan-y;          /* drag is ours, vertical scroll stays the page's */
+  isolation: isolate;
+}
+@media (min-width: 46rem) { .bas[style*="--cols"] .ba__box { border-radius: var(--r3); } }
+.ba__after, .ba__before {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  user-select: none; -webkit-user-drag: none;
+}
+/* the raw placement sits on top, clipped to the handle */
+.ba__before { clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+
+.ba__line {
+  position: absolute; top: 0; bottom: 0; left: var(--x);
+  width: 1px; margin-left: -.5px;
+  background: #FFF; box-shadow: 0 0 0 1px rgba(0, 0, 0, .22);
+  pointer-events: none;
+}
+.ba__knob {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg); color: var(--fg2);
+  box-shadow: 0 0 0 1px var(--fg3), 0 1px 2px rgba(0, 0, 0, .22);
+  transition: box-shadow var(--t), color var(--t);
+}
+.ba__knob svg { width: 13px; height: 7px; }
+.ba__box:hover .ba__knob { color: var(--fg); box-shadow: 0 0 0 1px var(--fg), 0 1px 2px rgba(0, 0, 0, .22); }
+.ba__box:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ba__box:has(input:focus-visible) .ba__knob {
+  color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 1px 2px rgba(0, 0, 0, .22);
+}
+
+/* the range input stays for keyboard and screen readers; the knob is what you see.
+   Clamped so its layout box does not reach past the hidden label. */
+.ba__ctl { position: absolute; }
+.ba__ctl input { max-width: 100%; }
+
+/* ── roadmap ─────────────────────────────────────────────── */
+.road { margin-top: var(--s4); counter-reset: step; }
+.road li {
+  counter-increment: step;
+  display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--s4);
+  padding: var(--s4) 0; border-top: 1px solid var(--rule);
+}
+.road li::before {
+  content: counter(step);
+  grid-column: 1; grid-row: 1;
+  color: var(--fg3); font-variant-numeric: tabular-nums;
+}
+.road h3 { grid-column: 2; font-size: var(--t3); font-weight: 500; }
+.road p { grid-column: 2; margin-top: 2px; color: var(--fg2); font-size: var(--t3); max-width: var(--w-text); }
+
+/* ── a row of silent loops ───────────────────────────────── */
+.clips {
+  margin-top: var(--s4);
+  display: grid; gap: var(--s4);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 34rem) { .clips { grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); } }
+.clips video { display: block; width: 100%; height: auto; background: var(--ph); border-radius: var(--r3); }
+/* a clip whose source is letterboxed: the box carries the real ratio and the
+   bars are cropped off, rather than printing two black bands on the page */
+.clips video[data-fit] { object-fit: cover; }
+
+/* ── a grid of stills, each one a button ─────────────────── */
+.plates {
+  margin-top: var(--s4);
+  display: grid; gap: var(--s2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 40rem) {
+  .plates { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--s3); }
+}
+.plate {
+  display: block; width: 100%; padding: 0; border: 0; background: var(--ph);
+  border-radius: var(--r2); overflow: hidden;
+  cursor: zoom-in; color: inherit;
+}
+.plate img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: opacity var(--t);
+}
+.plate:hover img { opacity: .82; }
+.plate:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ── before and after, side by side ──────────────────────── */
+/* Where the tool reframes the piece, the two images are not one photograph,
+   so they sit next to each other instead of under a wipe. */
+.pairs {
+  margin: var(--s5) 0 0; padding: 0; list-style: none;
+  display: grid; gap: var(--s6); grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 46rem) {
+  .pairs { grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: var(--s6) var(--s5); }
+}
+.pair { margin: 0; }
+.pair__imgs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
+.pair__one { display: flex; flex-direction: column; gap: var(--s1); }
+.pair__l {
+  font-size: var(--t1); letter-spacing: .02em; color: var(--fg3);
+}
+.pair .cap { margin-top: var(--s2); }
+
+/* ── a board that lives on someone else's server ─────────── */
+.embed { margin: var(--s5) 0 0; }
+.embed iframe { display: block; width: 100%; border: 0; border-radius: var(--r2); background: var(--ph); }
+.embed__act {
+  margin-top: var(--s3);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4);
+  font-size: var(--t2);
+}
+.embed__act .btn { margin-top: 0; }
+/* the link beside the button is a touch target too */
+.embed__act a { display: inline-flex; align-items: center; min-height: 44px; }
+.btn--q { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule); }
+.btn--q:hover { background: var(--fg); color: var(--bg); box-shadow: none; }
+
+
+/* ── the edge of a picture ───────────────────────────────── */
+/* A catalogue shot is white to its own corners, so on a white page it has no
+   edge and bleeds into the paper. Every media frame draws one for it.
+   It has to be a ring painted AFTER the content: an inset shadow on the box
+   paints beneath absolutely positioned children, which is to say beneath the
+   picture, which is to say nowhere. */
+.ba__box::after,
+.plate::after,
+.thumb::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--edge);
+  pointer-events: none;
+}
+.plate { position: relative; }
+
+/* ── the viewer ──────────────────────────────────────────── */
+.lb {
+  width: 100%; max-width: 100%; height: 100%; max-height: 100%;
+  margin: 0; padding: 0; border: 0; background: var(--bg); color: var(--fg);
+  overflow: hidden;
+}
+.lb::backdrop { background: var(--bg); }
+/* the page behind a modal should not scroll under it */
+html:has(.lb[open]) { overflow: hidden; }
+.lb__bar {
+  position: absolute; inset: 0 0 auto 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s4); padding: var(--s3) var(--s4);
+}
+.lb__n { font-size: var(--t2); color: var(--fg3); font-variant-numeric: tabular-nums; }
+.lb__x {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: var(--s2) var(--s3); margin: calc(var(--s2) * -1) calc(var(--s3) * -1);
+  border: 0; background: none; color: var(--fg2); cursor: pointer;
+  font: inherit; font-size: var(--t2);
+}
+.lb__x span { font-size: var(--t4); line-height: 1; }
+.lb__x { border-radius: var(--r-full); }
+.lb__x:hover { color: var(--fg); }
+.lb__img {
+  cursor: zoom-out; border-radius: var(--r3);
+  position: absolute; inset: 0; margin: auto;
+  max-width: calc(100% - var(--s8)); max-height: calc(100% - var(--s9));
+  width: auto; height: auto; object-fit: contain;
+}
+.lb__nav {
+  position: absolute; top: 50%; translate: 0 -50%; z-index: 2;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border: 0; background: none; color: var(--fg2); cursor: pointer;
+}
+.lb__nav { border-radius: var(--r-full); }
+.lb__nav:hover { color: var(--fg); }
+.lb__nav--p { left: 0; }
+.lb__nav--n { right: 0; }
+.lb__x:focus-visible, .lb__nav:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+@media (min-width: 46rem) {
+  .lb__bar { padding: var(--s4) var(--s5); }
+  .lb__nav { width: 56px; height: 56px; }
+  .lb__img { max-width: calc(100% - 9rem); }
+}
+
+/* ──────────────────────────────────────────────────────────
+   HEADER EXPERIMENT — one blurred top bar: mark centred, pages right.
+   Pure override block: delete from here to the end of the file
+   (and restore assets/site.css.rail-backup) to go back to the rail.
+   ────────────────────────────────────────────────────────── */
+
+:root {
+  --hdr: 3.75rem;        /* the bar itself */
+  --hdr-fade: 3.25rem;   /* how far the blur keeps going under it */
+}
+
+/* one column again, with room under the bar */
+:root { --shell-top: calc(var(--hdr) + var(--s5)); }
+.shell {
+  padding-top: var(--shell-top);
+  padding-bottom: calc(var(--hdr) + var(--hdr-fade) + var(--s5));
+}
+html { overflow-x: clip; }   /* the hero breaks out to the viewport width */
+@media (min-width: 64rem) {
+  :root { --shell-top: calc(var(--hdr) + var(--s6)); }
+  .shell {
+    display: block;
+    max-width: 72rem;
+    padding: var(--shell-top) var(--s6) calc(var(--hdr) + var(--hdr-fade) + var(--s6));
+  }
+}
+
+/* ── the bar ─────────────────────────────────────────────── */
+.rail {
+  position: fixed; inset: 0 0 auto 0; z-index: 13;
+  display: flex; align-items: center;
+  height: var(--hdr);
+  padding: 0 var(--s4);
+  max-height: none; overflow: visible;
+  font-size: var(--t2);
+  background: none;
+}
+@media (min-width: 64rem) {
+  .rail {
+    position: fixed; top: 0; align-self: auto;
+    padding: 0 var(--s6); padding-right: var(--s6);
+    max-height: none; overflow: visible;
+  }
+}
+
+/* ── progressive blur ────────────────────────────────────────
+   One backdrop-filter with a soft mask still blurs the whole strip
+   by the same amount and then fades the result out — the edge goes
+   see-through while the picture behind it stays smeared, which is
+   the cheap look. iOS instead varies the blur itself: six layers,
+   each doubling the radius and each masked to a shorter band, so
+   they stack to a gradient of blur — strong at the top edge, gone
+   by the bottom, with nothing to mark where it ended.
+   ──────────────────────────────────────────────────────────── */
+.topfade {
+  position: fixed; inset: 0 0 auto 0; z-index: 11; pointer-events: none;
+  height: calc(var(--hdr) + var(--hdr-fade));
+}
+.topfade span { position: absolute; inset: 0; display: block; }
+
+/* the lightest pass also carries the saturation lift that makes
+   colour read through frosted glass rather than through fog */
+.topfade span:nth-child(1) {
+  backdrop-filter: blur(.4px) saturate(1.5);
+  -webkit-backdrop-filter: blur(.4px) saturate(1.5);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 84%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0 84%, transparent 100%);
+}
+.topfade span:nth-child(2) {
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 64%, transparent 88%);
+          mask-image: linear-gradient(to bottom, #000 0 64%, transparent 88%);
+}
+.topfade span:nth-child(3) {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 50%, transparent 72%);
+          mask-image: linear-gradient(to bottom, #000 0 50%, transparent 72%);
+}
+.topfade span:nth-child(4) {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 38%, transparent 58%);
+          mask-image: linear-gradient(to bottom, #000 0 38%, transparent 58%);
+}
+.topfade span:nth-child(5) {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 26%, transparent 45%);
+          mask-image: linear-gradient(to bottom, #000 0 26%, transparent 45%);
+}
+.topfade span:nth-child(6) {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0 14%, transparent 32%);
+          mask-image: linear-gradient(to bottom, #000 0 14%, transparent 32%);
+}
+
+/* No wash of page colour at all: the glass is clear, and the only thing
+   it does to what passes under it is blur. The bar's own text stays legible
+   by inverting whatever it sits on — see the blend below — rather than by
+   putting a white film over the picture. */
+
+
+/* ── mark, centred ─────────────────────────────────────────
+   Two classes deep so it outweighs the stacking rule above,
+   which also sets a position. */
+.rail .rail__id {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center;
+}
+.id__sub, .id__avail { display: none; }
+.logo {
+  --logo-w: 5rem; margin-bottom: 0;
+  transition: fill var(--t), width 320ms cubic-bezier(.3,.7,.3,1),
+              margin-left 320ms cubic-bezier(.3,.7,.3,1);
+}
+/* At the very top the mark gets its full size; once the page moves it
+   steps back by a fifth and stays there. */
+html:not([data-scrolled]) .rail .logo { --logo-w: 6rem; }
+
+/* ── pages, right ────────────────────────────────────────── */
+.rail__nav {
+  flex-direction: row; align-items: center;
+  gap: 0 var(--s5); margin-top: 0; margin-left: auto;
+}
+.rail__nav a { min-height: 0; padding: 0; }
+
+/* Difference blending against everything under the bar — the page and the
+   glass both — so the text is white over a dark frame, black over a light
+   one, and never a film of colour in between. It is why the glass can stay
+   completely clear. The blend sits on the bar as a whole: inside a fixed,
+   stacked element the browser has nothing left to blend a child against. */
+.rail { color: #fff; mix-blend-mode: difference; }
+/* accent would come out of the inversion as a muddy complement, so the
+   current page is marked by its rule instead */
+.rail__nav a[aria-current] { color: inherit; text-decoration-color: currentColor; }
+
+/* contact links live on their own page now */
+.rail__links { display: none; }
+
+.sheet { margin-top: 0; }
+
+/* ── the same glass along the bottom ──────────────────────
+   Mirrored: the blur is strongest at the very bottom edge and gone a
+   little above it, so a row of work does not arrive at a cut line — it
+   comes up out of focus and sharpens as it rises. */
+.botfade {
+  position: fixed; inset: auto 0 0 0; z-index: 11;
+  height: calc(var(--hdr) + var(--hdr-fade));
+  pointer-events: none;
+}
+.botfade span { position: absolute; inset: 0; display: block; }
+.botfade span:nth-child(1) {
+  backdrop-filter: blur(.4px) saturate(1.5);
+  -webkit-backdrop-filter: blur(.4px) saturate(1.5);
+  -webkit-mask-image: linear-gradient(to top, #000 0 84%, transparent 100%);
+          mask-image: linear-gradient(to top, #000 0 84%, transparent 100%);
+}
+.botfade span:nth-child(2) {
+  backdrop-filter: blur(1px); -webkit-backdrop-filter: blur(1px);
+  -webkit-mask-image: linear-gradient(to top, #000 0 64%, transparent 88%);
+          mask-image: linear-gradient(to top, #000 0 64%, transparent 88%);
+}
+.botfade span:nth-child(3) {
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  -webkit-mask-image: linear-gradient(to top, #000 0 50%, transparent 72%);
+          mask-image: linear-gradient(to top, #000 0 50%, transparent 72%);
+}
+.botfade span:nth-child(4) {
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  -webkit-mask-image: linear-gradient(to top, #000 0 38%, transparent 58%);
+          mask-image: linear-gradient(to top, #000 0 38%, transparent 58%);
+}
+.botfade span:nth-child(5) {
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  -webkit-mask-image: linear-gradient(to top, #000 0 26%, transparent 45%);
+          mask-image: linear-gradient(to top, #000 0 26%, transparent 45%);
+}
+.botfade span:nth-child(6) {
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to top, #000 0 14%, transparent 32%);
+          mask-image: linear-gradient(to top, #000 0 14%, transparent 32%);
+}
+
+/* ── home: the reel is the page ──────────────────────────────
+   Full bleed, full height, no chrome. The statement sits on it, clear of
+   the bottom glass at rest, and dissolves into it as the page moves. */
+.hero {
+  position: relative;
+  margin-top: calc(var(--shell-top) * -1);
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+  height: 100svh; min-height: 32rem;
+  margin-bottom: var(--s9);
+  overflow: hidden;
+  background: var(--ph);
+}
+.hero__v {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.hero__h {
+  position: absolute; left: 0; right: 0;
+  bottom: calc(var(--hdr) + var(--hdr-fade) + var(--s5));
+  padding-inline: var(--s5);
+  max-width: 30ch;
+  font-size: var(--t5); line-height: 1.08; letter-spacing: -0.03em;
+  text-wrap: balance;
+  /* Over a moving picture, inversion turns into a colour mess; the line
+     stays plain white with just enough shadow to hold an edge. */
+  color: #fff;
+  text-shadow: 0 1px 24px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.35);
+}
+@media (min-width: 64rem) {
+  .hero__h { padding-inline: var(--s8); max-width: 26ch; }
+}
+/* reduced motion hands the controls back (site.js); give them room */
+.hero__v[controls] { object-fit: contain; background: #000; }
+
+@media (max-width: 47.99rem) {
+  /* no room to centre the mark against four pages: it goes back left */
+  :root { --hdr: 3.25rem; --hdr-fade: 2.5rem; }
+  .rail { padding: 0 var(--s4); }
+  .rail .rail__id { position: static; left: auto; top: auto; transform: none; }
+  .logo { --logo-w: 4rem; }
+  .rail__nav { gap: 0 var(--s4); font-size: var(--t1); }
+  html:not([data-scrolled]) .rail .logo { --logo-w: 4.8rem; }
+  .hero__h { bottom: calc(var(--hdr) + var(--hdr-fade) + var(--s4)); padding-inline: var(--s4); }
+}

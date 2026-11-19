@@ -1,0 +1,45 @@
+{
+  "note": "Self-assessed 0–10. before = 2016–2023 (hand), after = 2024→ (hand + machine). SAMPLE VALUES — replace before launch.",
+  "skills": [
+    {
+      "label": "Art direction",
+      "before": 8,
+      "after": 9
+    },
+    {
+      "label": "Concept art",
+      "before": 9,
+      "after": 9
+    },
+    {
+      "label": "3D modeling & animation",
+      "before": 8,
+      "after": 8
+    },
+    {
+      "label": "AR / VR",
+      "before": 8,
+      "after": 8
+    },
+    {
+      "label": "AI image & video",
+      "before": 2,
+      "after": 9
+    },
+    {
+      "label": "Generative pipelines",
+      "before": 1,
+      "after": 8
+    },
+    {
+      "label": "Code",
+      "before": 2,
+      "after": 7
+    },
+    {
+      "label": "Math & technical thinking",
+      "before": 2,
+      "after": 6
+    }
+  ]
+}

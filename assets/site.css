@@ -1,0 +1,1160 @@
+/* ──────────────────────────────────────────────────────────
+   artmaslov.com
+   A working catalogue. The list of work is the navigation;
+   the sheet on the right is the evidence. One typeface.
+   Colour only marks state.
+   ────────────────────────────────────────────────────────── */
+
+@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: light dark;
+
+  --bg:    #FFFFFF;
+  --fg:    #0F1114;
+  --fg2:   #52565D;
+  --fg3:   #70757C;
+  --rule:  #E2E2DF;
+  --rule2: #EFEFEC;
+  --cyan:  #1BC9E8;   /* the statement band: cyan pushed a step towards the accent blue */
+  --band:  34px;      /* the depth of the bar the home page opens with */
+  --ink:   #23262B;   /* running text: a hair off the heading black, so the heading still leads */
+  /* The accent is the band's cyan, carried over at the lightness each ground
+     can take. #1BC9E8 itself is only 2:1 on white — as link text it would
+     read as disabled, lighter than --fg3 — so light mode takes the same hue
+     (190°) darkened to 4.7:1. Dark mode can wear the band colour as it is. */
+  --accent:#0C7F96;
+  --ph:    #DCDCD9;
+  --ph-l:  #55554F;
+  --hl:    #EFEFEB;
+  --edge:  #D2D2CE;   /* the line a white picture needs to have an edge */
+
+  --sans: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Type. Five steps, and nothing sets a size outside them. Anything that
+     wants to be "a little smaller" takes the next step down or stays put;
+     a sixth step between 14 and 16 is not a hierarchy, it is a wobble.
+
+     A step is a size *and* its tracking and its leading, because those are not
+     free: letterfit has to open as the type gets smaller and close as it gets
+     larger, and a line has to breathe in proportion to how far the eye travels
+     along it. One tracking value handed to every size — a heading at 16 and a
+     title at 44 both set -0.02em — smudges the small one and leaves the large
+     one spaced out, and it is the single clearest tell that a page was set by
+     a machine rather than by someone looking at it. */
+  --t1: .75rem;   --ls1:  .005em;  --lh1: 1.45;  /* 12 — labels, meta, captions, state */
+  --t2: .875rem;  --ls2:  0em;     --lh2: 1.5;   /* 14 — secondary text, list rows, the rail */
+  --t3: 1rem;     --ls3:  0em;     --lh3: 1.6;   /* 16 — body, card titles */
+  --t4: 1.25rem;  --ls4: -.015em;  --lh4: 1.25;  /* 20 — section heads, standfirsts */
+  --t5: clamp(2rem, 1.35rem + 2.6vw, 2.75rem);
+                  --ls5: -.028em;  --lh5: 1.06;  /* 32 → 44 — the page title */
+
+  /* Measure. A block is either the full column, or one of these. The point is
+     that two blocks on a page never stop one near the other: they stop in the
+     same place, or in places far enough apart to read as a decision. */
+  --w-read: 52rem;   /* a page that is mostly reading: a case */
+  /* The running-text measures are set in `ch`, not rem, so each holds the same
+     number of characters whatever size it is used at. 42rem was a decent line
+     at 16px (82 characters — already past where the eye starts losing the
+     return) and a wall at 12px, where the same box took 109. */
+  --w-text: 55ch;    /* prose: about 65 characters at any size */
+  --w-lead: 46ch;    /* a standfirst, read in one glance rather than scanned */
+  --w-cap:  58ch;    /* a caption under a picture */
+
+  --s1: .25rem; --s2: .5rem;  --s3: .75rem; --s4: 1rem;
+  --s5: 1.5rem; --s6: 2rem;   --s7: 3rem;   --s8: 4rem;  --s9: 6rem;
+
+  /* Corner radii. One scale, picked by the size of the box it sits on:
+     small controls stay tight, large media gets a softer corner, and
+     anything pill-shaped uses --r-full. */
+  --r1: 6px;    /* chips, hover bands, small hit targets */
+  --r2: 10px;   /* list thumbnails, small stills, inputs */
+  --r3: 14px;   /* figures, video, cards, panels */
+  --r4: 20px;   /* hero and full-width media */
+  --r-full: 999px;
+
+  --t: 140ms cubic-bezier(.3,.7,.3,1);
+}
+
+/* Light text on a dark ground gains weight from subpixel rendering, so the dark
+   theme — and only the dark theme — asks for the thinner grey one. */
+@media (prefers-color-scheme: dark) {
+  body { -webkit-font-smoothing: antialiased; }
+  :root {
+    --bg: #0C0D0F; --fg: #ECEDEE; --ink: #D6D8DB; --cyan: #16B6D2; --fg2: #A0A5AB; --fg3: #868B92;
+    --rule: #222428; --rule2: #16181B; --accent: #16B6D2;
+    --ph: #1C1E22; --ph-l: #91969D; --hl: #141619; --edge: #2A2D32;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: var(--t3);
+  line-height: var(--lh3);
+  font-kerning: normal;
+  /* Real small caps and old-style figures are not in this face, but the
+     kerning and the ligatures are, and the browser only uses them if asked. */
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 500; line-height: var(--lh4); letter-spacing: normal; }
+
+/* Running text is the page's content, so it is set in the text colour and held
+   to a measure. --fg2 is for the lines that support it — a description under a
+   title, a meta row — not for the argument itself. A page whose every sentence
+   is grey reads as a draft of a page. */
+.case__p, .bio__p, .cta p, .empty p, .block__lead {
+  color: var(--ink);
+  max-width: var(--w-text);
+  text-wrap: pretty;   /* no one-word last lines */
+}
+p, ul, ol, dl, dd { margin: 0; }
+/* One gap between paragraphs, on every page. Three values for the same
+   relationship was three different pages. Named rather than global: the footer
+   and the rail set two paragraphs side by side, and they are not prose. */
+.case__p p + p, .bio__p p + p, .cta p + p,
+.empty p + p, .ph1__lead + p, .block__lead p + p { margin-top: .85em; }
+ul, ol { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* A link inside running text is underlined. Colour on this site is reserved for
+   state, so an unmarked link in a paragraph is not readable as a link at all;
+   the rule is quiet at rest and the whole thing goes accent on hover. */
+.case__p a, .block__lead a, .empty a, .cap a, .exp__d a, .case__sum a,
+.case__meta dd a, .spec dd a, .credits dd a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg3);
+  text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.case__p a:hover, .block__lead a:hover, .empty a:hover, .cap a:hover,
+.exp__d a:hover, .case__sum a:hover,
+.case__meta dd a:hover, .spec dd a:hover, .credits dd a:hover { color: var(--accent); text-decoration-color: currentColor; }
+/* :where() keeps this at zero specificity, so a component's own radius
+   wins and nothing changes shape when it takes focus. */
+:where(a, button, input):focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r1);
+}
+
+.vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 20;
+  background: var(--fg); color: var(--bg); padding: var(--s3) var(--s4);
+  border-radius: var(--r2);
+}
+.skip:focus { left: var(--s4); top: var(--s2); }
+
+/* unfinished copy, deliberately visible */
+.todo {
+  color: var(--fg3);
+  border-bottom: 1px dotted currentColor;
+  overflow-wrap: break-word;
+}
+
+/* grey media placeholder */
+.ph {
+  background: var(--ph);
+  display: grid; place-items: center;
+  width: 100%;
+  border-radius: var(--r3);
+}
+.ph__l {
+  font-size: var(--t1); letter-spacing: .01em; color: var(--ph-l);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ── shell ───────────────────────────────────────────────── */
+.shell { padding: var(--s5) var(--s4) var(--s8); }
+
+@media (min-width: 64rem) {
+  .shell {
+    display: grid;
+    /* The widest thing in the rail is the role line at 22 characters, about
+       12rem. At 16.5rem the column carried 4rem of nothing on its right, which
+       the gap then added to: 124px of dead air between the mark and the first
+       word of the page. */
+    grid-template-columns: 13.5rem minmax(0, 1fr);
+    gap: var(--s7);
+    padding: var(--s6) var(--s6) var(--s9);
+    max-width: 90rem; margin-inline: auto;
+  }
+}
+
+/* ── rail ────────────────────────────────────────────────── */
+.rail {
+  font-size: var(--t2); line-height: var(--lh2); letter-spacing: var(--ls2);
+  --rail-bleed: .25rem;   /* covers the wordmark's 17-unit left overhang */
+}
+
+@media (min-width: 64rem) {
+  .rail {
+    position: sticky; top: var(--s6); align-self: start;
+    max-height: calc(100vh - var(--s8)); overflow-y: auto;
+    /* There is no such thing as overflow on one axis: overflow-y: auto makes
+       overflow-x compute to auto as well, and that clips whatever hangs to the
+       left — here the point of the M, which .logo deliberately pulls out past
+       the rail to sit optically flush. Open the scroll box by that much and
+       pull it back by the same, so the overhang has room and nothing moves. */
+    padding-left: var(--rail-bleed); margin-left: calc(var(--rail-bleed) * -1);
+    padding-right: var(--s3);
+    scrollbar-width: thin;
+  }
+}
+
+.id a { display: inline-block; }
+.id a:hover { color: var(--accent); }
+.id__sub {
+  color: var(--fg2); margin-top: var(--s3);
+  font-size: var(--t2); line-height: var(--lh2);
+  max-width: 22ch; text-wrap: balance;
+}
+
+/* The wordmark. No fill in the file, so it follows the text colour and
+   flips with the theme on its own. */
+.logo {
+  display: block;
+  /* The box is geometrically tight, but its left and bottom edges are touched
+     only by the point of the M, so the mark reads inset beside the flush-left
+     rail. Hang it out by that gap, measured in viewBox units. */
+  --logo-w: 9.5rem;
+  --logo-vw: 1359.92;   /* the viewBox width, art plus its 3 units of air */
+  width: var(--logo-w); height: auto;
+  margin-left:   calc(var(--logo-w) * -17 / var(--logo-vw));
+  margin-bottom: calc(var(--logo-w) * -18 / var(--logo-vw));
+  fill: currentColor;
+  transition: fill var(--t);
+}
+
+.rail__links { display: flex; flex-direction: column; margin-top: var(--s4); }
+.rail__links a {
+  color: var(--fg2); padding: 2px 0;
+  text-decoration: underline; text-decoration-color: transparent;
+  text-underline-offset: 2px; transition: color var(--t), text-decoration-color var(--t);
+}
+.rail__links a:hover { color: var(--fg); text-decoration-color: currentColor; }
+.rail__links--end { margin-top: var(--s5); padding-top: var(--s3); border-top: 1px solid var(--rule); }
+
+/* Contact as marks rather than words. They read as a row at any width, they
+   carry no underline because there is no text to underline, and each one keeps
+   its name in aria-label so the link is still announced and still searchable
+   by screen reader. The padding is hit area, pulled back out by the margin so
+   it costs no layout. */
+.rail__links--icons { flex-direction: row; gap: var(--s3); align-items: center; }
+.rail__links--icons a { display: inline-flex; padding: 4px; margin: -4px; text-decoration: none; }
+.rail__links--icons svg { width: 20px; height: 20px; fill: currentColor; display: block; }
+
+/* touch: comfortable targets on small screens */
+@media (max-width: 63.99rem) {
+  .rail__links { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s5); }
+  .rail__links a { min-height: 44px; display: inline-flex; align-items: center; }
+  /* A mark has no width of its own to tap, so it is given one. */
+  .rail__links--icons a { min-width: 44px; justify-content: center; margin: 0; padding: 0; }
+  .rail__links--end { display: none; }
+  .foot a { min-height: 44px; display: inline-flex; align-items: center; }
+
+  /* On a phone the rail is a masthead the reader scrolls past, not a column
+     they navigate from, so it gives up height: a smaller mark, and the two
+     rows of links told apart by weight and size rather than by distance. */
+  .logo { --logo-w: 7rem; }
+  .rail__nav { margin-top: var(--s3); }
+  .rail__links { margin-top: var(--s1); font-size: var(--t1); }
+  .rail__links a { color: var(--fg3); }
+  .rail__links a:hover { color: var(--fg); }
+}
+
+.worklead {
+  margin-top: var(--s8);
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s2) var(--s5); flex-wrap: wrap;
+  padding-bottom: var(--s2); border-bottom: 1px solid var(--rule);
+}
+.worklead h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+
+.seg { display: flex; flex-wrap: wrap; gap: var(--s1); margin: 0 -6px; }
+.seg button {
+  font: inherit; font-size: var(--t1); color: var(--fg2);
+  background: none; border: 0; cursor: pointer;
+  padding: 6px 10px; border-radius: var(--r-full);
+  display: inline-flex; gap: 5px; align-items: baseline;
+  transition: background var(--t), color var(--t);
+}
+.seg button:hover { background: var(--hl); color: var(--fg); }
+.seg button[aria-pressed="true"] {
+  color: var(--fg); background: var(--hl);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.seg__n { color: var(--fg3); font-variant-numeric: tabular-nums; }
+.seg button[aria-pressed="true"] .seg__n { color: var(--accent); }
+
+/* filtered out */
+body[data-filter="hand"] [data-made]:not([data-made~="hand"]),
+body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: none; }
+
+/* ── sheet ───────────────────────────────────────────────── */
+.sheet { margin-top: var(--s6); min-width: 0; }   /* the masthead's tap targets already carry air */
+@media (min-width: 64rem) { .sheet { margin-top: 0; } }
+
+
+.figures {
+  margin-top: var(--s5);
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6) var(--s5);
+}
+@media (min-width: 40rem) { .figures { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 90rem) { .figures { grid-template-columns: 1fr 1fr 1fr; } }
+
+.fig { margin: 0; }
+.fig a { display: block; }
+.fig .ph { transition: opacity var(--t); }
+.fig.is-linked .ph, .fig a:hover .ph { opacity: .82; }
+.fig figcaption { margin-top: var(--s3); }
+/* A project title wraps to two lines often enough that it cannot be set at the
+   leading of a single-line heading. */
+.fig__t { font-size: var(--t3); line-height: 1.3; letter-spacing: var(--ls3); }
+.fig a:hover .fig__t, .fig.is-linked .fig__t { color: var(--accent); }
+.fig__d { color: var(--fg2); font-size: var(--t2); line-height: var(--lh2); margin-top: var(--s1); max-width: 46ch; }
+/* The year is all this line carries now, so it no longer needs a rule to hold
+   it apart from a role sitting on the other end of the row. */
+.fig__m { margin-top: var(--s2); color: var(--fg3); font-size: var(--t1); line-height: var(--lh1); letter-spacing: var(--ls1); }
+.fig__y { font-variant-numeric: tabular-nums; }
+
+/* ── blocks ──────────────────────────────────────────────── */
+.block { margin-top: var(--s9); }
+/* The home page opens on the reel rather than on a statement, so its first
+   block starts level with the wordmark instead of a section's distance down. */
+.block--lead { margin-top: 0; }
+.block__h { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+.block__lead { margin-top: var(--s3); font-size: var(--t3); }
+.block__lead--end { margin-top: var(--s4); }
+.block__lead a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.exp { margin-top: var(--s5); }
+.exp li + li .exp__row { border-top: 1px solid var(--rule); }
+.exp li:first-child .exp__row { border-top: 1px solid var(--rule); }
+.exp li:last-child .exp__row { border-bottom: 1px solid var(--rule); }
+.exp__row {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px var(--s4);
+  padding: var(--s3) var(--s2); margin: 0 calc(var(--s2) * -1);
+  min-height: 44px; align-content: center;
+  font-size: var(--t2); line-height: var(--lh2);
+  transition: background var(--t);
+}
+/* The hover band is a rounded block, so no rule may cross it: the row hides its
+   own borders and the rule the next row draws. Transparent rather than none, so
+   nothing shifts by a pixel. Without this the last row looked right and the rest
+   had a straight line flush under their rounded corners. */
+.exp__row:hover { background: var(--hl); border-radius: var(--r2); border-color: transparent; }
+.exp li:has(.exp__row:hover) + li .exp__row { border-top-color: transparent; }
+@media (min-width: 46rem) {
+  .exp__row { grid-template-columns: 15rem minmax(0, 1fr) 7rem; align-items: baseline; align-content: initial; }
+}
+.exp__t { font-weight: 500; }
+.exp__row:hover .exp__t { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.exp__d { color: var(--fg2); }
+.exp__s { color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); }
+.exp__s[data-state="shipped"], .exp__s[data-state="winner"] { color: var(--accent); }
+
+.clients {
+  margin-top: var(--s4);
+  display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5);
+  color: var(--fg2); font-size: var(--t3);
+}
+
+.foot {
+  margin-top: var(--s9); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); line-height: var(--lh1);
+}
+.foot__c { font-variant-numeric: tabular-nums; margin-left: var(--s4); }
+
+/* ── case ────────────────────────────────────────────────── */
+.case { max-width: var(--w-read); }
+.case__head h1 {
+  font-size: var(--t5);
+  letter-spacing: var(--ls5); line-height: var(--lh5); text-wrap: balance;
+  max-width: 24ch;
+}
+.case__tag {
+  margin-top: var(--s4); color: var(--fg2);
+  font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4);
+  max-width: var(--w-lead); text-wrap: pretty;
+}
+.case__meta {
+  margin-top: var(--s5); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  display: grid; gap: var(--s3) var(--s5);
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+/* A label and its value were both 14px and told apart only by colour, which at
+   a glance is one grey-ish block of text per column. The label drops a step; it
+   is the thing you read once, not the thing you came for. */
+.case__meta dt { color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); line-height: var(--lh1); }
+.case__meta dd { margin: 2px 0 0; font-size: var(--t2); line-height: var(--lh2); }
+
+.ph--hero { margin-top: var(--s5); border-radius: var(--r4); }
+
+.case__sum {
+  margin-top: var(--s6);
+  display: grid; gap: var(--s4);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+.case__sum h2 { font-size: var(--t1); font-weight: 500; color: var(--fg3); letter-spacing: var(--ls1); line-height: var(--lh1); }
+/* Three columns in a reading measure give about 32 characters a line, which
+   breaks a sentence every few words. The summary is supporting text standing
+   beside the title, not the argument itself, so it takes the step below body:
+   more words to the line, fewer lines to the column. */
+.case__sum p { margin-top: var(--s2); font-size: var(--t2); line-height: var(--lh2); color: var(--ink); text-wrap: pretty; }
+
+.case__body { margin-top: var(--s8); }
+.case__sec {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2) var(--s5);
+  padding: var(--s4) 0; border-top: 1px solid var(--rule);
+}
+@media (min-width: 46rem) { .case__sec { grid-template-columns: 11rem minmax(0, 1fr); } }
+.case__sec h2 { font-size: var(--t3); line-height: 1.3; letter-spacing: var(--ls3); }
+
+/* Evidence for a section runs the full width under it, rather than squeezing
+   into the column the heading sits in. */
+.case__ev { grid-column: 1 / -1; }
+.case__ev > :first-child { margin-top: var(--s4); }
+
+
+.tools { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); }
+.credits { display: grid; gap: var(--s2); }
+.credits dt { color: var(--fg3); font-size: var(--t2); }
+
+.stills { margin-top: var(--s7); display: grid; gap: var(--s4); grid-template-columns: 1fr 1fr; }
+
+.pager {
+  margin-top: var(--s8); padding-top: var(--s3);
+  border-top: 1px solid var(--rule);
+  display: grid; gap: var(--s4); grid-template-columns: 1fr 1fr;
+  font-size: var(--t3);
+}
+.pager a { display: block; min-height: 44px; }
+.pager a:last-child { text-align: right; }
+.pager span { display: block; color: var(--fg3); font-size: var(--t1); }
+.pager a:hover { color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
+}
+
+/* ── page nav ────────────────────────────────────────────── */
+.rail__nav { display: flex; flex-direction: column; margin-top: var(--s5); }
+.rail__nav a {
+  padding: 4px 0; min-height: 32px; display: flex; align-items: center;
+  font-weight: 500;
+  text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.rail__nav a:hover { text-decoration-color: currentColor; }
+.rail__nav a[aria-current] { color: var(--accent); }
+
+@media (max-width: 63.99rem) {
+  .rail__nav { flex-direction: row; flex-wrap: wrap; gap: 0 var(--s5); margin-top: var(--s4); }
+  .rail__nav a { min-height: 44px; }
+}
+
+/* ── page head ───────────────────────────────────────────── */
+.ph1 h1 {
+  font-size: var(--t5);
+  letter-spacing: var(--ls5); line-height: var(--lh5); text-wrap: balance;
+  max-width: 24ch;
+}
+.ph1__lead {
+  margin-top: var(--s4); color: var(--fg2);
+  font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4);
+  max-width: var(--w-lead); text-wrap: pretty;
+}
+
+/* An index page opens the same way the home page does, and for the same reason:
+   stacked, the title and its standfirst together filled about half the sheet
+   over a grid of work that filled all of it. Only where there is a standfirst
+   to put in the second column — /about/ has none, and its title stays put. */
+@media (min-width: 76rem) {
+  .ph1:has(.ph1__lead) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /* The gap is the one the figure grid under it uses, not the wider one the
+       home page opening takes, so the standfirst starts on the same vertical
+       as the second column of work rather than 12px off it. */
+    gap: var(--s5);
+    align-items: start;
+  }
+  .ph1:has(.ph1__lead) h1 { max-width: none; }
+  .ph1:has(.ph1__lead) .ph1__lead { margin-top: 0; padding-top: 5px; max-width: none; }
+}
+
+/* ── section head ────────────────────────────────────────── */
+.block__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--s2) var(--s5); flex-wrap: wrap;
+  padding-bottom: var(--s2); border-bottom: 1px solid var(--rule);
+}
+/* A section head is a rank above the titles it stands over, and under the old
+   scale it was the same 16px as the project titles inside it, told apart only
+   by sitting on a rule. */
+.block__head h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+.more { color: var(--fg2); font-size: var(--t2); text-decoration: underline; text-underline-offset: 3px; }
+.more:hover { color: var(--accent); }
+/* The other thing that sits at the end of a section head: not a way out of the
+   section, but the facts about what is in it. Year, running time, whether it
+   makes a sound — the same meta line a figure carries, moved up to the rule.
+   It stays on a wide screen, where `.more` goes, because the rail cannot say
+   how long a video is.
+   No tabular figures here: this line stands alone rather than in a column, and
+   tabular spacing pushes the colon in a running time out to `0 : 23`. */
+.block__meta { color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); line-height: var(--lh1); }
+/* On a wide screen the rail carries Work and Lab at all times and the whole
+   section is a way in, so this second route to the same page is only noise.
+   On a phone the rail has scrolled away, and then it earns its place. */
+@media (min-width: 64rem) { .more { display: none; } }
+.block > .figures, .block > .exp, .block > .block__lead, .block > .vid { margin-top: var(--s4); }
+
+.note { color: var(--fg3); font-size: var(--t2); line-height: var(--lh2); margin-top: var(--s4); max-width: var(--w-text); }
+
+/* ── call to action ──────────────────────────────────────── */
+.cta { margin-top: var(--s9); padding-top: var(--s4); border-top: 1px solid var(--rule); }
+.cta h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+.cta p { margin-top: var(--s3); }
+.btn {
+  display: inline-flex; align-items: center; gap: .45em; min-height: 44px;
+  padding: 0 var(--s4); margin-top: var(--s2);
+  background: var(--fg); color: var(--bg);
+  font-size: var(--t3); font-weight: 500;
+  transition: background var(--t);
+}
+.btn { border-radius: var(--r-full); }
+.btn:hover { background: var(--accent); }
+.btn .todo { color: inherit; opacity: .7; }
+
+.crumb { margin-bottom: var(--s5); font-size: var(--t2); }
+.crumb a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
+.crumb a:hover { color: var(--accent); }
+
+/* ── empty / under construction ───────────────────────── */
+.empty {
+  margin-top: var(--s4); padding: var(--s6) var(--s5);
+  border: 1px dashed var(--rule);
+  border-radius: var(--r3);
+  max-width: var(--w-read);
+}
+.empty--page { margin-top: var(--s7); }
+.empty__h { color: var(--fg); font-weight: 500; margin-bottom: var(--s2); }
+.empty a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── about ───────────────────────────────────────────────── */
+.abar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s4); flex-wrap: wrap; margin-bottom: var(--s7);
+}
+.viewtoggle { display: flex; gap: var(--s1); }
+.viewtoggle a {
+  min-height: 44px; display: inline-flex; align-items: center;
+  padding: 0 var(--s4); font-size: var(--t3); color: var(--fg2);
+  border-radius: var(--r-full);
+  transition: background var(--t), color var(--t);
+}
+.viewtoggle a:hover { background: var(--hl); color: var(--fg); }
+.viewtoggle a[aria-current] { background: var(--hl); color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule); }
+.abar .btn { margin-top: 0; }
+
+/* Same gap between a page title and its first block as /work/ uses. */
+.bio { margin-top: var(--s8); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); }
+@media (min-width: 58rem) { .bio { grid-template-columns: minmax(14rem, 1fr) minmax(0, 1.75fr); gap: var(--s8); align-items: start; } }
+.bio__p { margin-top: var(--s5); }
+.bio__txt .spec { margin-top: var(--s7); }
+
+
+.portrait { margin: 0; }
+/* A frame that holds the portrait to 4:5 whatever the file's own proportions
+   are, and clips it to the figure radius. */
+.portrait__frame {
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--ph); border-radius: var(--r3);
+}
+.portrait__img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+/* One caption rule for the whole site. A 12px line held to 58 characters; the
+   old pair of rules let it run the width of the column, which at this size was
+   109 characters and unreadable as a caption. */
+.cap {
+  margin-top: var(--s3); font-size: var(--t1); color: var(--fg3);
+  line-height: var(--lh1); letter-spacing: var(--ls1);
+  max-width: var(--w-cap); text-wrap: pretty;
+}
+.spec { margin-top: var(--s5); }
+.spec > div { padding: var(--s3) 0; border-top: 1px solid var(--rule); }
+.spec > div:last-child { border-bottom: 1px solid var(--rule); }
+.spec dt { font-size: var(--t1); color: var(--fg3); letter-spacing: var(--ls1); line-height: var(--lh1); }
+.spec dd { margin: 2px 0 0; font-size: var(--t2); line-height: var(--lh2); }
+
+/* ── awards ──────────────────────────────────────────────── */
+.awards { margin-top: var(--s4); border-collapse: collapse; width: 100%; font-size: var(--t3); }
+.awards th, .awards td { text-align: left; padding: var(--s3) var(--s4) var(--s3) 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.awards th { font-size: var(--t1); font-weight: 400; color: var(--fg3); border-bottom-color: var(--fg3); }
+.awards td:first-child { font-variant-numeric: tabular-nums; width: 6rem; }
+.awards td:last-child { color: var(--fg2); }
+.awards a {
+  text-decoration: underline; text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg3); text-underline-offset: 3px;
+  transition: color var(--t), text-decoration-color var(--t);
+}
+.awards a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.awards__n { display: block; margin-top: var(--s1); color: var(--fg3); font-size: var(--t2); }
+
+/* ── node graph ──────────────────────────────────────────────
+   The page is a node editor, so it takes a node editor's own language
+   rather than the site's: a flat grey canvas, a title bar per node, boxed
+   parameter rows, round sockets on the border. Those colours live only
+   inside .nodeui, so nothing else on the site inherits them. */
+.nodeui {
+  --canvas:    #EDEDED;
+  --nbg:       #F7F7F7;
+  --nbr:       #BDBDBD;
+  --ntitle:    #DADADA;
+  --ntext:     #333333;
+  /* The prototype's #777 sits at 3.2:1 on a parameter well at 9px. Darkened
+     until every grey label clears 4.5:1 on the lightest surface it lands on. */
+  --nmuted:    #5F5F5F;
+  --wire:      #9E9E9E;
+  --socket:    #B4B4B4;
+  --socket-br: #8C8C8C;
+  --fill:      #E2E2E2;
+  --nactive:   #3A3A3A;
+  --nmono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+/* Dark keeps the same steps between the greys, flipped: the canvas is the
+   darkest surface, a node sits above it, its title bar above that, and a
+   parameter well sinks back below the node. */
+@media (prefers-color-scheme: dark) {
+  .nodeui {
+    --canvas:    #17191C;
+    --nbg:       #26292D;
+    --nbr:       #41454A;
+    --ntitle:    #313539;
+    --ntext:     #E4E6E8;
+    --nmuted:    #969BA1;
+    --wire:      #70757B;
+    --socket:    #70757B;
+    --socket-br: #9AA0A6;
+    --fill:      #1E2124;
+    --nactive:   #E4E6E8;
+  }
+}
+
+.graph__hint { color: var(--fg3); font-size: var(--t2); margin-bottom: var(--s4); }
+.graph__hint a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
+.graph__hint a:hover { color: var(--accent); }
+@media (max-width: 57.99rem) { .canvasonly { display: none; } }
+
+/* The window. It is sized so the whole graph fits inside it on load and the
+   window itself fits on screen, which is why its height is capped against the
+   viewport: the reader sees everything at once, then zooms in on what they
+   want. The dot grid is painted here rather than on the canvas so panning and
+   zooming can slide it, the way an infinite sheet behaves. */
+.graphbox {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--nbr);
+  border-radius: 4px;
+  background-color: var(--canvas);
+  background-image: radial-gradient(var(--nbr) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+@media (min-width: 58rem) {
+  .graphbox { height: clamp(320px, 44vh, 400px); cursor: grab; touch-action: none; }
+  .graphbox.is-panning { cursor: grabbing; }
+}
+/* Between these two widths the masthead is stacked above the page instead of
+   sitting in the rail, which costs about 240px of height. The window gives that
+   back, so it still lands whole on a short screen. */
+@media (min-width: 58rem) and (max-width: 63.99rem) {
+  .graphbox { height: clamp(260px, 36vh, 340px); }
+}
+
+.graph { position: relative; }
+@media (min-width: 58rem) {
+  .graph {
+    width: var(--gw); height: var(--gh);
+    transform-origin: 0 0;
+    transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(var(--k, 1));
+  }
+}
+@media (max-width: 57.99rem) {
+  .graph { padding: var(--s4); display: grid; gap: var(--s4); }
+}
+
+.graph__wires { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.graph__wires path { fill: none; stroke: var(--wire); stroke-width: 2; }
+.graph__wires path.is-live { stroke: var(--nactive); }
+
+/* ── zoom controls ───────────────────────────────────────── */
+.zoom {
+  position: absolute; left: 10px; bottom: 10px; z-index: 4;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--nbr); border-radius: 3px; overflow: hidden;
+}
+@media (max-width: 57.99rem) { .zoom { display: none; } }
+.zoom button {
+  width: 26px; height: 26px; padding: 0;
+  display: grid; place-items: center;
+  border: 0; border-bottom: 1px solid var(--nbr);
+  background: var(--nbg); color: var(--ntext);
+  font: 500 13px/1 var(--sans); cursor: pointer;
+}
+.zoom button:last-child { border-bottom: 0; font: 600 9px/1 var(--nmono); letter-spacing: .04em; }
+.zoom button:hover { background: var(--fill); }
+.zoom button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+/* ── node ────────────────────────────────────────────────── */
+.node {
+  width: 240px;
+  background: var(--nbg);
+  border: 1px solid var(--nbr);
+  border-radius: 4px;
+  color: var(--ntext);
+  font: 400 12px/1.4 var(--sans);
+}
+@media (min-width: 58rem) {
+  .node { position: absolute; left: 0; top: 0; transform: translate(var(--x), var(--y)); cursor: grab; }
+  .node.is-dragging { cursor: grabbing; border-color: var(--nactive); z-index: 3; }
+}
+@media (max-width: 57.99rem) { .node { width: 100%; } }
+.node:focus-visible { outline: 2px solid var(--nactive); outline-offset: 2px; }
+
+.node__title {
+  display: flex; align-items: center; gap: 6px;
+  height: 26px; padding: 0 10px;
+  background: var(--ntitle);
+  border-bottom: 1px solid var(--nbr);
+  border-radius: 3px 3px 0 0;
+  font-weight: 600;
+}
+.node__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--wire); flex: none; }
+.node__name { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.node__tag {
+  flex: none;
+  padding: 1px 5px;
+  border: 1px solid var(--nmuted); border-radius: 2px;
+  font: 600 9px/1.4 var(--nmono); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--nmuted);
+}
+.node__body { padding: 6px 0 8px; }
+
+/* Every row is a positioning context, because a socket hangs off the node's
+   edge from inside the row it belongs to. */
+.row { position: relative; padding: 3px 12px; }
+.sockets__row { display: flex; justify-content: space-between; gap: 8px; color: var(--nmuted); font-size: 11px; }
+.sockets__out { text-align: right; }
+.sock {
+  position: absolute; top: 50%; margin-top: -4.5px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--socket); border: 1px solid var(--socket-br);
+}
+.sockets__in .sock { left: -5px; }
+.sockets__out .sock { right: -5px; }
+
+.field {
+  display: flex; justify-content: space-between; gap: 12px;
+  margin: 2px 10px; padding: 3px 8px;
+  background: var(--fill); border-radius: 3px;
+}
+.field__label { flex: none; color: var(--nmuted); }
+.field__value { font-family: var(--nmono); font-size: 11px; text-align: right; overflow-wrap: anywhere; }
+
+.node__f { margin: 6px 12px 0; padding-top: 6px; border-top: 1px solid var(--nbr); font-size: 11px; color: var(--nmuted); }
+@media (min-width: 58rem) { .node__f { display: none; } }
+
+/* The one node that is a result rather than a step wears the active colour in
+   its title bar; the box itself stays a node like any other. */
+.node--output { border-color: var(--nactive); }
+.node--output .node__title { background: var(--nactive); border-bottom-color: var(--nactive); color: var(--nbg); }
+.node--output .node__dot { background: var(--nbg); }
+.node--output .node__tag { color: var(--nbg); border-color: var(--nbg); }
+
+.nodeui .todo { color: var(--nmuted); }
+
+/* Touch: every control reaches 44px on small screens. Padding rather than
+   min-height, so baseline alignment inside the flex rows survives. */
+@media (max-width: 63.99rem) {
+  .more { padding-block: 12px; }
+  .crumb a { padding-block: 14px; }
+  .seg button { padding-block: 13px; }
+}
+
+/* ── thumbnails ──────────────────────────────────────────── */
+.thumb { position: relative; overflow: hidden; background: var(--ph); border-radius: var(--r3); }
+.thumb__still, .thumb__clip {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.thumb__clip { opacity: 0; transition: opacity var(--t); }
+.thumb.is-playing .thumb__clip { opacity: 1; }
+
+/* ── lab list with previews ──────────────────────────────── */
+.exp__thumb { display: block; }
+.exp__thumb .thumb { border-radius: var(--r2); }
+@media (min-width: 46rem) {
+  .exp__row { grid-template-columns: 9rem 13rem minmax(0, 1fr) 7rem; align-items: center; }
+  .exp__row .exp__t, .exp__row .exp__d, .exp__row .exp__s { align-self: center; }
+}
+@media (max-width: 45.99rem) {
+  .exp__thumb { max-width: 12rem; margin-bottom: var(--s2); }
+}
+
+/* ── media on a case page ────────────────────────────────── */
+.vid, .fig-media { margin: var(--s5) 0 0; }
+.vid video, .fig-media img, .fig-media video {
+  display: block; width: 100%; height: auto; background: var(--ph);
+  border-radius: var(--r4);
+  box-shadow: inset 0 0 0 1px var(--edge);
+}
+.fig-media video { max-width: 40rem; }
+
+.built { margin-top: var(--s7); }
+.built h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); padding-bottom: var(--s2); border-bottom: 1px solid var(--rule); }
+.built .spec { margin-top: 0; }
+@media (min-width: 46rem) {
+  .built .spec { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--s6); }
+  /* Two columns means two rows of different height side by side, so a rule per
+     row breaks into segments that stop in different places. The label above the
+     value already says where one entry ends and the next begins. */
+  .built .spec > div { border: 0; padding: 0 0 var(--s4); }
+}
+
+/* ── before / after ──────────────────────────────────────── */
+.bas { margin-top: var(--s5); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s6); }
+@media (min-width: 46rem) {
+  .bas { grid-template-columns: repeat(var(--cols, 1), minmax(0, 1fr)); gap: var(--s6) var(--s5); }
+}
+.ba { margin: 0; max-width: var(--ba-max, 56rem); }
+/* A single comparison stands in the middle of the column it is in. */
+.bas--one .ba { margin-inline: auto; }
+.ba__box {
+  position: relative; overflow: hidden; background: var(--ph);
+  border-radius: var(--r4);
+  cursor: ew-resize;
+  touch-action: pan-y;          /* drag is ours, vertical scroll stays the page's */
+  isolation: isolate;
+}
+@media (min-width: 46rem) { .bas[style*="--cols"] .ba__box { border-radius: var(--r3); } }
+.ba__after, .ba__before {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  user-select: none; -webkit-user-drag: none;
+}
+/* the raw placement sits on top, clipped to the handle */
+.ba__before { clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+
+.ba__line {
+  position: absolute; top: 0; bottom: 0; left: var(--x);
+  width: 1px; margin-left: -.5px;
+  background: #FFF; box-shadow: 0 0 0 1px rgba(0, 0, 0, .22);
+  pointer-events: none;
+}
+.ba__knob {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--bg); color: var(--fg2);
+  box-shadow: 0 0 0 1px var(--fg3), 0 1px 2px rgba(0, 0, 0, .22);
+  transition: box-shadow var(--t), color var(--t);
+}
+.ba__knob svg { width: 13px; height: 7px; }
+.ba__box:hover .ba__knob { color: var(--fg); box-shadow: 0 0 0 1px var(--fg), 0 1px 2px rgba(0, 0, 0, .22); }
+.ba__box:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ba__box:has(input:focus-visible) .ba__knob {
+  color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent), 0 1px 2px rgba(0, 0, 0, .22);
+}
+
+/* the range input stays for keyboard and screen readers; the knob is what you see.
+   Clamped so its layout box does not reach past the hidden label. */
+.ba__ctl { position: absolute; }
+.ba__ctl input { max-width: 100%; }
+
+/* ── roadmap ─────────────────────────────────────────────── */
+.road { margin-top: var(--s4); counter-reset: step; }
+.road li {
+  counter-increment: step;
+  display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--s4);
+  padding: var(--s4) 0; border-top: 1px solid var(--rule);
+}
+.road li::before {
+  content: counter(step);
+  grid-column: 1; grid-row: 1;
+  color: var(--fg3); font-variant-numeric: tabular-nums;
+}
+.road h3 { grid-column: 2; font-size: var(--t3); font-weight: 500; }
+.road p { grid-column: 2; margin-top: var(--s1); color: var(--fg2); font-size: var(--t3); line-height: var(--lh3); max-width: var(--w-text); }
+
+/* ── a row of silent loops ───────────────────────────────── */
+.clips {
+  margin-top: var(--s4);
+  display: grid; gap: var(--s4);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 34rem) { .clips { grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); } }
+.clips video { display: block; width: 100%; height: auto; background: var(--ph); border-radius: var(--r3); }
+/* a clip whose source is letterboxed: the box carries the real ratio and the
+   bars are cropped off, rather than printing two black bands on the page */
+.clips video[data-fit] { object-fit: cover; }
+
+/* ── a grid of stills, each one a button ─────────────────── */
+.plates {
+  margin-top: var(--s4);
+  display: grid; gap: var(--s2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 40rem) {
+  .plates { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--s3); }
+}
+.plate {
+  display: block; width: 100%; padding: 0; border: 0; background: var(--ph);
+  border-radius: var(--r2); overflow: hidden;
+  cursor: zoom-in; color: inherit;
+}
+.plate img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  transition: opacity var(--t);
+}
+.plate:hover img { opacity: .82; }
+.plate:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ── before and after, side by side ──────────────────────── */
+/* Where the tool reframes the piece, the two images are not one photograph,
+   so they sit next to each other instead of under a wipe. */
+.pairs {
+  margin: var(--s5) 0 0; padding: 0; list-style: none;
+  display: grid; gap: var(--s6); grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 46rem) {
+  .pairs { grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); gap: var(--s6) var(--s5); }
+}
+.pair { margin: 0; }
+.pair__imgs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s2); }
+.pair__one { display: flex; flex-direction: column; gap: var(--s1); }
+.pair__l {
+  font-size: var(--t1); letter-spacing: .02em; color: var(--fg3);
+}
+.pair .cap { margin-top: var(--s2); }
+
+/* ── a board that lives on someone else's server ─────────── */
+.embed { margin: var(--s5) 0 0; }
+.embed iframe { display: block; width: 100%; border: 0; border-radius: var(--r2); background: var(--ph); }
+.embed__act {
+  margin-top: var(--s3);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--s2) var(--s4);
+  font-size: var(--t2);
+}
+.embed__act .btn { margin-top: 0; }
+/* the link beside the button is a touch target too */
+.embed__act a { display: inline-flex; align-items: center; min-height: 44px; }
+.btn--q { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--rule); }
+.btn--q:hover { background: var(--fg); color: var(--bg); box-shadow: none; }
+
+
+/* ── the edge of a picture ───────────────────────────────── */
+/* A catalogue shot is white to its own corners, so on a white page it has no
+   edge and bleeds into the paper. Every media frame draws one for it.
+   It has to be a ring painted AFTER the content: an inset shadow on the box
+   paints beneath absolutely positioned children, which is to say beneath the
+   picture, which is to say nowhere. */
+.ba__box::after,
+.plate::after,
+.thumb::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px var(--edge);
+  pointer-events: none;
+}
+.plate { position: relative; }
+
+/* ── the viewer ──────────────────────────────────────────── */
+.lb {
+  width: 100%; max-width: 100%; height: 100%; max-height: 100%;
+  margin: 0; padding: 0; border: 0; background: var(--bg); color: var(--fg);
+  overflow: hidden;
+}
+.lb::backdrop { background: var(--bg); }
+/* the page behind a modal should not scroll under it */
+html:has(.lb[open]) { overflow: hidden; }
+.lb__bar {
+  position: absolute; inset: 0 0 auto 0; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s4); padding: var(--s3) var(--s4);
+}
+.lb__n { font-size: var(--t2); color: var(--fg3); font-variant-numeric: tabular-nums; }
+.lb__x {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: var(--s2) var(--s3); margin: calc(var(--s2) * -1) calc(var(--s3) * -1);
+  border: 0; background: none; color: var(--fg2); cursor: pointer;
+  font: inherit; font-size: var(--t2);
+}
+.lb__x span { font-size: var(--t4); line-height: 1; }
+.lb__x { border-radius: var(--r-full); }
+.lb__x:hover { color: var(--fg); }
+.lb__img {
+  cursor: zoom-out; border-radius: var(--r3);
+  position: absolute; inset: 0; margin: auto;
+  max-width: calc(100% - var(--s8)); max-height: calc(100% - var(--s9));
+  width: auto; height: auto; object-fit: contain;
+}
+.lb__nav {
+  position: absolute; top: 50%; translate: 0 -50%; z-index: 2;
+  width: 44px; height: 44px; display: grid; place-items: center;
+  border: 0; background: none; color: var(--fg2); cursor: pointer;
+}
+.lb__nav { border-radius: var(--r-full); }
+.lb__nav:hover { color: var(--fg); }
+.lb__nav--p { left: 0; }
+.lb__nav--n { right: 0; }
+.lb__x:focus-visible, .lb__nav:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+@media (min-width: 46rem) {
+  .lb__bar { padding: var(--s4) var(--s5); }
+  .lb__nav { width: 56px; height: 56px; }
+  .lb__img { max-width: calc(100% - 9rem); }
+}
+
+
+/* ── the statement band ──────────────────────────────────────
+   One line of the statement, running. It stops under the pointer and follows
+   it instead, so a reader who wants to go back a sentence can simply go back;
+   and the whole band opens the statement in full. */
+.say {
+  /* It sits at the top of the page and scrolls away with it — the first thing
+     read, not a fixture of the window. */
+  position: relative;
+  height: var(--band);
+  background: var(--cyan);
+  color: #0F1114;                 /* the bar keeps its own black in both themes */
+  overflow: hidden;
+}
+/* The height is set on the bar, not reached by padding, so the bar is exactly
+   as thick as --band whatever the type inside it measures. */
+.say__view { height: 100%; display: flex; align-items: center; }
+.say__track {
+  display: flex; width: max-content;
+  will-change: transform;
+}
+.say__run {
+  display: block; white-space: nowrap;
+  font-size: var(--t1); font-weight: 500;
+  letter-spacing: var(--ls1); line-height: 1;
+}
+/* The mark between sentences is drawn, not typed: a typed separator in a line
+   this size reads as a stray full stop. One sits between each pair, and one at
+   the end of each copy, which is what carries the eye over the seam. */
+.say__s + .say__s::before, .say__run::after {
+  content: ''; display: inline-block;
+  width: .32em; height: .32em; margin: 0 1.15em;
+  border-radius: 50%; background: currentColor; opacity: .38;
+  vertical-align: .15em;
+}
+/* The button is the whole band. It carries the name; the running copy above it
+   is scenery and is marked away from assistive software. */
+.say__hit {
+  position: absolute; inset: 0;
+  width: 100%; border: 0; background: none;
+  font: inherit; color: inherit;
+  cursor: pointer;
+}
+.say:hover { cursor: ew-resize; }
+
+/* ── the statement in full ───────────────────────────────── */
+.said {
+  margin: auto; padding: 0; border: 0; background: none;
+  width: min(38rem, calc(100vw - var(--s6)));
+  color: #0F1114;
+}
+.said::backdrop { background: rgba(0, 0, 0, .65); }
+.said[open] { animation: said-in 160ms cubic-bezier(.3,.7,.3,1); }
+.said[open]::backdrop { animation: said-dim 160ms linear; }
+@keyframes said-in { from { opacity: 0; transform: translateY(8px); } }
+@keyframes said-dim { from { opacity: 0; } }
+.said__box {
+  background: #fff;
+  border-radius: var(--r4);
+  padding: var(--s7) var(--s6) var(--s6);
+}
+.said__t p { font-size: var(--t3); line-height: var(--lh3); text-wrap: pretty; }
+.said__t p + p { margin-top: .85em; }
+.said__t p:first-child { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+.said__x {
+  margin-top: var(--s6); min-height: 44px;
+  padding: 0 var(--s5);
+  font: inherit; font-size: var(--t2); font-weight: 500;
+  color: #fff; background: #0F1114; border: 0; border-radius: var(--r-full);
+  cursor: pointer;
+  transition: background var(--t);
+}
+.said__x:hover { background: var(--accent); }
+
+/* ── the drawings beside the menu ────────────────────────────
+   At rest each link carries the drawing its file holds. On hover, and on
+   focus, the drawing uncoils into the rule under the word — one stroke
+   moving, not two shapes crossing over. The script does the moving; this
+   only says where the stroke sits and what it looks like. */
+.rail__nav a { position: relative; }
+.rail__nav a[data-deco] {
+  align-self: start;
+  /* room beside the word for the drawing, and above it for the drawing to hang */
+  padding-right: 2rem; min-height: 38px;
+}
+.navdeco {
+  position: absolute; left: 0; top: 0;
+  overflow: visible; pointer-events: none;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+/* the drawing is the underline now, so the text's own one stays off */
+.rail__nav a[data-deco]:hover { text-decoration-color: transparent; }
+
+/* Away from the home page the menu lets its hair down: the word under the
+   pointer drops out of the site's own face into a borrowed one. The home page
+   keeps a straight face, because that is the page a stranger lands on first.
+   Only where there is a pointer — on a phone a :hover rule fires on tap and
+   the word would change under the finger that is already leaving it. */
+@media (hover: hover) {
+  body:not([data-home]) .rail__nav a:hover .navl {
+    font-family: "Comic Sans MS", "Chalkboard SE", "Comic Neue", "Bradley Hand", cursive;
+  }
+}
+
+@media (max-width: 63.99rem) {
+  /* The masthead puts the menu in a row and there is no pointer to hover with,
+     so the drawings step aside and the plain rule comes back. */
+  /* and the tap target goes back to the full height a finger needs */
+  .rail__nav a[data-deco] { padding-right: 0; min-height: 44px; }
+  .navdeco { display: none; }
+  .rail__nav a[data-deco]:hover { text-decoration-color: currentColor; }
+}
+
+
+/* ── arriving ────────────────────────────────────────────────
+   A picture still below the fold fades up out of the page as it is reached.
+   Opacity only, with no travel: on a page that is mostly pictures, anything
+   that also slides turns scrolling into weather. Only what is off screen when
+   the page opens is marked — a page that fades in its own first screen is a
+   page that reads as slow — so these rules apply to nothing until the script
+   has decided which elements they are for. */
+.reveal { opacity: 0; transition: opacity 560ms cubic-bezier(.2, .6, .2, 1); }
+.reveal.is-in { opacity: 1; }

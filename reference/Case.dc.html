@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Artem Maslov — Project page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300..700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0B0D10}a:hover{color:#1967D2}
+.thumb{background-color:#15181D;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:24px 24px}
+</style>
+</helmet>
+<div style="min-height: 3000px; width: 100%; box-sizing: border-box; font-family: 'Mona Sans', Inter, system-ui, sans-serif; color: #0B0D10; background: #FFFFFF">
+
+<header style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; padding: 24px 40px; border-bottom: 1px solid #E6E8EC">
+<span style="display: flex; align-items: center; gap: 12px">
+<a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="fill: none; stroke: #0B0D10; stroke-width: 1"><circle cx="14" cy="14" r="12.5"></circle><path d="M14 1.5v25M1.5 14h25"></path><circle cx="14" cy="14" r="4" style="fill: #0B0D10; stroke: none"></circle></svg>
+<span style="font-size: 17px; font-weight: 600">Artem Maslov</span></a>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #5A6270">/ <a href="Work.dc.html" style="color: #5A6270">work</a> / {{ p.slug }}</span>
+</span>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em">
+<a href="Work.dc.html" aria-current="page" style="text-decoration: underline; text-underline-offset: 6px">WORK</a>
+<a href="Lab.dc.html" style="text-decoration: none">LAB</a>
+<a href="Resources.dc.html" style="text-decoration: none">RESOURCES</a>
+<a href="About.dc.html" style="text-decoration: none">ABOUT</a>
+<span aria-hidden="true" style="color: #C3C8D0">|</span>
+<a href="https://www.linkedin.com/in/maslov-artem/" style="text-decoration: none">LINKEDIN ↗</a>
+<a href="https://github.com/artymaslov" style="text-decoration: none">GITHUB ↗</a>
+</nav>
+</header>
+
+<main style="max-width: 1200px; margin: 0 auto; padding: 64px 40px 120px; display: flex; flex-direction: column; gap: 56px">
+
+<section style="display: flex; flex-direction: column; gap: 20px">
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: #5A6270">{{ p.code }} · {{ p.kindLabel }}</span>
+<h1 style="margin: 0; font-size: 72px; line-height: 1; font-weight: 500; letter-spacing: -0.04em">{{ p.title }}</h1>
+<p style="margin: 0; max-width: 760px; font-size: 24px; line-height: 1.4; color: #3C434E">{{ p.tagline }}</p>
+<dl style="margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 1px solid #0B0D10">
+<sc-for list="{{ p.meta }}" as="m" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 16px 16px 16px 0; border-bottom: 1px solid #E6E8EC">
+<dt style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; color: #5A6270">{{ m.k }}</dt>
+<dd style="margin: 0; font-size: 16px; font-weight: 500">{{ m.v }}</dd>
+</div>
+</sc-for>
+</dl>
+</section>
+
+<div class="thumb" style="position: relative; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden">
+<span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.45)">[ hero film / key visual ]</span>
+<span style="position: absolute; left: 20px; bottom: 16px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.6)">Fig. 1</span>
+</div>
+
+<sc-if value="{{ p.full }}" hint-placeholder-val="{{ true }}">
+<section aria-labelledby="overview" style="display: flex; flex-wrap: wrap; gap: 24px 48px; padding: 32px; border: 1px solid #DADDE3; border-radius: 20px; background: #F6F7F9">
+<h2 id="overview" style="flex: 1 1 200px; margin: 0; font-size: 28px; font-weight: 500; letter-spacing: -0.02em">Overview</h2>
+<dl style="flex: 3 1 560px; margin: 0; display: flex; flex-direction: column">
+<sc-for list="{{ p.overview }}" as="o" hint-placeholder-count="3">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 16px 0; border-bottom: 1px solid #DADDE3">
+<dt style="flex: 0 0 72px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.08em; color: {{ accent }}; padding-top: 4px">{{ o.k }}</dt>
+<dd style="flex: 1 1 360px; margin: 0; font-size: 18px; line-height: 1.55">{{ o.v }}</dd>
+</div>
+</sc-for>
+</dl>
+</section>
+</sc-if>
+
+<div style="display: flex; flex-direction: column">
+<sc-for list="{{ p.sections }}" as="s" hint-placeholder-count="3">
+<section style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-top: 1px solid #0B0D10">
+<h2 style="flex: 1 1 200px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 28px; font-weight: 500; letter-spacing: -0.02em"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: {{ accent }}">{{ s.n }}</span>{{ s.h }}</h2>
+<p style="flex: 3 1 560px; margin: 0; font-size: 19px; line-height: 1.6; color: #1F242C; white-space: pre-line">{{ s.body }}</p>
+</section>
+</sc-for>
+
+<section style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-top: 1px solid #0B0D10">
+<h2 style="flex: 1 1 200px; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 28px; font-weight: 500; letter-spacing: -0.02em"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: {{ accent }}">{{ p.toolsNum }}</span>Tools</h2>
+<div style="flex: 3 1 560px; display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start">
+<sc-for list="{{ p.tools }}" as="t" hint-placeholder-count="4">
+<span style="padding: 8px 14px; border: 1px solid #DADDE3; border-radius: 999px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px">{{ t }}</span>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Credits" style="display: flex; flex-wrap: wrap; gap: 16px 48px; padding: 40px 0; border-top: 1px solid #0B0D10">
+<h2 style="flex: 1 1 200px; margin: 0; font-size: 20px; font-weight: 500; color: #5A6270">Credits</h2>
+<dl style="flex: 3 1 560px; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px">
+<sc-for list="{{ p.credits }}" as="c" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<dt style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: 0.06em; color: #5A6270">{{ c.k }}</dt>
+<dd style="margin: 0; font-size: 16px; line-height: 1.5">{{ c.v }}</dd>
+</div>
+</sc-for>
+</dl>
+</section>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px">
+<div class="thumb" style="position: relative; aspect-ratio: 4 / 5; border-radius: 20px"><span style="position: absolute; left: 20px; bottom: 16px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.6)">Fig. 2 — [Still]</span></div>
+<div class="thumb" style="position: relative; aspect-ratio: 4 / 5; border-radius: 20px"><span style="position: absolute; left: 20px; bottom: 16px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: rgba(255,255,255,0.6)">Fig. 3 — [Still]</span></div>
+</div>
+
+<nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+<button onClick="{{ prev }}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-height: 112px; padding: 24px; border: 1px solid #DADDE3; border-radius: 20px; background: #FFFFFF; color: #0B0D10; font: inherit; text-align: left; cursor: pointer"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">← PREVIOUS</span><span style="font-size: 22px; font-weight: 600">{{ prevTitle }}</span></button>
+<button onClick="{{ next }}" style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; min-height: 112px; padding: 24px; border: 1px solid #DADDE3; border-radius: 20px; background: #FFFFFF; color: #0B0D10; font: inherit; text-align: right; cursor: pointer"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #5A6270">NEXT →</span><span style="font-size: 22px; font-weight: 600">{{ nextTitle }}</span></button>
+</nav>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"project":{"editor":"enum","options":["lexus","nike","visit-dubai","fish-and-cat","jurassic-world","smurfs","mdlbeast"],"default":"lexus"},"accent":{"editor":"color","default":"#1967D2","options":["#1967D2","#E8590C","#0B0D10","#188038"]},"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+constructor(props) { super(props); this.state = { pick: null }; }
+data() {
+return [
+{
+slug: 'lexus', title: 'Lexus — AI R&D', full: true,
+tagline: 'Speculative brand visuals and motion, built in node-based AI pipelines.',
+meta: [{ k: 'CLIENT', v: 'Lexus (via [agency name])' }, { k: 'ROLE', v: 'Art Director, AI Artist' }, { k: 'TYPE', v: 'Internal R&D' }, { k: 'YEAR', v: '[Year]' }],
+overview: [
+{ k: 'MADE', v: 'A set of speculative visuals and motion concepts for Lexus, commissioned by a Middle Eastern agency as an internal R&D exploration.' },
+{ k: 'NEED', v: 'The agency wanted to see how AI could change brand storytelling: faster ideation and new pipelines, without diluting a premium brand.' },
+{ k: 'VALUE', v: 'Tested workflows and a body of concept visuals that show where future Lexus campaigns could go, and how fast they could get there.' }
+],
+sections: [
+{ n: '01', h: 'Problem', body: 'Generative tools move faster than brand pipelines. The question was whether art direction, technology and automation could work together to strengthen a luxury brand’s identity rather than flatten it into generic AI imagery.' },
+{ n: '02', h: 'Solution', body: 'Node-based workflows in Weavy tied image generation, video models and 3D together into one repeatable pipeline. Stills set the look, video models carried it into motion, and Blender kept form and product accurate.\n[One line on the visual concept]' },
+{ n: '03', h: 'Contribution', body: 'I led the visual research and experimentation: concept development, creative direction, and hands-on production of both 2D and 3D AI-generated assets.' }
+],
+tools: ['Weavy', 'Kling', 'Veo', 'Runway', 'Nano Banana Pro', 'Blender'],
+credits: [{ k: 'ART DIRECTION & AI', v: 'Artem Maslov' }, { k: 'COMMISSIONED BY', v: '[Agency name]' }]
+},
+{
+slug: 'nike', title: 'Nike — AI R&D', full: true,
+tagline: 'Prototyping the future of brand storytelling with generative tools.',
+meta: [{ k: 'CLIENT', v: 'Nike (via [agency name])' }, { k: 'ROLE', v: 'Art Director, AI Artist' }, { k: 'TYPE', v: 'Internal R&D' }, { k: 'YEAR', v: '[Year]' }],
+overview: [
+{ k: 'MADE', v: 'Speculative visuals and motion concepts for Nike, built as an internal R&D exploration for a Middle Eastern agency.' },
+{ k: 'NEED', v: 'A look at how generative AI could speed up ideation and give future campaigns dynamic, repeatable creative pipelines.' },
+{ k: 'VALUE', v: 'A tested mix of node-based AI, 3D and prompt engineering, plus concept visuals the agency could use to pitch the approach.' }
+],
+sections: [
+{ n: '01', h: 'Problem', body: 'Brand storytelling still runs on long production cycles. The research asked how AI could accelerate ideation while keeping the art direction recognisably Nike.' },
+{ n: '02', h: 'Solution', body: 'A pipeline that combined node-based generation in ComfyUI, Adobe Firefly and 3D in Blender, so concepts could move from sketch to motion test quickly.\n[One line on the visual concept]' },
+{ n: '03', h: 'Contribution', body: 'I led the visual research and experimentation: concept, creative direction, and hands-on work on both 2D and 3D AI-generated assets.' }
+],
+tools: ['ComfyUI', 'Adobe Firefly', 'Blender'],
+credits: [{ k: 'ART DIRECTION & AI', v: 'Artem Maslov' }, { k: 'COMMISSIONED BY', v: '[Agency name]' }]
+},
+{
+slug: 'visit-dubai', title: 'Visit Dubai', full: true,
+tagline: 'Interactive installations that sell a city on a crowded expo floor.',
+meta: [{ k: 'CLIENT', v: 'Visit Dubai' }, { k: 'AGENCY', v: 'Tactical' }, { k: 'ROLE', v: 'Art Director, Visual Developer' }, { k: 'YEAR', v: '[Year]' }],
+overview: [
+{ k: 'MADE', v: 'Interactive installations for Visit Dubai at Web Summit, VivaTech and London Tech Week.' },
+{ k: 'NEED', v: 'Visit Dubai presents the city to investors, businesses and future residents. At tech conferences it needed something that stops people and explains Dubai life at a glance.' },
+{ k: 'VALUE', v: '[What the installations achieved, in one line]' }
+],
+sections: [
+{ n: '01', h: 'Problem', body: 'Visit Dubai is part information hub, part city marketing office. On a busy conference floor it competes with hundreds of booths for a few seconds of attention, and has to explain both business opportunity and everyday life.' },
+{ n: '02', h: 'Solution', body: '[The installation concept in one or two sentences]' },
+{ n: '03', h: 'Contribution', body: 'I shaped the initial concepts, guided execution through to the events, and worked on the 2D and 3D key visuals.' }
+],
+tools: ['[Tools]'],
+credits: [{ k: 'ART DIRECTION & KEY VISUALS', v: 'Artem Maslov' }, { k: 'AGENCY', v: 'Tactical' }, { k: 'TEAM', v: '[Names]' }]
+},
+{
+slug: 'fish-and-cat', title: 'Fish and Cat', full: true,
+tagline: 'A short film made entirely with AI: no camera, no keyframes.',
+meta: [{ k: 'TYPE', v: 'Self-initiated' }, { k: 'ROLE', v: 'Director, AI Artist' }, { k: 'FORMAT', v: 'Short video' }, { k: 'YEAR', v: '[Year]' }],
+overview: [
+{ k: 'MADE', v: 'A short narrative video produced with a fully AI-driven workflow.' },
+{ k: 'NEED', v: 'To find out how far generative tools can carry a coherent story without filming or manual animation.' },
+{ k: 'VALUE', v: 'A finished piece and a tested workflow where AI is the core medium for directing, editing and production, not just a helper.' }
+],
+sections: [
+{ n: '01', h: 'Problem', body: 'AI video still breaks stories: characters drift between shots, scenes don’t match, and motion fights the edit.' },
+{ n: '02', h: 'Solution', body: 'Nano Banana Pro held scene consistency and style; Seedance 1.5 Pro handled motion. Directing happened in the prompts, the edit happened between generations.\n[The story in one line]' },
+{ n: '03', h: 'Contribution', body: 'Idea, direction, generation and edit.' }
+],
+tools: ['Seedance 1.5 Pro', 'Nano Banana Pro'],
+credits: [{ k: 'DIRECTION & AI', v: 'Artem Maslov' }]
+},
+{
+slug: 'jurassic-world', title: 'Jurassic World: Rebirth', full: false,
+tagline: 'A Snapchat AR filter that puts fans inside the film’s world.',
+meta: [{ k: 'CLIENT', v: 'Universal Pictures' }, { k: 'AGENCY', v: 'Pretty Big Monster' }, { k: 'ROLE', v: '3D Artist, Animator' }, { k: 'YEAR', v: '2025' }],
+sections: [
+{ n: '01', h: 'Overview', body: 'Part of the global marketing campaign for Jurassic World: Rebirth (2025): an immersive Snapchat AR filter with cinematic-quality interaction, made with Pretty Big Monster.' },
+{ n: '02', h: 'Role', body: 'I modeled the hero helmet and suit. The suit was built in Marvelous Designer for natural fabric behaviour and realistic folds; the helmet was optimised for real-time mobile AR without losing fidelity. I also helped with rigging and animation so the motion reacts smoothly to the user.' }
+],
+tools: ['Marvelous Designer', '[3D / AR tools]'],
+credits: [{ k: 'AGENCY', v: 'Pretty Big Monster' }, { k: '3D & ANIMATION', v: 'Artem Maslov' }]
+},
+{
+slug: 'smurfs', title: 'Smurfs', full: false,
+tagline: 'Characters, rigs and a world for the Smurfs (2025) campaign.',
+meta: [{ k: 'CLIENT', v: 'Paramount Animation' }, { k: 'AGENCY', v: 'Pretty Big Monster' }, { k: 'ROLE', v: '3D Artist, Animator' }, { k: 'YEAR', v: '2025' }],
+sections: [
+{ n: '01', h: 'Overview', body: 'An interactive experience for the global marketing campaign of the Smurfs movie (2025), made with Pretty Big Monster.' },
+{ n: '02', h: 'Role', body: 'I created the characters and their accessories, rigged and animated them, and built the environment for the experience.' }
+],
+tools: ['[Tools]'],
+credits: [{ k: 'AGENCY', v: 'Pretty Big Monster' }, { k: '3D & ANIMATION', v: 'Artem Maslov' }]
+},
+{
+slug: 'mdlbeast', title: 'MDLBEAST', full: false,
+tagline: 'AR for the Middle East’s largest electronic music festival.',
+meta: [{ k: 'CLIENT', v: 'MDLBEAST' }, { k: 'AGENCY', v: 'Tactical, with Snapchat' }, { k: 'ROLE', v: 'Art Director, Visual Developer' }, { k: 'YEAR', v: '[Year]' }],
+sections: [
+{ n: '01', h: 'Overview', body: 'MDLBEAST is the largest EDM festival in the Middle East, built around one of the biggest stages in the world. Tactical provided AR design support with Snapchat to extend the festival experience with interactive visuals.' },
+{ n: '02', h: 'Role', body: 'I directed the AR side of the project and produced 2D and motion graphics assets.' }
+],
+tools: ['[Tools]'],
+credits: [{ k: 'AGENCY', v: 'Tactical' }, { k: 'PARTNER', v: 'Snapchat' }, { k: 'AR DIRECTION', v: 'Artem Maslov' }]
+}
+];
+}
+renderVals() {
+const list = this.data();
+const want = this.state.pick ?? this.props.project ?? 'lexus';
+let i = list.findIndex((x) => x.slug === want);
+if (i < 0) i = 0;
+const raw = list[i];
+const prevI = (i - 1 + list.length) % list.length;
+const nextI = (i + 1) % list.length;
+const p = {
+...raw,
+overview: raw.overview || [],
+code: 'W-' + String(i + 1).padStart(3, '0') + ' / ' + String(list.length).padStart(3, '0'),
+kindLabel: raw.full ? 'CASE STUDY' : 'PROJECT NOTE',
+toolsNum: String(raw.sections.length + 1).padStart(2, '0')
+};
+return {
+accent: this.props.accent ?? '#1967D2',
+p,
+prevTitle: list[prevI].title,
+nextTitle: list[nextI].title,
+prev: () => this.setState({ pick: list[prevI].slug }),
+next: () => this.setState({ pick: list[nextI].slug })
+};
+}
+}
+</script>
+</body>
+</html>

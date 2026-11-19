@@ -1,237 +1,170 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JZVL010GEG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JZVL010GEG');
-</script>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Artem Maslov — AI Art Director &amp; Creative Technologist</title>
-<meta name="description" content="Artem Maslov — AI Art Director and Creative Technologist based in Edmonton, Canada. Art direction where it meets technology: AI-driven production, AR, Apple Vision Pro and large-scale installations.">
-<meta name="theme-color" content="#0a0a0b">
-<meta property="og:title" content="Artem Maslov — AI Art Director &amp; Creative Technologist">
-<meta property="og:description" content="Art direction where it meets technology: AI-driven production, AR, Apple Vision Pro and large-scale installations.">
-<meta property="og:image" content="https://i.vimeocdn.com/video/2214607199-0a8b9fa46fbfe4b21226126cf5c78e082ed07c2fb2a29165d40d057bdc982d27-d?f=webp">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Artem Maslov — Creative Technologist &amp; Art Director</title>
+<meta name="description" content="I make pictures, and I build the systems that make pictures.">
+<link rel="canonical" href="https://artmaslov.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Artem Maslov — Creative Technologist &amp; Art Director">
+<meta property="og:description" content="I make pictures, and I build the systems that make pictures.">
+<meta property="og:url" content="https://artmaslov.com/">
+<meta property="og:site_name" content="Artem Maslov">
+<meta property="og:image" content="https://artmaslov.com/assets/media/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://artmaslov.com/assets/media/og-home.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://player.vimeo.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#ffffff;
-    --ink-soft:rgba(255,255,255,.74);
-    --ink-muted:rgba(255,255,255,.62);
-    --glass:rgba(0,0,0,.3);
-    --glass-strong:rgba(0,0,0,.5);
-    --hairline:rgba(255,255,255,.08);
-    --ease:cubic-bezier(.2,.7,.2,1);
-    --reel-ar:1.7778;            /* updated from the real video size once the player reports it */
-  }
-  *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:#0a0a0b;color:var(--ink);overflow:hidden}
-  body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-  button{font:inherit;color:inherit}
-
-  /* Showreel — Vimeo iframe scaled to cover the viewport */
-  .reel{position:fixed;inset:0;overflow:hidden;background:#0a0a0b;z-index:0}
-  .reel iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;pointer-events:none;
-    width:100vw;height:calc(100vw / var(--reel-ar));
-    min-width:calc(100vh * var(--reel-ar));min-height:100vh}
-  @supports (height:100dvh){
-    .reel iframe{height:calc(100vw / var(--reel-ar));min-width:calc(100dvh * var(--reel-ar));min-height:100dvh}
-  }
-  .reel::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
-
-  /* Header */
-  .hdr{position:fixed;top:0;left:0;right:0;z-index:10;height:68px;padding:0 44px;padding-top:env(safe-area-inset-top);
-    display:flex;align-items:center;justify-content:space-between;
-    background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06)}
-  .mark{font-size:12px;font-weight:500;letter-spacing:.36em;color:var(--ink);text-decoration:none;margin-right:-.36em}
-  .nav{display:flex;align-items:center;gap:36px}
-  .nav button{background:none;border:0;padding:0 2px;min-height:44px;cursor:pointer;
-    font-size:11px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);transition:color .25s ease}
-  .nav button:hover,.nav button[aria-expanded="true"]{color:var(--ink)}
-
-  /* Icon buttons */
-  .icon-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;
-    color:var(--ink);transition:background-color .25s ease,border-color .25s ease}
-  .sound{position:fixed;right:32px;bottom:32px;z-index:10;border:1px solid rgba(255,255,255,.28);
-    background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    margin-bottom:env(safe-area-inset-bottom)}
-  .icon-btn:hover{background-color:rgba(255,255,255,.12);border-color:rgba(255,255,255,.45)}
-  .sound .on{display:none}
-  .sound[aria-pressed="true"] .on{display:block}
-  .sound[aria-pressed="true"] .off{display:none}
-
-  :focus{outline:none}
-  :focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:4px}
-
-  /* Overlays */
-  .ov{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:108px 24px 40px;
-    background:rgba(0,0,0,.38);opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s linear .35s}
-  .ov.is-open{opacity:1;visibility:visible;transition:opacity .35s ease}
-  .panel{position:relative;width:100%;max-width:660px;max-height:100%;overflow-y:auto;padding:60px 60px 56px;
-    background:var(--glass-strong);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid var(--hairline);
-    transform:translateY(14px);opacity:0;transition:transform .5s var(--ease),opacity .5s var(--ease)}
-  .ov.is-open .panel{transform:none;opacity:1}
-  .panel--sm{max-width:420px;padding:56px 52px 52px}
-  .close{position:absolute;top:14px;right:14px;border:1px solid transparent;background:transparent}
-  .ov h2{margin:0 0 28px;font-size:11px;font-weight:500;letter-spacing:.36em;text-transform:uppercase;color:var(--ink-muted)}
-  .about p{margin:0;font-size:18px;line-height:1.7;font-weight:300;letter-spacing:.005em;color:rgba(255,255,255,.92)}
-  .about p + p{margin-top:20px}
-
-  .contacts h2{margin-bottom:36px}
-  .contacts dl{margin:0;display:flex;flex-direction:column;gap:28px}
-  .contacts dt{font-size:10px;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:10px}
-  .contacts dd{margin:0}
-  .lnk{font-size:17px;font-weight:300;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:3px;transition:border-color .25s ease,color .25s ease}
-  .lnk:hover{border-color:rgba(255,255,255,.7)}
-
-  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-  @media (max-width:640px){
-    .hdr{height:56px;padding-left:20px;padding-right:20px}
-    .nav{gap:22px}
-    .sound{right:20px;bottom:20px}
-    .ov{padding:0;background:transparent}
-    .panel,.panel--sm{max-width:none;width:100%;height:100%;border:0;padding:96px 28px 48px;
-      display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
-    .about p{font-size:16px}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .ov,.ov.is-open,.panel{transition:none}
-  }
-</style>
+<link rel="stylesheet" href="/assets/site.css?v=1795131904644">
+<script src="/assets/site.js?v=1795131913952" defer></script>
 </head>
-<body>
-
-<div class="reel">
-  <iframe id="reel" title="Showreel of Artem Maslov's work in AI video, 3D and AR" allow="autoplay; fullscreen" frameborder="0"
-    src="https://player.vimeo.com/video/1237730823?h=709ca24f6f&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;controls=0&amp;playsinline=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;dnt=1"></iframe>
-</div>
-
-<header class="hdr">
-  <a class="mark" href="/" aria-label="Art Maslov — home">ART MASLOV</a>
-  <nav class="nav" aria-label="Main">
-    <button type="button" data-open="about" aria-haspopup="dialog" aria-controls="about" aria-expanded="false">About</button>
-    <button type="button" data-open="contacts" aria-haspopup="dialog" aria-controls="contacts" aria-expanded="false">Contacts</button>
+<body data-filter="all" data-home>
+<a class="skip" href="#main">Skip to content</a>
+<section class="say" aria-label="Statement">
+  <div class="say__view" aria-hidden="true"><span class="say__track" data-say-track><span class="say__run"><span class="say__s">I make pictures, and I build the systems that make pictures.</span><span class="say__s">Nine years of commercial production: concept art at Snap, art direction at Tactical, and my own studio, ARNI.</span><span class="say__s">Since 2024 I write the other half — code, node graphs, pipelines that hold a look from one frame to the next.</span><span class="say__s">Lately that means AR for a festival stage, speculative brand R&amp;D on Lexus and Nike, and an imaging tool jewellers use every day.</span><span class="say__s">I live in Edmonton, and I am open for freelance and full-time. I am looking for work that needs both halves.</span></span><span class="say__run"><span class="say__s">I make pictures, and I build the systems that make pictures.</span><span class="say__s">Nine years of commercial production: concept art at Snap, art direction at Tactical, and my own studio, ARNI.</span><span class="say__s">Since 2024 I write the other half — code, node graphs, pipelines that hold a look from one frame to the next.</span><span class="say__s">Lately that means AR for a festival stage, speculative brand R&amp;D on Lexus and Nike, and an imaging tool jewellers use every day.</span><span class="say__s">I live in Edmonton, and I am open for freelance and full-time. I am looking for work that needs both halves.</span></span></span></div>
+  <button class="say__hit" type="button" data-say aria-haspopup="dialog" aria-controls="statement"><span class="vh">Read the full statement</span></button>
+</section>
+<div class="shell">
+<aside class="rail">
+  <div class="rail__id">
+    <p class="id"><a href="/"><svg class="logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="-3 -3 1359.92 697.25">
+  <!-- Wordmark. No fill: the stylesheet drives it with currentColor. -->
+  <path d="M97.79,653.86l-17.38,7.35L0,691.25l12.35-68.2,11.88-69.23,20.74-134.22c33.34-6.24,65.05-15.15,97.31-25.56,6.8,27.57,14.51,53.29,23.42,79.22l7.63,18.65c3.92-16.2,8.64-31.15,14.15-46.77l9.68-27.46,11.16-33.01c37.01-1.64,73.32-5.7,107.83-19.73-1.94,54.14.43,107.66,10.04,161,4.41,24.44,8.13,47.74,9.87,72.47l-30.29,4.16c-21.02,2.88-40.88,9.21-61.44,14.66-.51-41.65-2-81.59-7.86-122.15-5.49,15.91-8.92,30.59-12.84,46.17-4.51,17.92-7.62,35.44-11.4,53.55l-5.14,24.68c-23.16,3.02-44.91,6.85-66.81,13.39l-11.63-48.63c-5.06-21.18-13.13-40.64-21.12-60.66l-4.35,30.28c-3.06,33.22-4.79,65.17-5.43,100.01Z"/>
+  <path d="M699.29,284.48c-5.39-27.3-14.46-52.57-33.92-72.9-1.95,25.68-1.53,51.2,1.35,76.77-29.81,4.2-57.68,11.08-85.86,20.67,2.86-29.11,4.45-56.94,5.82-85.87l2.01-120.7-.5-44.12c23.25-8.3,46.5-15.56,70.53-22.03,30.85-8.31,66.31-9.52,90.3,12.79,16.55,15.4,22.67,37.39,21.74,59.73-1.35,32.35-17.16,51.54-42.97,70.03l8.95,11.49c24.32,24.22,38.97,57.65,46.45,91.81-28.79-2.41-55.36-2.04-83.89,2.34ZM693.25,123.47c2.66-8.46,1.74-16.7-3.78-22.95-6.12-4.67-13.9-5.21-21.44-2.61-2.4,16.64-3.65,33.08-3.32,49.95,13.54-2.83,23.95-11.89,28.54-24.39Z"/>
+  <path d="M691.69,568.4c-19.94,8.27-40.7,11.43-62.48,10.48-19.18-.84-37.7-3.17-56.28-7.74-1.27-28.49-3.96-55.26-7.31-84.12,16.79,7.3,32.42,13.24,49.62,15.54,9.18,1.73,17.74,1,26.34-2.44,2.77-2.19,4.84-5.45,4.85-8.87.05-9.44-16.7-16.65-27.52-22.14-13.12-6.66-25.13-14.22-35.9-23.93-13.75-12.4-20.82-27.98-21.73-46.36-1.65-33.31,15.39-62.76,45.5-77.83,33.38-16.71,72.36-20.23,108.93-11.67l7.24,76.08c-12.41-5.88-23.95-9.75-36.53-11.79-8.06-.88-15.39-.34-22.92,2.37-2.51,1.64-4.77,3.74-5.61,6.11-2.79,7.83,8.71,15.16,18.1,19.95l29.15,14.87c12.61,6.44,22.9,16.37,30.94,28.02,11.84,17.16,13.78,38.03,9.63,58.16-4.14,20.09-14,37.35-29.92,50.32-7.48,6.1-15.07,11.24-24.09,14.98Z"/>
+  <path d="M445.54,595.19c-35.04,19.58-82.51,10.76-97.06-28.78-8.08-21.96-6.7-46.3,2.41-67.86,18.4-43.57,59.52-59.64,101.94-74.1-.18-6.74-5.46-11.54-12.3-12.03-5.64-.4-11.46.77-16.87,2.86-15.16,5.87-29.1,13.23-42.4,22.48l-21.22,14.77-6.75-64.2c34.48-22.79,68.98-38.29,109.89-42.83,10.69-1.19,20.7-1.12,31.24.84,17.62,3.28,31.44,15.51,36.59,32.78,9.18,30.77,9.12,52.03,7.5,83.72-1.42,27.88-.22,55.2,6.57,82.09,2.86,11.34,7.21,20.56,15.18,30.49l-50.72,11.9-20.3,3.42c-8.89,1.5-17.01-3.4-20.42-12.13-7.53,5.92-14.66,11.74-23.29,16.56ZM438.12,531.09c4.27.32,8.73-.77,12.46-2.01-.78-16.69-.14-32.42,1.08-49.38-15.02,6.65-29.16,19.63-27.72,36.63.63,7.46,6.31,14.16,14.18,14.76Z"/>
+  <path d="M449.9,296.05c-3.28,13.26-6.4,25.16-10.93,37.58l-32.08,7.94c-19.15,4.74-36.95,12.01-56.09,19.15l39.09-101.22,38.68-107.25c5.45-15.11,9.1-29.79,12.53-45.35,32.63-9.66,63.67-21.04,95.1-33.25l8.32,28.11c18.05,67,28.02,135.26,30.56,204.97l-34.25,3.91-47.24,10.8.64-37.61c-15.33,3.48-29.12,7.21-44.32,12.23ZM490.38,228.3c-1.94-19.18-3.7-34.76-7.06-52.08-5.45,20.58-11.24,39.18-17.73,58.88l24.79-6.8Z"/>
+  <path d="M1106.42,148.36c-7.73,17.16-10.62,34.1-11.28,52.53-.8,22.31-2.94,43.93-6.69,66.28-13.13-1.81-25.29-3.49-38.25-2.51l-44.97,3.39c.35-29.68,2.07-58.09,4.88-87.12.38-3.98-.41-7.61-2.27-10.77-9.52-16.11-18.91-31.53-26.05-48.95-11.59-28.3-18.19-57.47-21.33-87.73l-3.48-33.49,60.02,3.14,23.89.86c1.63,27.39,6.06,53.33,13.87,79.51l23.87-69.11,4.26-10.96,91.17,1.61-43.57,89.92-24.05,53.41Z"/>
+  <path d="M819.31,276.2l3.23-51.31c1.4-22.26.42-43.78-1.45-66.07-1.62-14.45-2.65-28.31-2.4-42.58l.24-18.94-42.23,5.76c-.72-17.37-1.39-34.18-.47-51.24l1.7-31.45,35.35-3.83,59.21-5.58L944.36.87l1.91,39.95,4.08,43.88c-14.42.22-28.31.97-42.3,3.92-6.35,15.89-7.42,32.16-7.69,49.24l4.29,47.8,3.26,36.06c1.52,16.83.55,33.34-2.43,50.32-29.02-1.89-56.59.23-86.17,4.18Z"/>
+  <path d="M918.15,546.24c-56.33,1.35-109.89,6.63-164.24,18.01.08-17.25,2.31-33.07,4.94-49.64,5.31-31.39,9.02-61.8,10.01-93.81,1.33-39.05.6-76.94-4.06-116.72,31.44-2.24,62.11-6.48,93.86-12.24-4.24,31.49-7.27,62.14-8.07,93.92l2.59,75.02c.19,4.25.85,7.83,2.44,12.01,25.85-.51,50.78-2.38,77.03-8-1.97,27.6-6.89,54.31-14.5,81.45Z"/>
+  <path d="M1020.22,548.33c-26.14-4.5-47.27-19.18-62.78-39.84-14.7-19.59-22-42.78-24.79-67.31-6.55-57.59,19.01-121.88,70.28-150.58,26.14-14.63,58.15-15.44,84.2-.68,40.08,22.71,58.69,72.3,62.53,116.95,2.87,33.5-4.39,66.67-22.37,95.02-7.67,12.1-18.01,22.12-29.81,30.16-22.46,15.31-49.9,20.99-77.25,16.28ZM1027.94,445.34c13.94,8.09,29.78.89,36.27-12.59,12.45-25.88,3.53-59.5-16.03-62.6-24.43-3.88-39.46,26.36-35.86,49.68,1.53,9.89,6.65,20.31,15.62,25.51Z"/>
+  <path d="M1344.28,357.82l-16.17,64.72-22.73,73.31-15.07,54.75c-15.39-4.22-30.98-5.56-46.89-6.16l-44.53.96c-5.65-44.21-14.91-86.12-28.38-127.84l-11.73-40.44c-8.83-30.45-12.48-61.53-16.13-93.58l84.88,4.36,5.42,50.31c3.61,28.12,8.53,54.81,15.61,83.17l10.05-44.22,10.61-69.25,2.7-17.13c27.19,2.5,53.5,3.36,82,2.57l-9.64,64.46Z"/>
+</svg><span class="vh">Artem Maslov — home</span></a></p>
+    
+    <p class="id__sub">Creative Technologist&nbsp;&amp; Art Director</p>
+  </div>
+  <nav class="rail__nav" aria-label="Pages"><a href="/work/" data-deco="M11.99,15.3C6.28,28.16,0,34.72,3.31,37.06c5.43,3.84,29.25,1.01,30.78-1.17,4.44-6.33-14.51-32.26-15.4-31.95-1.29.45-4.34,6.02-4.34,6.02" data-deco-box="0 0 37.39 44.57"><span class="navl">Work</span></a><a href="/lab/" data-deco="M15.21,23.2c3.73,10.1,13.73,10.69,13.73-.11S11.7,6.81,5.7,16.84s0,27.8,14.05,26.12c21.21-2.55,36.05-31.93-1.6-41.46" data-deco-box="0 0 44.67 47.21"><span class="navl">Lab</span></a><a href="/about/" data-deco="M11.69,14.31c-7.27,2.72-20.24,3.13,3.2,18.61,32.99,21.79,27.39-23.66,22.41-28.64S10.53,1.17,14.89,8.64" data-deco-box="0 0 42.6 40.29"><span class="navl">About</span></a></nav>
+  <nav class="rail__links rail__links--icons" aria-label="Contact">
+    <a href="mailto:artem@artmaslov.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.4 6.6A2.1 2.1 0 0 1 4.5 4.5h15a2.1 2.1 0 0 1 2.1 2.1v10.8a2.1 2.1 0 0 1-2.1 2.1h-15a2.1 2.1 0 0 1-2.1-2.1V6.6Zm2.9.3L12 12l6.7-5.1H5.3ZM20.1 8.3l-7.5 5.7a1 1 0 0 1-1.2 0L3.9 8.3v8.9h16.2V8.3Z"/></svg></a>
+    <a href="https://www.linkedin.com/in/maslov-artem/" aria-label="LinkedIn" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7ZM7.1 20.5H3.6V9h3.5v11.5ZM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1Zm15.1 13.1h-3.5V15c0-1.4 0-3.1-1.9-3.1s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h-.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3Z"/></svg></a>
+    <a href="https://github.com/artymaslov" aria-label="GitHub" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.4-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.3v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg></a>
   </nav>
-</header>
+</aside>
+<main class="sheet" id="main">
 
-<button type="button" class="icon-btn sound" id="sound" aria-pressed="false" aria-label="Unmute showreel">
-  <svg class="off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
-  <svg class="on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
-</button>
+<h1 class="vh">Artem Maslov — Creative Technologist &amp; Art Director</h1>
 
-<div class="ov" id="about" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true">
-  <div class="panel about">
-    <button type="button" class="icon-btn close" data-close aria-label="Close About">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
-    </button>
-    <h2 id="about-title">About</h2>
-    <p>I'm Artem Maslov, an AI Art Director and Creative Technologist based in Edmonton, Canada.</p>
-    <p>I work where art direction meets technology. Over 9 years I've moved from concept art for Snapchat lenses to leading AR activations, Apple Vision Pro prototypes and large-scale installations, and now to AI-driven production.</p>
-    <p>Clients include Dior, Universal Pictures, Paramount Animation, Cartier, Snapchat, L'Oréal, Amazon and Visit Dubai. Previously Art Director at Tactical (Rotterdam), founder of ARNI Studio, and Senior Concept Artist at Snap Inc. I also teach visual assets for games at NAIT.</p>
+<section class="block block--lead">
+  <div class="block__head">
+    <h2>Reel</h2>
+    <p class="block__meta">2026 · 0:22 · silent</p>
   </div>
-</div>
+  <figure class="vid">
+    <video data-loop autoplay muted loop playsinline controls preload="metadata"
+           poster="/assets/media/reel/poster.webp" style="aspect-ratio:16/9">
+      <source src="/assets/media/reel/reel.mp4" type="video/mp4">
+      <p>Your browser cannot play this video. <a href="/assets/media/reel/reel.mp4">Download it instead</a>.</p>
+    </video>
+    <figcaption class="cap">Brand R&amp;D, 3D and AR, cut from the work below.</figcaption>
+  </figure>
+</section>
 
-<div class="ov" id="contacts" role="dialog" aria-modal="true" aria-labelledby="contacts-title" aria-hidden="true">
-  <div class="panel panel--sm contacts">
-    <button type="button" class="icon-btn close" data-close aria-label="Close Contacts">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
-    </button>
-    <h2 id="contacts-title">Contacts</h2>
-    <dl>
-      <div>
-        <dt>LinkedIn</dt>
-        <dd><a class="lnk" href="https://www.linkedin.com/in/maslov-artem/" target="_blank" rel="noopener noreferrer">in/maslov-artem<span class="sr-only"> (opens in a new tab)</span></a></dd>
-      </div>
-      <div>
-        <dt>Email</dt>
-        <dd><a class="lnk" href="mailto:artem@artmaslov.com">artem@artmaslov.com</a></dd>
-      </div>
-    </dl>
+<section class="block">
+  <div class="block__head">
+    <h2>Recent work</h2>
+    <a class="more" href="/work/">All 7 projects</a>
   </div>
+  <div class="figures"><figure class="fig" data-slug="pavilion" data-made="hand machine">
+  <a href="/work/pavilion/">
+    <div class="thumb" style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/pavilion/thumb.webp" alt="" loading="lazy" decoding="async">
+    
+  </div>
+    <figcaption>
+      <h3 class="fig__t">Pavilion — Jewellery Imaging Studio</h3>
+      <p class="fig__d">Catalogue photography for jewellers who only have a phone and a workbench.</p>
+      <p class="fig__m"><span class="fig__y">2026</span></p>
+    </figcaption>
+  </a>
+</figure><figure class="fig" data-slug="lexus" data-made="hand machine">
+  <a href="/work/lexus/">
+    <div class="thumb" data-thumb style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/lexus/thumb.webp" alt="" loading="lazy" decoding="async">
+    <video class="thumb__clip" src="/assets/media/lexus/thumb.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+  </div>
+    <figcaption>
+      <h3 class="fig__t">Lexus — AI R&amp;D</h3>
+      <p class="fig__d">Speculative brand visuals and motion, built in node-based AI pipelines.</p>
+      <p class="fig__m"><span class="fig__y">2025</span></p>
+    </figcaption>
+  </a>
+</figure><figure class="fig" data-slug="nike" data-made="hand machine">
+  <a href="/work/nike/">
+    <div class="thumb" data-thumb style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/nike/thumb.webp" alt="" loading="lazy" decoding="async">
+    <video class="thumb__clip" src="/assets/media/nike/thumb.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+  </div>
+    <figcaption>
+      <h3 class="fig__t">Nike — AI R&amp;D</h3>
+      <p class="fig__d">Speculative brand motion, with the movement blocked in 3D rather than guessed by a model.</p>
+      <p class="fig__m"><span class="fig__y">2025</span></p>
+    </figcaption>
+  </a>
+</figure></div>
+</section>
+
+<section class="block">
+  <div class="block__head">
+    <h2>Lab</h2>
+    <a class="more" href="/lab/">All experiments</a>
+  </div>
+  <ul class="exp">
+  <li>
+    <a class="exp__row" href="/lab/web-configurator/">
+      <span class="exp__thumb"><div class="thumb" data-thumb style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/configurator/thumb.webp" alt="" loading="lazy" decoding="async">
+    <video class="thumb__clip" src="/assets/media/configurator/thumb.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+  </div></span>
+      <span class="exp__t">Web configurator</span>
+      <span class="exp__d">Put a 3D object into a photograph of a real room</span>
+      <span class="exp__s" data-state="demo">Demo</span>
+    </a>
+  </li><li>
+    <a class="exp__row" href="/lab/raft/">
+      <span class="exp__thumb"><div class="thumb" style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/raft/thumb.webp" alt="" loading="lazy" decoding="async">
+    
+  </div></span>
+      <span class="exp__t">Raft</span>
+      <span class="exp__d">A co-op VR world, built in a week for the Meta Horizon competition</span>
+      <span class="exp__s" data-state="winner">Winner</span>
+    </a>
+  </li><li>
+    <a class="exp__row" href="/lab/csgo/">
+      <span class="exp__thumb"><div class="thumb" data-thumb style="aspect-ratio:16/9">
+    <img class="thumb__still" src="/assets/media/csgo/thumb.webp" alt="" loading="lazy" decoding="async">
+    <video class="thumb__clip" src="/assets/media/csgo/thumb.mp4" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+  </div></span>
+      <span class="exp__t">Cat Therapy</span>
+      <span class="exp__d">A Counter-Strike weapon skin, painted on canvas first</span>
+      <span class="exp__s" data-state="entered">Entered</span>
+    </a>
+  </li>
+</ul>
+</section>
+
+<footer class="foot">
+  <p><a href="mailto:artem@artmaslov.com">artem@artmaslov.com</a></p>
+</footer>
+</main>
 </div>
-
-<script src="https://player.vimeo.com/api/player.js"></script>
-<script>
-(function () {
-  var frame = document.getElementById('reel');
-  var sound = document.getElementById('sound');
-  var openBtns = document.querySelectorAll('[data-open]');
-  var current = null, lastTrigger = null;
-  var FOCUSABLE = 'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])';
-  var player = null, muted = true;
-
-  if (window.Vimeo && Vimeo.Player) {
-    player = new Vimeo.Player(frame);
-    // Size the iframe from the real video dimensions so it always covers, never letterboxes.
-    Promise.all([player.getVideoWidth(), player.getVideoHeight()]).then(function (d) {
-      if (d[0] && d[1]) document.documentElement.style.setProperty('--reel-ar', d[0] / d[1]);
-    }).catch(function () {});
-    player.setLoop(true).catch(function () {});
-    player.play().catch(function () {});   // browsers may block until the first interaction
-  }
-
-  sound.addEventListener('click', function () {
-    muted = !muted;
-    if (player) {
-      player.setMuted(muted).catch(function () {});
-      if (!muted) { player.setVolume(1).catch(function () {}); player.play().catch(function () {}); }
-    }
-    sound.setAttribute('aria-pressed', muted ? 'false' : 'true');
-    sound.setAttribute('aria-label', muted ? 'Unmute showreel' : 'Mute showreel');
-  });
-
-  function open(id, trigger) {
-    if (current) close(true);
-    var ov = document.getElementById(id);
-    current = ov; lastTrigger = trigger || null;
-    ov.classList.add('is-open');
-    ov.setAttribute('aria-hidden', 'false');
-    openBtns.forEach(function (b) { b.setAttribute('aria-expanded', b.dataset.open === id ? 'true' : 'false'); });
-    setTimeout(function () { ov.querySelector('[data-close]').focus(); }, 30);
-  }
-
-  function close(silent) {
-    if (!current) return;
-    current.classList.remove('is-open');
-    current.setAttribute('aria-hidden', 'true');
-    openBtns.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
-    current = null;
-    if (!silent && lastTrigger) lastTrigger.focus();
-  }
-
-  openBtns.forEach(function (b) {
-    b.addEventListener('click', function () {
-      if (current && current.id === b.dataset.open) close(); else open(b.dataset.open, b);
-    });
-  });
-
-  document.querySelectorAll('.ov').forEach(function (ov) {
-    // Click outside the panel closes
-    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
-    ov.querySelector('[data-close]').addEventListener('click', function () { close(); });
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (!current) return;
-    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
-    if (e.key === 'Tab') {            // keep focus inside the open overlay
-      var f = current.querySelectorAll(FOCUSABLE);
-      if (!f.length) return;
-      var first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    }
-  });
-})();
-</script>
-</body>
-</html>
+<dialog class="said" id="statement" aria-label="Statement">
+  <div class="said__box">
+    <div class="said__t"><p>I make pictures, and I build the systems that make pictures.</p><p>Nine years of commercial production: concept art at Snap, art direction at Tactical, and my own studio, ARNI.</p><p>Since 2024 I write the other half — code, node graphs, pipelines that hold a look from one frame to the next.</p><p>Lately that means AR for a festival stage, speculative brand R&amp;D on Lexus and Nike, and an imaging tool jewellers use every day.</p><p>I live in Edmonton, and I am open for freelance and full-time. I am looking for work that needs both halves.</p></div>
+    <button class="said__x" type="button" data-said-x>Close</button>
+  </div>
+</dialog>
+</body></html>

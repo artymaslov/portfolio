@@ -1,0 +1,38 @@
+/* The home-page statement, as it was set before the page was changed to open
+   on the reel. Kept whole so it can go back in one move.
+
+   To restore: drop these rules back into assets/site.css just before
+   `.figures`, add `.intro__b` back to the two shared selectors noted at the
+   bottom of README.md, and render the section again in build/site.mjs. */
+
+.intro__h {
+  font-size: var(--t5);
+  letter-spacing: var(--ls5); line-height: var(--lh5);
+  max-width: 25ch; text-wrap: balance;
+}
+.intro__b { margin-top: var(--s5); }
+
+/* Stacked, the opening filled about half the sheet — the title stopped at two
+   thirds of the column, the paragraphs at half — while the reel directly under
+   it ran the full width. The first screen of the site was mostly empty on its
+   right-hand side, and the eye read that as an unfinished page rather than as
+   air. So above 80rem the statement opens across the whole sheet instead: the
+   sentence on the left, the four paragraphs that back it on the right, each
+   column about 23 characters of display and 63 of text — both measures the
+   sizes want anyway. Below that the two would be too narrow, and it stacks. */
+@media (min-width: 76rem) {
+  .intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--s7);
+    align-items: start;
+  }
+  .intro__h { max-width: none; }
+  /* Two columns set at 44px and 16px do not start at the same height even when
+     their boxes do: each line reserves half its leading above the type, and
+     the big one reserves more. Aligning the boxes leaves the first line of
+     text sitting ~4px above the cap of the title. The nudge is a constant,
+     because --t5 is already at the top of its clamp everywhere this rule
+     applies. */
+  .intro__b { margin-top: 0; padding-top: 4px; }
+}

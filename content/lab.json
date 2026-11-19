@@ -1,0 +1,29 @@
+{
+  "experiments": [
+    {
+      "id": "EXP-001",
+      "title": "Jewelry AI pipeline",
+      "desc": "ComfyUI, multi-workflow, quality gates",
+      "status": "● SHIPPED"
+    },
+    {
+      "id": "EXP-002",
+      "title": "Product configurator",
+      "desc": "Real-time product visualization module",
+      "status": "◐ DEMO"
+    },
+    {
+      "id": "EXP-003",
+      "title": "Meta Horizon Mobile Hackathon",
+      "desc": "[Project name] — winning entry, 2025",
+      "status": "★ WINNER"
+    },
+    {
+      "id": "EXP-004",
+      "title": "[Next experiment]",
+      "desc": "[One-line question]",
+      "status": "○ IN PROGRESS"
+    }
+  ],
+  "playground": []
+}

@@ -20,6 +20,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/assets/site.css?v=1795131904644">
 <script src="/assets/site.js?v=1795131913952" defer></script>
+<script>
+(function(){
+  var h = location.hostname;
+  if (location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1' || h === '::1' || h.endsWith('.local')) return;
+  var id = "G-JZVL010GEG";
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', id);
+})();
+</script>
 </head>
 <body data-filter="all">
 <a class="skip" href="#main">Skip to content</a>

@@ -10,7 +10,9 @@ export const site = {
   coords: '53.5461° N, 113.4938° W',
   email: 'artem@artmaslov.com',
   linkedin: 'https://www.linkedin.com/in/maslov-artem/',
-  github: 'https://github.com/artymaslov'
+  github: 'https://github.com/artymaslov',
+  /* Google Analytics 4. Set to '' to take the tag off every page. */
+  analytics: 'G-JZVL010GEG'
 };
 
 /* The statement. Five sentences, first person, no hype.

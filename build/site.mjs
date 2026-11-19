@@ -113,6 +113,28 @@ function rail({ current }) {
 </aside>`;
 }
 
+/* Google Analytics, loaded only on the real domain: a local preview or a file://
+   open would otherwise count as traffic. One tag id, in site.analytics. */
+function ga() {
+  if (!site.analytics) return '';
+  return `
+<script>
+(function(){
+  var h = location.hostname;
+  if (location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1' || h === '::1' || h.endsWith('.local')) return;
+  var id = ${JSON.stringify(site.analytics)};
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', id);
+})();
+</script>`;
+}
+
 function page({ title, desc, current, body, script = '', share = null, path = '', band = false }) {
   /* A link pasted into LinkedIn or a chat shows a card. Without these it shows
      the bare URL, so the share image is part of the page, not a nice-to-have. */
@@ -141,7 +163,7 @@ function page({ title, desc, current, body, script = '', share = null, path = ''
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${v('/assets/site.css')}">
-<script src="${v('/assets/site.js')}" defer></script>${script}
+<script src="${v('/assets/site.js')}" defer></script>${script}${ga()}
 </head>
 <body data-filter="all"${current ? '' : ' data-home'}>
 <a class="skip" href="#main">Skip to content</a>

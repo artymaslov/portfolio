@@ -829,12 +829,14 @@ export const about = {
     body: 'Open to full-time Art Director / Creative Technologist roles and select freelance projects.',
     terms: ['Authorized to work in Canada', 'open to relocation', 'remote-friendly']
   },
-  cvLabel: 'Download CV (PDF)',
-  /* The file is dropped in by hand. The button renders only when it is actually
-     there, so a missing PDF is a missing button rather than a dead link. */
-  cvHref: '/cv/artem-maslov-resume.pdf',
-  /* The URL is lowercase and hyphenated because it is a link people read and
-     retype; this is the name the file lands under when they save it. */
+  cvLabel: 'Open CV (PDF)',
+  /* The CV opens, it does not download: a reader deciding whether to keep
+     reading should not have to take a file to find out. This is a Google Drive
+     link, so it opens in its viewer in a new tab and the site keeps its place.
+     Point cvHref back at /cv/artem-maslov-resume.pdf — the copy in this
+     repository, still served — and the button goes back to being a download
+     named by cvFile. Either way, no file and no link means no button. */
+  cvHref: 'https://drive.google.com/file/d/1bp0j81obIgjLphkk6ELW8haJlf4uVngV/view?usp=sharing',
   cvFile: 'Artem Maslov — Resume.pdf'
 };
 

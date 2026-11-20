@@ -676,20 +676,26 @@ ${pageHead('Resources', null)}
 
 /* ── about ─────────────────────────────────────────────────── */
 
-/* The CV is a file in the repository, and the button is only as real as the
-   file. Drop the PDF at about.cvHref and it appears on both About views and in
-   the availability block; take it away and nothing renders, which is better
+/* The CV is either a link somewhere else or a file in this repository, and the
+   button is only as real as whichever it is: an external link always renders,
+   a local path renders only once the file is actually there, which is better
    than a button that goes nowhere. */
-const cvReady = () => Boolean(about.cvHref) && existsSync(join(ROOT, about.cvHref.replace(/^\//, '')));
-/* No ?v= on this one. The cache-buster is for the stylesheet and the script,
-   where a stale copy breaks the page; a CV is a file people save, and a query
-   string on it only muddies the URL and the name some browsers save it under.
-   target is the fallback: where a browser honours `download` it is ignored,
-   and where it does not the PDF opens in a tab instead of nothing happening. */
-const cvButton = (cls = 'btn') => cvReady()
-  ? `<a class="${cls}" href="${about.cvHref}" download="${esc(about.cvFile)}" type="application/pdf"
-       target="_blank" rel="noopener">${esc(about.cvLabel)}</a>`
-  : '';
+const cvExternal = () => /^https?:/.test(about.cvHref || '');
+const cvReady = () => Boolean(about.cvHref)
+  && (cvExternal() || existsSync(join(ROOT, about.cvHref.replace(/^\//, ''))));
+
+/* A link away from the site opens in its own tab, so the page a reader was on
+   is still behind it. A file served from here is a download, named by cvFile;
+   no ?v= on that one, because the cache-buster belongs on the stylesheet and
+   the script, not on something people save. */
+const cvButton = (cls = 'btn') => {
+  if (!cvReady()) return '';
+  const label = esc(about.cvLabel);
+  return cvExternal()
+    ? `<a class="${cls}" href="${esc(about.cvHref)}" target="_blank" rel="noopener">${label}</a>`
+    : `<a class="${cls}" href="${about.cvHref}" download="${esc(about.cvFile)}" type="application/pdf"
+       target="_blank" rel="noopener">${label}</a>`;
+};
 
 const aboutToggle = (view) => `<div class="abar">
   <nav class="viewtoggle" aria-label="About view">

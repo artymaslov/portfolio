@@ -24,12 +24,12 @@
      read as disabled, lighter than --fg3 — so light mode takes the same hue
      (190°) darkened to 4.7:1. Dark mode can wear the band colour as it is. */
   --accent:#0C7F96;
-  /* What a thing turns when the pointer is on it. The band's cyan, opened up:
-     bright enough that the wordmark reads as lit rather than as a darker,
-     muddier black. It is a hover state and never running text, so it is held
-     apart from --accent, which still colours the things that are coloured at
-     rest — the current page in the rail, a Winner row, a link in a standfirst. */
-  --hover: #5EC6E4;
+  /* What a thing turns when the pointer is on it: the band's cyan taken down
+     to where it still reads as lit rather than washed out — 2.9:1 on white,
+     against 2:1 for the band colour itself. It is held apart from --accent,
+     which keeps colouring the things that are coloured at rest: the current
+     page in the rail, a Winner row, a link in a standfirst. */
+  --hover: #3AA3C1;
   --ph:    #DCDCD9;
   --ph-l:  #55554F;
   --hl:    #EFEFEB;

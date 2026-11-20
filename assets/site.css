@@ -325,10 +325,39 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
 .fig__t { font-size: var(--t3); line-height: 1.3; letter-spacing: var(--ls3); }
 .fig a:hover .fig__t, .fig.is-linked .fig__t { color: var(--accent); }
 .fig__d { color: var(--fg2); font-size: var(--t2); line-height: var(--lh2); margin-top: var(--s1); max-width: 46ch; }
-/* The year is all this line carries now, so it no longer needs a rule to hold
-   it apart from a role sitting on the other end of the row. */
-.fig__m { margin-top: var(--s2); color: var(--fg3); font-size: var(--t1); line-height: var(--lh1); letter-spacing: var(--ls1); }
+/* Role, then year, on one line that wraps on a narrow card. The dot between
+   them is scenery: it is marked away from assistive software, which reads the
+   two spans as the separate facts they are. */
+.fig__m {
+  margin-top: var(--s2); color: var(--fg3);
+  font-size: var(--t1); line-height: var(--lh1); letter-spacing: var(--ls1);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s2);
+}
+.fig__sep { color: var(--rule); }
 .fig__y { font-variant-numeric: tabular-nums; }
+/* Speculative R&D, said above the title. A step quieter than the heading in
+   colour and size, and still legible at a glance \2014 it has to be read before
+   the work is mistaken for a commission. */
+.fig__k {
+  margin-bottom: var(--s2);
+  display: inline-block; align-self: start;
+  font-size: var(--t1); line-height: var(--lh1); letter-spacing: var(--ls1);
+  color: var(--fg3);
+  border: 1px solid var(--rule); border-radius: var(--r-full);
+  padding: 2px var(--s3);
+}
+.fig a:hover .fig__k, .fig.is-linked .fig__k { border-color: var(--edge); }
+
+/* What is in the reel, and when. One row per project: a tabular timecode, then
+   the name, which links when that project has a page here. */
+.marks {
+  margin-top: var(--s4); display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5);
+  font-size: var(--t1); line-height: var(--lh1); letter-spacing: var(--ls1);
+  color: var(--fg3);
+}
+.marks li { display: flex; gap: var(--s2); }
+.marks__t { font-variant-numeric: tabular-nums; color: var(--fg3); }
+.marks__w { color: var(--fg2); }
 
 /* ── blocks ──────────────────────────────────────────────── */
 .block { margin-top: var(--s9); }

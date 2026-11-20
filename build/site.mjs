@@ -193,13 +193,18 @@ const thumb = (t) => {
   </div>`;
 };
 
+/* Speculative work says so on the card. It is a chip above the title rather
+   than a word inside it: quieter than the heading, and still the first thing
+   read, which is the point \u2014 nobody should mistake self-initiated R&D for a
+   commission, on this page or in a screenshot of it. */
 const figure = (p) => `<figure class="fig" data-slug="${p.slug}" data-made="${p.made}">
   <a href="/work/${p.slug}/">
     ${thumb(p.thumb)}
     <figcaption>
+      ${p.type ? `<p class="fig__k">${esc(p.type)}</p>` : ''}
       <h3 class="fig__t">${esc(p.title)}</h3>
       <p class="fig__d">${esc(p.tagline)}</p>
-      <p class="fig__m"><span class="fig__y">${todo(p.year)}</span></p>
+      <p class="fig__m">${p.cardRole ? `<span class="fig__r">${esc(p.cardRole)}</span><span class="fig__sep" aria-hidden="true">\u00b7</span>` : ''}<span class="fig__y">${todo(p.year)}</span></p>
     </figcaption>
   </a>
 </figure>`;
@@ -246,7 +251,14 @@ const reelBlock = ({ lead = false } = {}) => `<section class="block${lead ? ' bl
     </video>
     <figcaption class="cap">${todo(reel.caption)}</figcaption>
   </figure>
+  ${reelMarks()}
 </section>`;
+
+/* What is in the reel, and when. Empty until the timecodes land, and an empty
+   list renders nothing at all rather than an empty frame. */
+const reelMarks = () => (reel.marks || []).length === 0 ? '' : `<ol class="marks">
+    ${reel.marks.map(([t, what, href]) => `<li><span class="marks__t">${esc(t)}</span><span class="marks__w">${href ? `<a href="${esc(href)}">${esc(what)}</a>` : esc(what)}</span></li>`).join('')}
+  </ol>`;
 
 /* The statement, as a band that runs. The moving copy is scenery — it is
    marked away from assistive software, which would otherwise be handed a

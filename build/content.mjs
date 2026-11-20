@@ -15,14 +15,15 @@ export const site = {
   analytics: 'G-JZVL010GEG'
 };
 
-/* The statement. Five sentences, first person, no hype.
-   Sentence 2 and 3 carry the craft + engineering story. */
+/* The statement. Four sentences, first person, no hype: what I do, what I have
+   done it on, and what I am open to. It runs in the band at the top of the home
+   page, it is the dialog behind it, and its first sentence is that page's meta
+   description \u2014 so sentence one has to stand on its own. */
 export const statement = [
-  { t: 'I make pictures, and I build the systems that make pictures.' },
-  { t: 'Nine years of commercial production: concept art at Snap, art direction at Tactical, and my own studio, ARNI.' },
-  { t: 'Since 2024 I write the other half — code, node graphs, pipelines that hold a look from one frame to the next.' },
-  { t: 'Lately that means AR for a festival stage, speculative brand R&D on Lexus and Nike, and an imaging tool jewellers use every day.' },
-  { t: 'I live in Edmonton, and I am open for freelance and full-time. I am looking for work that needs both halves.' }
+  { t: 'I art-direct images and build the systems that make them \u2014 keeping the look intact where the technology pushes back.' },
+  { t: 'Nine years across AR, 3D and AI for Snap, Universal Pictures, Paramount Animation, Dior and Visit Dubai.' },
+  { t: 'Open to full-time Art Director / Creative Technologist roles and select freelance projects.' },
+  { t: 'Based in Edmonton, open to relocation.' }
 ];
 
 /* The reel. One file, cut by Artem, silent by construction — it carries no audio
@@ -34,12 +35,19 @@ export const reel = {
   ratio: '16/9',
   year: '2026',
   length: '0:22',   /* what the player's own counter says, floored, not rounded up from 22.6 */
-  caption: 'Brand R&D, 3D and AR, cut from the work below.'
+  caption: 'Brand R&D, 3D and AR, cut from the work below.',
+  /* What is on screen, and when. Each row is [timecode, project], and a third
+     element links it to a page here: ['0:04', 'Pavilion', '/work/pavilion/'].
+     The strip renders only once there is something in this list, so the reel
+     reads as finished rather than as a component waiting for its data. */
+  marks: []
 };
 
 export const projects = [
   {
     slug: 'pavilion',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: 'Product, engineering, art direction',
     title: 'Pavilion — Jewellery Imaging Studio',
     tagline: 'Catalogue photography for jewellers who only have a phone and a workbench.',
     client: 'Pavilion ERP',
@@ -174,128 +182,169 @@ export const projects = [
     ],
   },
   {
-    slug: 'lexus',
-    title: 'Lexus — AI R&D',
-    tagline: 'Speculative brand visuals and motion, built in node-based AI pipelines.',
-    type: 'Speculative R&D',
-    role: 'Art director, AI artist',
+    slug: 'jurassic-world',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: '3D artist, animator',
+    title: 'Jurassic World: Rebirth',
+    tagline: 'A Snapchat lens that ran on a cinema lobby screen, not a phone.',
+    client: 'Universal Pictures, with Pretty Big Monster',
+    role: '3D artist, animator',
     year: '2025',
-    disciplines: 'Art direction, AI video, 3D',
-    made: 'hand machine',
-    tools: ['Blender', 'ComfyUI', 'Seedance 1.5', 'Weavy', 'Kling', 'Veo', 'Runway', 'Nano Banana Pro'],
-    note: 'One pipeline carried a look from stills into motion, with the car kept accurate in 3D.',
-    share: '/assets/media/lexus/og-cover.jpg',
-    thumb: { poster: '/assets/media/lexus/thumb.webp', video: '/assets/media/lexus/thumb.mp4' },
+    disciplines: '3D, cloth simulation, rigging, animation',
+    made: 'hand',
+    tools: ['Marvelous Designer', 'Blender', 'Substance 3D Painter', 'Snapchat AR'],
+    note: 'A whole scene inside a 60,000-polygon budget.',
+    links: [
+      ['Elsewhere', 'The lens on Pretty Big Monster’s Instagram', 'https://www.instagram.com/reels/DLnEWzWJzJK/']
+    ],
+    share: '/assets/media/jurassic-world/og-cover.jpg',
+    thumb: { poster: '/assets/media/jurassic-world/thumb.webp', video: '/assets/media/jurassic-world/thumb.mp4' },
     hero: {
-      video: '/assets/media/lexus/hero.mp4',
-      poster: '/assets/media/lexus/poster.webp',
+      video: '/assets/media/jurassic-world/hero.mp4',
+      poster: '/assets/media/jurassic-world/poster.webp',
       ratio: '16/9',
-      caption: 'The film. Speed and camera blocked in Blender, every finished frame rendered with Seedance 1.5.'
+      autoplay: false,
+      caption: 'The breakdown reel, 36 seconds: the lens first, then the suit, the rig and the helmet.'
     },
-    summary: [
-      ['Made', 'A set of speculative visuals and motion concepts for Lexus, made as self-initiated R&D.'],
-      ['Needed', 'An answer to whether AI could change brand storytelling: faster ideation and new pipelines, without diluting a premium brand.'],
-      ['Worth', 'Tested workflows, and a body of concept visuals: where a future Lexus campaign could go, and how fast it could get there.']
-    ],
     sections: [
-      { h: 'The problem', p: ['Generative tools move faster than the pipelines a brand already has. The question was whether art direction and automation could work together to sharpen a luxury brand’s identity rather than flatten it into generic AI imagery.'] },
-      { h: 'What I built', p: ['Node-based workflows in Weavy tied image generation, video models and 3D together into one repeatable pipeline. Stills set the look, video models carried it into motion, and Blender kept form and product accurate.'] },
-      { h: 'How it was made', p: [
-        'The motion starts in Blender. I block the car and the camera there — plain geometry, no look — only to fix the speed and the camera move.',
-        'That blocking pass is the reference. Everything finished was rendered in ComfyUI, with Seedance 1.5 carrying the frames.'
+      { h: 'Overview', p: [
+        'Part of the global marketing campaign for Jurassic World: Rebirth (2025). I worked on it as a freelance 3D artist with Pretty Big Monster, for Universal Pictures.',
+        'It is one Snapchat lens, and it did not run on phones. It ran on booths standing in cinema and mall lobbies: a 55-inch display in a styled frame, with a camera feeding its picture through the lens. You walk past, you are in the shot, and the scene plays around you.',
+        'The scene is from the film. A worker in a protective lab suit, and the D-Rex that comes for him.'
       ] },
-      { h: 'My part', p: ['I led the research: the concept, the creative direction, the Blender blocking, and the Weavy and ComfyUI graphs behind every finished frame.'] }
+      { h: 'About the reel', p: [
+        'The first ten seconds are the lens running: a poster on a wall, and something behind it that does not stay there. The rest is the breakdown, the suit, the rig and the helmet.'
+      ] },
+      { h: 'My part', p: [
+        'The protective suit was built in Marvelous Designer: pattern pieces stitched and simulated, so the fabric folds the way cloth actually folds rather than the way a modeller guesses it does. The helmet I modelled in Blender and rebuilt to run inside the AR engine, keeping the same silhouette and the same read at a polygon count a lens can carry at frame rate. Both were textured in Substance Painter.',
+        'I also modelled the D-Rex claw, rigged it, and rigged the character. The blue-to-red in the reel is weight paint.'
+      ] },
+      { h: 'The budget everything had to fit', p: [
+        'The whole experience is one scene, and the scene had a ceiling of 60,000 polygons. A budget that tight is won or lost in retopology, so I ran it two ways: by hand where the silhouette mattered, and with AI retopology where it did not. Between them that cut development time by around 45 per cent.'
+      ] }
     ],
-    clips: {
-      h: '3D and motion tests',
-      lead: 'The blocking pass, then two renders made from it. Short, silent, on a loop.',
-      ratio: '16/9',
-      items: [
-        { src: '/assets/media/lexus/clips/lexus_3d_1.mp4', alt: 'Untextured grey car turning on a plain studio floor: the Blender blocking pass.' },
-        { src: '/assets/media/lexus/clips/lexus_3d_2.mp4', alt: 'The car driving a wet night road, headlights on.' },
-        { src: '/assets/media/lexus/clips/lexus_3d_3.mp4', alt: 'The car throwing dust across desert sand at sunset.' }
-      ]
-    },
-    plates: {
-      h: 'Stills',
-      lead: 'Where the car could sit, and what light it holds. Open any one full size.',
-      cols: 4,
-      ratio: '16/9',
-      items: [
-        { n: 1, alt: 'The car head-on in a dark studio, headlights lit.' },
-        { n: 2, alt: 'The car on a dune ridge at dusk.' },
-        { n: 3, alt: 'Front view on a white salt flat under a pale sky.' },
-        { n: 4, alt: 'Three-quarter view on desert sand at sunset.' },
-        { n: 5, alt: 'Side view on a cracked salt flat under a pink sky.' },
-        { n: 6, alt: 'The car in Dubai traffic, towers behind it.' },
-        { n: 7, alt: 'The car in front of a glass tower at golden hour.' },
-        { n: 8, alt: 'Rear three-quarter on a salt flat at sunset.' }
-      ]
-    },
-    credits: [['Art direction & AI', 'Artem Maslov']]
+    credits: [
+      ['3D & animation', 'Artem Maslov'],
+      ['Agency', 'Pretty Big Monster'],
+      ['Studio', 'Universal Pictures']
+    ]
   },
   {
-    slug: 'nike',
-    title: 'Nike — AI R&D',
-    tagline: 'Speculative brand motion, with the movement blocked in 3D rather than guessed by a model.',
-    type: 'Speculative R&D',
-    role: 'Art director, AI artist',
+    slug: 'smurfs',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: '3D artist, animator',
+    title: 'Smurfs',
+    tagline: 'Seven outfits, thirteen accessories, one skeleton, no gaps.',
+    client: 'Paramount Animation, with Pretty Big Monster',
+    role: '3D artist, animator',
     year: '2025',
-    disciplines: 'Art direction, AI video, 3D',
-    made: 'hand machine',
-    tools: ['Blender', 'ComfyUI', 'Wan 2.0', 'Adobe Firefly', 'Nano Banana', 'Flux'],
-    note: 'Sketch to motion test in a day, without the art direction drifting off brand.',
-    share: '/assets/media/nike/og-cover.jpg',
-    thumb: { poster: '/assets/media/nike/thumb.webp', video: '/assets/media/nike/thumb.mp4' },
-    hero: {
-      video: '/assets/media/nike/hero.mp4',
-      poster: '/assets/media/nike/poster.webp',
-      ratio: '16/9',
-      caption: 'The reel. Soft body simulation in Blender, rendered as a depth map, driven through Wan 2.0.'
-    },
-    summary: [
-      ['Made', 'Speculative visuals and motion concepts built around Nike as the subject — self-initiated R&D, not commissioned work.'],
-      ['Needed', 'A look at how generative AI could speed up ideation and give future campaigns repeatable creative pipelines.'],
-      ['Worth', 'A tested mix of node-based AI, 3D and prompt engineering, plus a body of concept visuals to pitch the approach with.']
+    disciplines: '3D, texturing, rigging, animation',
+    made: 'hand',
+    tools: ['Blender', 'Substance 3D Painter', 'Lens Studio'],
+    note: 'Everything swappable, all on one skeleton and one animation.',
+    links: [
+      ['Lens', 'Smurf Yourself on Snapchat', 'https://www.snapchat.com/lens/452b4cf8e281476b9449bdcc6dd97807']
     ],
+    share: '/assets/media/smurfs/og-cover.jpg',
+    thumb: { poster: '/assets/media/smurfs/thumb.webp' },
+    hero: {
+      video: '/assets/media/smurfs/hero.mp4',
+      poster: '/assets/media/smurfs/poster.webp',
+      ratio: '16/9',
+      caption: 'Turntables on a grey backdrop: Brainy and his boba, Smurfette and her camera, Papa Smurf.'
+    },
     sections: [
-      { h: 'The problem', p: ['Brand storytelling still runs on long production cycles. The research asked how AI could accelerate ideation while keeping the art direction recognisably Nike.'] },
-      { h: 'What I built', p: ['A pipeline that combined node-based generation in ComfyUI, Adobe Firefly and 3D in Blender, so concepts could move from sketch to motion test quickly.'] },
-      { h: 'How it was made', p: [
-        'The motion is a soft body simulation in Blender, blocked out so the movement stays mine rather than something a model guesses at.',
-        'The depth map comes out of Blender itself — z-depth and mist off the render layers, not depth a preprocessor guessed back out of a finished frame. It carries geometry and animation and no look at all, which is exactly what Wan 2.0 wants as a reference to follow. ComfyUI is the graph that drives it there.',
-        'The look arrives separately, as a style frame transferred on top. One thing has to line up: the first frame of the depth map and the style frame have to be the same shot. When those two drift apart, the model starts inventing.'
+      { h: 'Overview', p: [
+        'A Snapchat AR experience and a browser game for the global marketing campaign of Smurfs (2025), made for Paramount Animation with Pretty Big Monster. The lens is Smurf Yourself and it is still live.',
+        'I was the 3D artist: the characters, their wardrobe, the world they stand in, and the rigs and animation underneath all of it.'
       ] },
-      { h: 'My part', p: ['I led the research: the concept, the creative direction, the Blender simulation and its depth passes, and the style frames the look was transferred from.'] }
+      { h: 'The characters', p: [
+        'Each one turns on a plain grey backdrop, where a model has nowhere to hide. The accessories are what give each character away: Brainy carries a boba with the pearls settled in the bottom of the cup, Smurfette has a camera hanging at her hip.',
+        'Seven outfits and thirteen accessories, all textured by hand.'
+      ] },
+      { h: 'One skeleton', p: [
+        'Everything a player can change — outfit, accessory, headwear, facial expression, body part — is bound to a single skeleton and driven by a single animation. Swap any of it while the animation is playing and nothing is allowed to break: no gap where a sleeve meets a wrist, no mesh pushing through another, no part that stops reading as a Smurf.',
+        'That one constraint decides how every piece gets built. A garment cannot be modelled to fit one body and corrected later, it has to fit every combination it can land in, hold the house style, stay inside the engine budget, and still look presentable in close-up. Most of the work on this project is in that sentence.'
+      ] },
+      { h: 'Building a world that already exists', p: [
+        'Nothing in the environment existed to copy. A conveyor belt, stands, gears, plants, flowers — all built from scratch, and all of it had to look as though it had always been in the Smurfs’ world rather than borrowed into it.',
+        'That is an art direction problem before it is a modelling one: you decide what the rules of the world are, then obey them. Then every object gets optimised for the engine all over again.'
+      ] }
     ],
     clips: {
-      h: '3D exploration',
-      lead: 'Raw passes, straight out of Blender. The middle one is the file itself.',
-      ratio: '16/9',
+      h: 'The world',
+      cols: 1,
+      ratio: '1920/880',
+      fit: 'cover',
+      lead: 'The environment the characters stand in. A wipe runs across it halfway through and leaves the wireframe behind, so you can see what the mushrooms and the bridge are actually made of.',
       items: [
-        { src: '/assets/media/nike/clips/nike_3d_1.mp4', alt: 'Soft bodies drifting around a glowing swoosh on black.' },
-        { src: '/assets/media/nike/clips/nike_3d_2.mp4', alt: 'The Blender viewport, spheres colliding around the swoosh while the simulation runs.' },
-        { src: '/assets/media/nike/clips/nike_3d_3.mp4', alt: 'The same shot as a depth pass: white shapes on flat grey, no light and no colour.' }
+        { src: '/assets/media/smurfs/clips/world.mp4', alt: 'A plank bridge over a lily pond, mushrooms and ferns on the bank, a wipe crossing the shot to reveal the wireframe underneath.' }
       ]
     },
-    plates: {
-      h: 'Style references',
-      lead: 'Stills made in Firefly, Nano Banana and Flux to find a look before any of it moved. Open any one full size.',
-      cols: 3,
+    credits: [
+      ['3D & animation', 'Artem Maslov'],
+      ['Agency', 'Pretty Big Monster'],
+      ['Studio', 'Paramount Animation']
+    ]
+  },
+  {
+    slug: 'mdlbeast',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: 'Art Director',
+    title: 'MDLBEAST',
+    tagline: 'A festival built out of sand particles, rebuilt to run on a phone.',
+    client: 'MDLBEAST, Tactical with Snapchat',
+    role: 'Art director, visual developer',
+    year: '2023',
+    disciplines: 'AR direction, VFX, 3D, storyboarding',
+    made: 'hand',
+    tools: ['Blender', 'After Effects', 'Lens Studio'],
+    note: 'Particle work from a desert festival, made to survive inside a Snapchat lens.',
+    links: [
+      ['Lens', 'Friend Finder on Snapchat', 'https://www.snapchat.com/lens/6fa012b492d24978bf7a55c96b2b9915'],
+      ['Lens', 'The screen activation on Snapchat', 'https://www.snapchat.com/lens/7fce32322c234153a7406b72b5fe05b8'],
+      ['Press', 'Saudi Gazette', 'https://saudigazette.com.sa/article/638735/BUSINESS/MDLBEAST-Snapchat-announce-partnership-to-bring-cutting-edge-AR-tech-to-Soundstorm-festival']
+    ],
+    share: '/assets/media/mdlbeast/og-cover.jpg',
+    thumb: { poster: '/assets/media/mdlbeast/thumb.webp', video: '/assets/media/mdlbeast/thumb.mp4' },
+    hero: {
+      video: '/assets/media/mdlbeast/hero.mp4',
+      poster: '/assets/media/mdlbeast/poster.webp',
       ratio: '16/9',
-      items: [
-        { n: 1, alt: 'Neon swoosh over pale spheres and foam.' },
-        { n: 2, alt: 'Swoosh among blue glass bubbles.' },
-        { n: 3, alt: 'Swoosh glowing through pink cloud.' },
-        { n: 4, alt: 'Swoosh among orange and purple balloons.' },
-        { n: 5, alt: 'Swoosh among bright spheres on lilac.' },
-        { n: 6, alt: 'Swoosh behind large glossy spheres.' }
-      ]
+      caption: 'Tactical’s case film for the festival. The AR starts around 0:22, when the phones come out.'
     },
-    credits: [['Art direction & AI', 'Artem Maslov']]
+    sections: [
+      { h: 'The festival', p: [
+        'Soundstorm is MDLBEAST’s festival in the desert outside Riyadh, and it is the largest electronic music event in the Middle East: eight stages, around 200 artists, and more than 600,000 people across three days by the festival’s own count.'
+      ] },
+      { h: 'The project', p: [
+        'A collaboration between Snapchat Saudi Arabia and MDLBEAST, with Tactical as the agency executing the AR. Two experiences came out of it.',
+        'Friend Finder is a compass built into a Snapchat lens. You hold the phone up and it points at the person you are trying to reach, on a site the size of a small town, in the dark, with a festival crowd around you.',
+        'The second was an activation at the entrance: a large screen ringed with LED panels, built up into a booth that everyone arriving walked past. You could step into it and record yourself.'
+      ] },
+      { h: 'The hard part', p: [
+        'The festival’s visual language is particles. It happens in the desert, so the particles are sand, and the idea that sound frequencies push sand into patterns runs through everything the festival puts out.',
+        'That language had to survive inside a Snapchat lens, which is not where particle simulation lives comfortably. How much simulation a lens can carry, and what has to be faked once it cannot, was the technical problem across the whole AR side.'
+      ] },
+      { h: 'About the film', p: [
+        'The film above is Tactical’s case film for the festival as a whole, not for my part of it. The first twenty seconds are the event itself: the grounds from the air, the stages, the crowd. The AR starts around 0:22 and runs to the end.'
+      ] },
+      { h: 'My part', p: [
+        'I directed the AR activation, and worked hands-on on parts of Friend Finder: the VFX particles, 3D modelling and storyboarding. The brief was to make one experience out of two visual languages: the festival’s and Snapchat’s.',
+        'I reported directly to the creative director at Snapchat. The face in the Friend Finder preview is mine.'
+      ] }
+    ],
+    credits: [
+      ['AR direction', 'Artem Maslov'],
+      ['Agency', 'Tactical'],
+      ['Partner', 'Snapchat'],
+      ['Creative development', 'Ibrahim Boona', 'https://www.linkedin.com/in/ibrahim-boona-68618530/']
+    ]
   },
   {
     slug: 'visit-dubai',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: 'Art Director',
     title: 'Visit Dubai',
     tagline: 'Interactive installations that sell a city on a crowded expo floor.',
     client: 'Visit Dubai, with Tactical',
@@ -397,158 +446,129 @@ export const projects = [
     ]
   },
   {
-    slug: 'mdlbeast',
-    title: 'MDLBEAST',
-    tagline: 'A festival built out of sand particles, rebuilt to run on a phone.',
-    client: 'MDLBEAST, Tactical with Snapchat',
-    role: 'Art director, visual developer',
-    year: '2023',
-    disciplines: 'AR direction, VFX, 3D, storyboarding',
-    made: 'hand',
-    tools: ['Blender', 'After Effects', 'Lens Studio'],
-    note: 'Particle work from a desert festival, made to survive inside a Snapchat lens.',
-    links: [
-      ['Lens', 'Friend Finder on Snapchat', 'https://www.snapchat.com/lens/6fa012b492d24978bf7a55c96b2b9915'],
-      ['Lens', 'The screen activation on Snapchat', 'https://www.snapchat.com/lens/7fce32322c234153a7406b72b5fe05b8'],
-      ['Press', 'Saudi Gazette', 'https://saudigazette.com.sa/article/638735/BUSINESS/MDLBEAST-Snapchat-announce-partnership-to-bring-cutting-edge-AR-tech-to-Soundstorm-festival']
-    ],
-    share: '/assets/media/mdlbeast/og-cover.jpg',
-    thumb: { poster: '/assets/media/mdlbeast/thumb.webp', video: '/assets/media/mdlbeast/thumb.mp4' },
-    hero: {
-      video: '/assets/media/mdlbeast/hero.mp4',
-      poster: '/assets/media/mdlbeast/poster.webp',
-      ratio: '16/9',
-      caption: 'Tactical’s case film for the festival. The AR starts around 0:22, when the phones come out.'
-    },
-    sections: [
-      { h: 'The festival', p: [
-        'Soundstorm is MDLBEAST’s festival in the desert outside Riyadh, and it is the largest electronic music event in the Middle East: eight stages, around 200 artists, and more than 600,000 people across three days by the festival’s own count.'
-      ] },
-      { h: 'The project', p: [
-        'A collaboration between Snapchat Saudi Arabia and MDLBEAST, with Tactical as the agency executing the AR. Two experiences came out of it.',
-        'Friend Finder is a compass built into a Snapchat lens. You hold the phone up and it points at the person you are trying to reach, on a site the size of a small town, in the dark, with a festival crowd around you.',
-        'The second was an activation at the entrance: a large screen ringed with LED panels, built up into a booth that everyone arriving walked past. You could step into it and record yourself.'
-      ] },
-      { h: 'The hard part', p: [
-        'The festival’s visual language is particles. It happens in the desert, so the particles are sand, and the idea that sound frequencies push sand into patterns runs through everything the festival puts out.',
-        'That language had to survive inside a Snapchat lens, which is not where particle simulation lives comfortably. How much simulation a lens can carry, and what has to be faked once it cannot, was the technical problem across the whole AR side.'
-      ] },
-      { h: 'About the film', p: [
-        'The film above is Tactical’s case film for the festival as a whole, not for my part of it. The first twenty seconds are the event itself: the grounds from the air, the stages, the crowd. The AR starts around 0:22 and runs to the end.'
-      ] },
-      { h: 'My part', p: [
-        'I directed the AR activation, and worked hands-on on parts of Friend Finder: the VFX particles, 3D modelling and storyboarding. The brief was to make one experience out of two visual languages: the festival’s and Snapchat’s.',
-        'I reported directly to the creative director at Snapchat. The face in the Friend Finder preview is mine.'
-      ] }
-    ],
-    credits: [
-      ['AR direction', 'Artem Maslov'],
-      ['Agency', 'Tactical'],
-      ['Partner', 'Snapchat'],
-      ['Creative development', 'Ibrahim Boona', 'https://www.linkedin.com/in/ibrahim-boona-68618530/']
-    ]
-  },
-  {
-    slug: 'jurassic-world',
-    title: 'Jurassic World: Rebirth',
-    tagline: 'A Snapchat lens that ran on a cinema lobby screen, not a phone.',
-    client: 'Universal Pictures, with Pretty Big Monster',
-    role: '3D artist, animator',
+    slug: 'nike',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: 'Art Director (R&D)',
+    title: 'Nike — AI R&D',
+    tagline: 'Speculative brand motion, with the movement blocked in 3D rather than guessed by a model.',
+    type: 'Speculative R&D',
+    role: 'Art director, AI artist',
     year: '2025',
-    disciplines: '3D, cloth simulation, rigging, animation',
-    made: 'hand',
-    tools: ['Marvelous Designer', 'Blender', 'Substance 3D Painter', 'Snapchat AR'],
-    note: 'A whole scene inside a 60,000-polygon budget.',
-    links: [
-      ['Elsewhere', 'The lens on Pretty Big Monster’s Instagram', 'https://www.instagram.com/reels/DLnEWzWJzJK/']
-    ],
-    share: '/assets/media/jurassic-world/og-cover.jpg',
-    thumb: { poster: '/assets/media/jurassic-world/thumb.webp', video: '/assets/media/jurassic-world/thumb.mp4' },
+    disciplines: 'Art direction, AI video, 3D',
+    made: 'hand machine',
+    tools: ['Blender', 'ComfyUI', 'Wan 2.0', 'Adobe Firefly', 'Nano Banana', 'Flux'],
+    note: 'Sketch to motion test in a day, without the art direction drifting off brand.',
+    share: '/assets/media/nike/og-cover.jpg',
+    thumb: { poster: '/assets/media/nike/thumb.webp', video: '/assets/media/nike/thumb.mp4' },
     hero: {
-      video: '/assets/media/jurassic-world/hero.mp4',
-      poster: '/assets/media/jurassic-world/poster.webp',
+      video: '/assets/media/nike/hero.mp4',
+      poster: '/assets/media/nike/poster.webp',
       ratio: '16/9',
-      autoplay: false,
-      caption: 'The breakdown reel, 36 seconds: the lens first, then the suit, the rig and the helmet.'
+      caption: 'The reel. Soft body simulation in Blender, rendered as a depth map, driven through Wan 2.0.'
     },
-    sections: [
-      { h: 'Overview', p: [
-        'Part of the global marketing campaign for Jurassic World: Rebirth (2025). I worked on it as a freelance 3D artist with Pretty Big Monster, for Universal Pictures.',
-        'It is one Snapchat lens, and it did not run on phones. It ran on booths standing in cinema and mall lobbies: a 55-inch display in a styled frame, with a camera feeding its picture through the lens. You walk past, you are in the shot, and the scene plays around you.',
-        'The scene is from the film. A worker in a protective lab suit, and the D-Rex that comes for him.'
-      ] },
-      { h: 'About the reel', p: [
-        'The first ten seconds are the lens running: a poster on a wall, and something behind it that does not stay there. The rest is the breakdown, the suit, the rig and the helmet.'
-      ] },
-      { h: 'My part', p: [
-        'The protective suit was built in Marvelous Designer: pattern pieces stitched and simulated, so the fabric folds the way cloth actually folds rather than the way a modeller guesses it does. The helmet I modelled in Blender and rebuilt to run inside the AR engine, keeping the same silhouette and the same read at a polygon count a lens can carry at frame rate. Both were textured in Substance Painter.',
-        'I also modelled the D-Rex claw, rigged it, and rigged the character. The blue-to-red in the reel is weight paint.'
-      ] },
-      { h: 'The budget everything had to fit', p: [
-        'The whole experience is one scene, and the scene had a ceiling of 60,000 polygons. A budget that tight is won or lost in retopology, so I ran it two ways: by hand where the silhouette mattered, and with AI retopology where it did not. Between them that cut development time by around 45 per cent.'
-      ] }
+    summary: [
+      ['Made', 'Speculative visuals and motion concepts built around Nike as the subject — self-initiated R&D, not commissioned work.'],
+      ['Needed', 'A look at how generative AI could speed up ideation and give future campaigns repeatable creative pipelines.'],
+      ['Worth', 'A tested mix of node-based AI, 3D and prompt engineering, plus a body of concept visuals to pitch the approach with.']
     ],
-    credits: [
-      ['3D & animation', 'Artem Maslov'],
-      ['Agency', 'Pretty Big Monster'],
-      ['Studio', 'Universal Pictures']
-    ]
-  },
-  {
-    slug: 'smurfs',
-    title: 'Smurfs',
-    tagline: 'Seven outfits, thirteen accessories, one skeleton, no gaps.',
-    client: 'Paramount Animation, with Pretty Big Monster',
-    role: '3D artist, animator',
-    year: '2025',
-    disciplines: '3D, texturing, rigging, animation',
-    made: 'hand',
-    tools: ['Blender', 'Substance 3D Painter', 'Lens Studio'],
-    note: 'Everything swappable, all on one skeleton and one animation.',
-    links: [
-      ['Lens', 'Smurf Yourself on Snapchat', 'https://www.snapchat.com/lens/452b4cf8e281476b9449bdcc6dd97807']
-    ],
-    share: '/assets/media/smurfs/og-cover.jpg',
-    thumb: { poster: '/assets/media/smurfs/thumb.webp' },
-    hero: {
-      video: '/assets/media/smurfs/hero.mp4',
-      poster: '/assets/media/smurfs/poster.webp',
-      ratio: '16/9',
-      caption: 'Turntables on a grey backdrop: Brainy and his boba, Smurfette and her camera, Papa Smurf.'
-    },
     sections: [
-      { h: 'Overview', p: [
-        'A Snapchat AR experience and a browser game for the global marketing campaign of Smurfs (2025), made for Paramount Animation with Pretty Big Monster. The lens is Smurf Yourself and it is still live.',
-        'I was the 3D artist: the characters, their wardrobe, the world they stand in, and the rigs and animation underneath all of it.'
+      { h: 'The problem', p: ['Brand storytelling still runs on long production cycles. The research asked how AI could accelerate ideation while keeping the art direction recognisably Nike.'] },
+      { h: 'What I built', p: ['A pipeline that combined node-based generation in ComfyUI, Adobe Firefly and 3D in Blender, so concepts could move from sketch to motion test quickly.'] },
+      { h: 'How it was made', p: [
+        'The motion is a soft body simulation in Blender, blocked out so the movement stays mine rather than something a model guesses at.',
+        'The depth map comes out of Blender itself — z-depth and mist off the render layers, not depth a preprocessor guessed back out of a finished frame. It carries geometry and animation and no look at all, which is exactly what Wan 2.0 wants as a reference to follow. ComfyUI is the graph that drives it there.',
+        'The look arrives separately, as a style frame transferred on top. One thing has to line up: the first frame of the depth map and the style frame have to be the same shot. When those two drift apart, the model starts inventing.'
       ] },
-      { h: 'The characters', p: [
-        'Each one turns on a plain grey backdrop, where a model has nowhere to hide. The accessories are what give each character away: Brainy carries a boba with the pearls settled in the bottom of the cup, Smurfette has a camera hanging at her hip.',
-        'Seven outfits and thirteen accessories, all textured by hand.'
-      ] },
-      { h: 'One skeleton', p: [
-        'Everything a player can change — outfit, accessory, headwear, facial expression, body part — is bound to a single skeleton and driven by a single animation. Swap any of it while the animation is playing and nothing is allowed to break: no gap where a sleeve meets a wrist, no mesh pushing through another, no part that stops reading as a Smurf.',
-        'That one constraint decides how every piece gets built. A garment cannot be modelled to fit one body and corrected later, it has to fit every combination it can land in, hold the house style, stay inside the engine budget, and still look presentable in close-up. Most of the work on this project is in that sentence.'
-      ] },
-      { h: 'Building a world that already exists', p: [
-        'Nothing in the environment existed to copy. A conveyor belt, stands, gears, plants, flowers — all built from scratch, and all of it had to look as though it had always been in the Smurfs’ world rather than borrowed into it.',
-        'That is an art direction problem before it is a modelling one: you decide what the rules of the world are, then obey them. Then every object gets optimised for the engine all over again.'
-      ] }
+      { h: 'My part', p: ['I led the research: the concept, the creative direction, the Blender simulation and its depth passes, and the style frames the look was transferred from.'] }
     ],
     clips: {
-      h: 'The world',
-      cols: 1,
-      ratio: '1920/880',
-      fit: 'cover',
-      lead: 'The environment the characters stand in. A wipe runs across it halfway through and leaves the wireframe behind, so you can see what the mushrooms and the bridge are actually made of.',
+      h: '3D exploration',
+      lead: 'Raw passes, straight out of Blender. The middle one is the file itself.',
+      ratio: '16/9',
       items: [
-        { src: '/assets/media/smurfs/clips/world.mp4', alt: 'A plank bridge over a lily pond, mushrooms and ferns on the bank, a wipe crossing the shot to reveal the wireframe underneath.' }
+        { src: '/assets/media/nike/clips/nike_3d_1.mp4', alt: 'Soft bodies drifting around a glowing swoosh on black.' },
+        { src: '/assets/media/nike/clips/nike_3d_2.mp4', alt: 'The Blender viewport, spheres colliding around the swoosh while the simulation runs.' },
+        { src: '/assets/media/nike/clips/nike_3d_3.mp4', alt: 'The same shot as a depth pass: white shapes on flat grey, no light and no colour.' }
       ]
     },
-    credits: [
-      ['3D & animation', 'Artem Maslov'],
-      ['Agency', 'Pretty Big Monster'],
-      ['Studio', 'Paramount Animation']
-    ]
+    plates: {
+      h: 'Style references',
+      lead: 'Stills made in Firefly, Nano Banana and Flux to find a look before any of it moved. Open any one full size.',
+      cols: 3,
+      ratio: '16/9',
+      items: [
+        { n: 1, alt: 'Neon swoosh over pale spheres and foam.' },
+        { n: 2, alt: 'Swoosh among blue glass bubbles.' },
+        { n: 3, alt: 'Swoosh glowing through pink cloud.' },
+        { n: 4, alt: 'Swoosh among orange and purple balloons.' },
+        { n: 5, alt: 'Swoosh among bright spheres on lilac.' },
+        { n: 6, alt: 'Swoosh behind large glossy spheres.' }
+      ]
+    },
+    credits: [['Art direction & AI', 'Artem Maslov']]
+  },
+  {
+    slug: 'lexus',
+    /* One line, for the card in a grid. The full role is in the case meta. */
+    cardRole: 'Art Director (R&D)',
+    title: 'Lexus — AI R&D',
+    tagline: 'Speculative brand visuals and motion, built in node-based AI pipelines.',
+    type: 'Speculative R&D',
+    role: 'Art director, AI artist',
+    year: '2025',
+    disciplines: 'Art direction, AI video, 3D',
+    made: 'hand machine',
+    tools: ['Blender', 'ComfyUI', 'Seedance 1.5', 'Weavy', 'Kling', 'Veo', 'Runway', 'Nano Banana Pro'],
+    note: 'One pipeline carried a look from stills into motion, with the car kept accurate in 3D.',
+    share: '/assets/media/lexus/og-cover.jpg',
+    thumb: { poster: '/assets/media/lexus/thumb.webp', video: '/assets/media/lexus/thumb.mp4' },
+    hero: {
+      video: '/assets/media/lexus/hero.mp4',
+      poster: '/assets/media/lexus/poster.webp',
+      ratio: '16/9',
+      caption: 'The film. Speed and camera blocked in Blender, every finished frame rendered with Seedance 1.5.'
+    },
+    summary: [
+      ['Made', 'A set of speculative visuals and motion concepts for Lexus, made as self-initiated R&D.'],
+      ['Needed', 'An answer to whether AI could change brand storytelling: faster ideation and new pipelines, without diluting a premium brand.'],
+      ['Worth', 'Tested workflows, and a body of concept visuals: where a future Lexus campaign could go, and how fast it could get there.']
+    ],
+    sections: [
+      { h: 'The problem', p: ['Generative tools move faster than the pipelines a brand already has. The question was whether art direction and automation could work together to sharpen a luxury brand’s identity rather than flatten it into generic AI imagery.'] },
+      { h: 'What I built', p: ['Node-based workflows in Weavy tied image generation, video models and 3D together into one repeatable pipeline. Stills set the look, video models carried it into motion, and Blender kept form and product accurate.'] },
+      { h: 'How it was made', p: [
+        'The motion starts in Blender. I block the car and the camera there — plain geometry, no look — only to fix the speed and the camera move.',
+        'That blocking pass is the reference. Everything finished was rendered in ComfyUI, with Seedance 1.5 carrying the frames.'
+      ] },
+      { h: 'My part', p: ['I led the research: the concept, the creative direction, the Blender blocking, and the Weavy and ComfyUI graphs behind every finished frame.'] }
+    ],
+    clips: {
+      h: '3D and motion tests',
+      lead: 'The blocking pass, then two renders made from it. Short, silent, on a loop.',
+      ratio: '16/9',
+      items: [
+        { src: '/assets/media/lexus/clips/lexus_3d_1.mp4', alt: 'Untextured grey car turning on a plain studio floor: the Blender blocking pass.' },
+        { src: '/assets/media/lexus/clips/lexus_3d_2.mp4', alt: 'The car driving a wet night road, headlights on.' },
+        { src: '/assets/media/lexus/clips/lexus_3d_3.mp4', alt: 'The car throwing dust across desert sand at sunset.' }
+      ]
+    },
+    plates: {
+      h: 'Stills',
+      lead: 'Where the car could sit, and what light it holds. Open any one full size.',
+      cols: 4,
+      ratio: '16/9',
+      items: [
+        { n: 1, alt: 'The car head-on in a dark studio, headlights lit.' },
+        { n: 2, alt: 'The car on a dune ridge at dusk.' },
+        { n: 3, alt: 'Front view on a white salt flat under a pale sky.' },
+        { n: 4, alt: 'Three-quarter view on desert sand at sunset.' },
+        { n: 5, alt: 'Side view on a cracked salt flat under a pink sky.' },
+        { n: 6, alt: 'The car in Dubai traffic, towers behind it.' },
+        { n: 7, alt: 'The car in front of a glass tower at golden hour.' },
+        { n: 8, alt: 'Rear three-quarter on a salt flat at sunset.' }
+      ]
+    },
+    credits: [['Art direction & AI', 'Artem Maslov']]
   }
 ];
 

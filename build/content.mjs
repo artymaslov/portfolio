@@ -572,7 +572,7 @@ export const experiments = [
       ['Ground plane', 'Homography from four marked points'],
       ['Render', 'ComfyUI, basic workflows for now'],
       ['Test build', 'Vercel'],
-      ['Front end', '[TODO: 3D library and framework]']
+      ['Front end', 'Next.js and React, three.js in the viewport, Tailwind for the interface']
     ],
     sections: [
       {
@@ -597,8 +597,7 @@ export const experiments = [
       {
         h: 'Where the render happens',
         p: [
-          'Placement happens in the browser. The render happens on a ComfyUI backend. Those are basic workflows for now: enough to ground the object, match the light in the room and put a shadow where it touches the floor.',
-          '[TODO: which models and nodes the workflow uses, and how long a frame takes]'
+          'Placement happens in the browser. The render happens on a ComfyUI backend. Those are basic workflows for now: enough to ground the object, match the light in the room and put a shadow where it touches the floor.'
         ]
       }
     ],
@@ -710,7 +709,7 @@ export const experiments = [
         'The pattern carries across five weapons: a sniper rifle, a bolt-action, an assault rifle with a scope, an AK and a machine pistol. It is one artwork cut five ways, and it reads at a glance on every one of them, which is the whole job of a skin.',
         'The film is the other half of the answer. It opens on a wall in an alley, a blue cat face blooms out of the brick, and then it goes indoors and shows the pattern actually being painted. A skin made by hand is worth saying out loud.'
       ] },
-      { h: 'Tools', p: ['Spray paint, cut card and a canvas on the floor, then [TODO: what the texture and the renders were made in].'] }
+      { h: 'Tools', p: ['Spray paint, cut card and a canvas on the floor.'] }
     ],
     plates: {
       h: 'Process',
@@ -785,7 +784,9 @@ export const about = {
     ['Education', ['BFA, Odesa State Academy of Civil Engineering and Architecture']]
   ],
   cvLabel: 'Download CV (PDF)',
-  cvHref: '[TODO: CV link]'
+  /* The file is dropped in by hand. The button renders only when it is actually
+     there, so a missing PDF is a missing button rather than a dead link. */
+  cvHref: '/cv/artem-maslov-resume.pdf'
 };
 
 /* Not rendered. Kept so the writing is not lost if it comes back. */

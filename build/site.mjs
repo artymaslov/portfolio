@@ -1,7 +1,7 @@
 /* artmaslov.com — static site generator.
    node build/site.mjs */
 
-import { writeFileSync, mkdirSync, statSync, readFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync, statSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -656,12 +656,21 @@ ${pageHead('Resources', null)}
 
 /* ── about ─────────────────────────────────────────────────── */
 
+/* The CV is a file in the repository, and the button is only as real as the
+   file. Drop the PDF at about.cvHref and it appears on both About views and in
+   the availability block; take it away and nothing renders, which is better
+   than a button that goes nowhere. */
+const cvReady = () => Boolean(about.cvHref) && existsSync(join(ROOT, about.cvHref.replace(/^\//, '')));
+const cvButton = (cls = 'btn') => cvReady()
+  ? `<a class="${cls}" href="${v(about.cvHref)}" download>${esc(about.cvLabel)}</a>`
+  : '';
+
 const aboutToggle = (view) => `<div class="abar">
   <nav class="viewtoggle" aria-label="About view">
     <a href="/about/"${view === 'written' ? ' aria-current="page"' : ''}>Written</a>
     <a href="/about/nodes/"${view === 'nodes' ? ' aria-current="page"' : ''}>Nodes</a>
   </nav>
-  <a class="btn" href="${about.cvHref === '[TODO: CV link]' ? '#' : about.cvHref}">${esc(about.cvLabel)}${about.cvHref === '[TODO: CV link]' ? ' <span class="todo">[TODO: link]</span>' : ''}</a>
+  ${cvButton()}
 </div>`;
 
 function aboutPage() {

@@ -29,7 +29,7 @@ const v = (rel) => {
 /* [TODO: …] stays visible and reads as deliberately pending */
 const todo = (s) => esc(s).replace(/\[TODO:([^\]]*)\]/g, '<span class="todo">[TODO:$1]</span>');
 
-/* Solid grey media placeholder, final aspect ratio, labelled. */
+/* Solid gray media placeholder, final aspect ratio, labelled. */
 const ph = (label, ratio, extra = '') =>
   `<div class="ph${extra ? ' ' + extra : ''}" style="aspect-ratio:${ratio}" role="img" aria-label="${esc(label)}, placeholder"><span class="ph__l">${esc(label)}</span></div>`;
 
@@ -52,7 +52,7 @@ const neighbours = (slug) => {
   return { prev: projects[(i - 1 + projects.length) % projects.length], next: projects[(i + 1) % projects.length] };
 };
 
-/* The wordmark, inlined so it takes its colour from the page and costs no request.
+/* The wordmark, inlined so it takes its color from the page and costs no request.
    Its paths carry no fill, so `fill: currentColor` in the stylesheet drives it. */
 const LOGO = readFileSync(join(ROOT, 'assets/logo.svg'), 'utf8')
   .replace(/<\?xml[^>]*\?>/g, '')          /* Illustrator's prolog */
@@ -61,7 +61,7 @@ const LOGO = readFileSync(join(ROOT, 'assets/logo.svg'), 'utf8')
   .trim()
   .replace(/<svg /, '<svg class="logo" aria-hidden="true" focusable="false" ');
 
-/* The contact marks. Single filled paths on a 24 unit box, taking their colour
+/* The contact marks. Single filled paths on a 24 unit box, taking their color
    from the link through currentColor, so they follow the theme and the hover
    like the words they replaced. Each is given its name by the link's
    aria-label, not by text inside the drawing. */
@@ -76,7 +76,7 @@ const mark = (n) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="fals
    the viewBox and the one path — because each file carries an Illustrator
    <style> block whose .cls-1 would leak into the page's own stylesheet if the
    file were inlined whole. The stroke is left to CSS, so the drawing takes the
-   colour of the link it belongs to. */
+   color of the link it belongs to. */
 const DECO = Object.fromEntries(['work', 'lab', 'about'].map((k) => {
   const src = readFileSync(join(ROOT, `assets/menu decorations/deco_${k}.svg`), 'utf8');
   return [k, {
@@ -354,7 +354,7 @@ const baFigure = (c, pair, n) => `<figure class="ba" data-ba style="--x:50%">
 
 const basDiv = (c) => {
   const style = [c.max && `--ba-max:${c.max}`, c.cols && `--cols:${c.cols}`].filter(Boolean).join(';');
-  /* One comparison on its own — the picture a case opens with — is centred in
+  /* One comparison on its own — the picture a case opens with — is centered in
      the column. Held to its own width against the full reading measure it was
      hung on the left edge with a third of the page empty beside it. */
   const one = c.pairs.length === 1 ? ' bas--one' : '';

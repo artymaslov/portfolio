@@ -58,41 +58,41 @@ export const projects = [
     /* One line, for the card in a grid. The full role is in the case meta. */
     cardRole: 'Product, engineering, art direction',
     title: 'Pavilion — Jewellery Imaging Studio',
-    tagline: 'Catalogue photography for jewellers who only have a phone and a workbench.',
+    tagline: 'Catalog photography for jewelers who only have a phone and a workbench.',
     client: 'Pavilion ERP',
     role: 'Product design and build',
     year: '2026',
     disciplines: 'Product, AI pipeline, art direction',
     made: 'hand machine',
-    note: 'A phone snapshot in, a catalogue image out, with the piece unchanged.',
+    note: 'A phone snapshot in, a catalog image out, with the piece unchanged.',
     share: '/assets/media/pavilion/og-cover.jpg',
     thumb: { poster: '/assets/media/pavilion/thumb.webp' },
     heroCompare: {
       ratio: '1/1',
       max: '34rem',
       drag: 'drag to reveal the photograph it came from',
-      beforeAlt: 'A pavé ring held in two fingers in a workshop, its centre setting empty.',
-      afterAlt: 'The same ring on white, straight on, with a round brilliant set in the centre.',
+      beforeAlt: 'A pavé ring held in two fingers in a workshop, its center setting empty.',
+      afterAlt: 'The same ring on white, straight on, with a round brilliant set in the center.',
       pairs: [
         { before: '/assets/media/pavilion/ba/hero-before.webp',
           after: '/assets/media/pavilion/ba/hero-after.webp',
-          caption: 'Left is what the jeweller sends. Right is what goes in the catalogue — the same ring, with a stone in a setting that was empty when the photograph was taken.' }
+          caption: 'Left is what the jeweler sends. Right is what goes in the catalog — the same ring, with a stone in a setting that was empty when the photograph was taken.' }
       ]
     },
     summary: [
-      ['Made', 'A web tool that turns a bench photograph into a catalogue frame: on white, square, and set to the margin and scale the catalogue runs at.'],
-      ['Needed', 'Jewellers shoot on a phone, in bench light. A catalogue wants white, straight and unchanged — a stone a shade wider is a different price.'],
-      ['Worth', 'A catalogue shoot costs more than the tool does. Jewellers and custom workshops across the United States and Canada use it every day.']
+      ['Made', 'A web tool that turns a bench photograph into a catalog frame: on white, square, and set to the margin and scale the catalog runs at.'],
+      ['Needed', 'Jewelers shoot on a phone, in bench light. A catalog wants white, straight and unchanged — a stone a shade wider is a different price.'],
+      ['Worth', 'A catalog shoot costs more than the tool does. Jewelers and custom workshops across the United States and Canada use it every day.']
     ],
     sections: [
       { h: 'What it has to get right', p: [
-        'Retouching a photograph of a ring is not like retouching a photograph of a chair. The proportions are the product. A centre stone drawn half a millimetre too wide, a pavé row with one stone too many, a prong that tapers the wrong way — any of those is a different piece, and in this trade the gap between two pieces that look alike runs to five hundred or a thousand dollars.',
-        'So the job is not to make a nice picture. The job is to make a picture that is still the same piece. Nothing in the tool can certify that, so every result is shown beside the photograph it came from and the jeweller decides. Everything below is organised around that constraint, the failures included.'
+        'Retouching a photograph of a ring is not like retouching a photograph of a chair. The proportions are the product. A center stone drawn half a millimeter too wide, a pavé row with one stone too many, a prong that tapers the wrong way — any of those is a different piece, and in this trade the gap between two pieces that look alike runs to five hundred or a thousand dollars.',
+        'So the job is not to make a nice picture. The job is to make a picture that is still the same piece. Nothing in the tool can certify that, so every result is shown beside the photograph it came from and the jeweler decides. Everything below is organized around that constraint, the failures included.'
       ] },
       { h: 'Three things it does', p: [
         'Three modes sit behind one upload.',
-        'Set takes a finished piece and gives it the catalogue treatment: straight on, lit, on white, grey, black or a background of your own, with the metal colour kept or changed.',
-        'Unset is the one jewellers actually came for. You photograph a semi-mount with nothing in it, lasso the empty seat, choose a cut, and the piece comes back finished.',
+        'Set takes a finished piece and gives it the catalog treatment: straight on, lit, on white, gray, black or a background of your own, with the metal color kept or changed.',
+        'Unset is the one jewelers actually came for. You photograph a semi-mount with nothing in it, lasso the empty seat, choose a cut, and the piece comes back finished.',
         'CleanUp does nothing but remove dust and scratches, which is most of the work on most days.'
       ], compare: {
         cols: 2,
@@ -102,30 +102,30 @@ export const projects = [
           { before: '/assets/media/pavilion/ba/set-ring-before.webp', after: '/assets/media/pavilion/ba/set-ring-after.webp',
             beforeAlt: 'A sapphire pavé band held between two fingers under workshop light.',
             afterAlt: 'The same band on white, straight on, every stone legible.',
-            caption: 'Set. A band photographed in the hand, returned as a catalogue frame.' },
+            caption: 'Set. A band photographed in the hand, returned as a catalog frame.' },
           { before: '/assets/media/pavilion/ba/set-earrings-before.webp', after: '/assets/media/pavilion/ba/set-earrings-after.webp',
-            beforeAlt: 'Two drop earrings on a grey display stand in a shop case.',
+            beforeAlt: 'Two drop earrings on a gray display stand in a shop case.',
             afterAlt: 'The pair on white, matched and hung level.',
             caption: 'Set. The stand goes, and the two earrings are matched to each other.' },
           { before: '/assets/media/pavilion/ba/set-necklace-before.webp', after: '/assets/media/pavilion/ba/set-necklace-after.webp',
-            beforeAlt: 'A yellow-diamond necklace laid on a grey cloth, lit flat.',
-            afterAlt: 'The same necklace hung and framed as a catalogue shot.',
+            beforeAlt: 'A yellow-diamond necklace laid on a gray cloth, lit flat.',
+            afterAlt: 'The same necklace hung and framed as a catalog shot.',
             caption: 'Set, with necklace framing on. A necklace needs different framing from a ring, and the tool switches to it.' },
           { before: '/assets/media/pavilion/ba/unset-02-before.webp', after: '/assets/media/pavilion/ba/unset-02-after.webp',
             beforeAlt: 'A gold semi-mount held in the hand, four bare prongs and no stone.',
             afterAlt: 'The finished ring in profile on white, a step-cut stone in the prongs.',
-            caption: 'Unset. Nothing was set in this ring. The jeweller never had to.' }
+            caption: 'Unset. Nothing was set in this ring. The jeweler never had to.' }
         ]
       } },
       { h: 'In use', p: [
-        'The pilot went live in the summer of 2026, and in its first month it put out more than 21,000 images. That is the tool\'s own counter — images generated, not images that reached a catalogue, and the distance between those two is the jeweller deciding. Pavilion put their customer base at 200 jewellers; what share of them this reaches is their figure to give, not mine.'
+        'The pilot went live in the summer of 2026, and in its first month it put out more than 21,000 images. That is the tool\'s own counter — images generated, not images that reached a catalog, and the distance between those two is the jeweler deciding. Pavilion put their customer base at 200 jewelers; what share of them this reaches is their figure to give, not mine.'
       ] },
       { h: 'How it is built', p: [
         'The whole backend is ComfyUI. Generation runs on Nano Banana, a general image model, with its settings tuned for this one job; around it is a chain of stock ComfyUI nodes — no custom nodes to maintain, which matters when the tool has to keep running without me.',
-        'The front end is the part a jeweller sees: upload, mode, a lasso, a background, Generate. Everything the graph needs is inferred or chosen there, and nobody is asked to write a prompt.'
+        'The front end is the part a jeweler sees: upload, mode, a lasso, a background, Generate. Everything the graph needs is inferred or chosen there, and nobody is asked to write a prompt.'
       ] },
       { h: 'The path through it', p: [
-        'One photograph, kept across all three tabs, so switching modes does not mean uploading again. Background splits three ways: a colour preset, an image of your own with a placement zone you mark, or a text prompt. Then Generate, a progress bar with honest status lines, and a gallery of everything you have already made, because the real workflow is tweak and regenerate, not get it right first time.'
+        'One photograph, kept across all three tabs, so switching modes does not mean uploading again. Background splits three ways: a color preset, an image of your own with a placement zone you mark, or a text prompt. Then Generate, a progress bar with honest status lines, and a gallery of everything you have already made, because the real workflow is tweak and regenerate, not get it right first time.'
       ], embed: {
         src: 'https://miro.com/app/live-embed/uXjVEOgL3cw=/?embedMode=view_only_without_ui&moveToViewport=808,31,901,901&embedId=81812414431',
         href: 'https://miro.com/app/board/uXjVEOgL3cw=/',
@@ -139,7 +139,7 @@ export const projects = [
         caption: 'The flow as a picture. The board behind it is live, and it loads only if you ask for it.'
       } },
       { h: 'Two decisions worth the argument', p: [
-        'The first: the lasso. The obvious build detects the empty seat on its own, and mostly it can. But “mostly” is the wrong number when the output is a price-bearing image, so the jeweller draws the area and the model works inside it. Three seconds of work buys a guarantee about where the stone can appear.',
+        'The first: the lasso. The obvious build detects the empty seat on its own, and mostly it can. But “mostly” is the wrong number when the output is a price-bearing image, so the jeweler draws the area and the model works inside it. Three seconds of work buys a guarantee about where the stone can appear.',
         'The second: necklace framing is a switch, not a guess. A necklace wants a different crop, a different hang and a different distance from a ring, and a model asked to work that out from the photograph gets it right until the day it does not. A toggle is boring, and it is always right.'
       ], clips: {
         cols: 2,
@@ -158,18 +158,18 @@ export const projects = [
       } },
       { h: 'What I changed my mind about', p: [
         'I started with the geometry handled in code — framing a necklace, placing a stone, squaring a ring — and the model left to do surface and light. Code is deterministic, and this is a job where determinism is the point.',
-        'It was also slower and worse. Every piece of jewellery is a different shape, and the rules I wrote kept meeting a piece that broke them. What worked was moving the geometry into the prompt and the model settings, and spending the engineering on the parts where being wrong costs money: the lasso, the framing switch, the mode split. Code where it has to be exact, the model where it has to be general.'
+        'It was also slower and worse. Every piece of jewelry is a different shape, and the rules I wrote kept meeting a piece that broke them. What worked was moving the geometry into the prompt and the model settings, and spending the engineering on the parts where being wrong costs money: the lasso, the framing switch, the mode split. Code where it has to be exact, the model where it has to be general.'
       ] },
       { h: 'Where it falls over', p: [
         'It is not a solved problem, and this page should say so. The failures are consistent enough to name.',
         'A piece too small in the frame comes back invented. Long articulated things — tennis bracelets, chains — break where the model loses the run of the links, and it will drop a segment or add one. Props do not always leave cleanly, and a cut with hard geometry, emerald and pavé especially, is the first thing to drift when the source is soft.',
-        'A jeweller catches all of these in a second, which is why every result sits next to its original in the interface and nothing is published without a look. The last two below have no original kept; they are left in for the same reason as the rest.'
+        'A jeweler catches all of these in a second, which is why every result sits next to its original in the interface and nothing is published without a look. The last two below have no original kept; they are left in for the same reason as the rest.'
       ], pairs: {
         cols: 2,
         ratio: '1/1',
         items: [
           { base: '/assets/media/pavilion/ba/miss-ring',
-            before: 'A small ring sitting on a grey counter, shot from a distance.',
+            before: 'A small ring sitting on a gray counter, shot from a distance.',
             after: 'The result: the ring doubled into two stacked bands with an oversized green stone.' },
           { base: '/assets/media/pavilion/ba/miss-bracelet',
             before: 'A sapphire tennis bracelet laid in a circle on white cloth.',
@@ -180,13 +180,13 @@ export const projects = [
         ratio: '1/1',
         items: [
           { src: '/assets/media/pavilion/plates/miss_0_1.webp', alt: 'A gold flower bangle with emeralds whose right-hand end dissolves into repeated, unreadable detail.' },
-          { src: '/assets/media/pavilion/plates/miss_0_2.webp', alt: 'A diamond eternity band on a grey cushion, the cushion mangled and a fingernail still visible at the bottom of the frame.' }
+          { src: '/assets/media/pavilion/plates/miss_0_2.webp', alt: 'A diamond eternity band on a gray cushion, the cushion mangled and a fingernail still visible at the bottom of the frame.' }
         ]
       } },
       { h: 'My part', p: [
-        'I built the product end to end, from the idea to the thing jewellers open every morning: the ComfyUI backend and the node chain behind each mode, the model settings, the front end, the API wiring, and a database behind an admin page that shows every operation as it runs.',
-        'The art direction is not a separate job from that one. Deciding what a correct result looks like — which millimetre matters, which does not — is most of the design work here.',
-        'What I could not decide alone was the shape of the day. That was calibrated with Pavilion throughout: they know better than I do what a jeweller needs from this tool this month. Nobody else has worked on it, and I still maintain it.'
+        'I built the product end to end, from the idea to the thing jewelers open every morning: the ComfyUI backend and the node chain behind each mode, the model settings, the front end, the API wiring, and a database behind an admin page that shows every operation as it runs.',
+        'The art direction is not a separate job from that one. Deciding what a correct result looks like — which millimeter matters, which does not — is most of the design work here.',
+        'What I could not decide alone was the shape of the day. That was calibrated with Pavilion throughout: they know better than I do what a jeweler needs from this tool this month. Nobody else has worked on it, and I still maintain it.'
       ] }
     ],
   },
@@ -228,11 +228,11 @@ export const projects = [
         'The first ten seconds are the lens running: a poster on a wall, and something behind it that does not stay there. The rest is the breakdown, the suit, the rig and the helmet.'
       ] },
       { h: 'My part', p: [
-        'The protective suit was built in Marvelous Designer: pattern pieces stitched and simulated, so the fabric folds the way cloth actually folds rather than the way a modeller guesses it does. The helmet I modelled in Blender and rebuilt to run inside the AR engine, keeping the same silhouette and the same read at a polygon count a lens can carry at frame rate. Both were textured in Substance Painter.',
-        'I also modelled the D-Rex claw, rigged it, and rigged the character. The blue-to-red in the reel is weight paint.'
+        'The protective suit was built in Marvelous Designer: pattern pieces stitched and simulated, so the fabric folds the way cloth actually folds rather than the way a modeler guesses it does. The helmet I modeled in Blender and rebuilt to run inside the AR engine, keeping the same silhouette and the same read at a polygon count a lens can carry at frame rate. Both were textured in Substance Painter.',
+        'I also modeled the D-Rex claw, rigged it, and rigged the character. The blue-to-red in the reel is weight paint.'
       ] },
       { h: 'The budget everything had to fit', p: [
-        'The whole experience is one scene, and the scene had a ceiling of 60,000 polygons. A budget that tight is won or lost in retopology, so I ran it two ways: by hand where the silhouette mattered, and with AI retopology where it did not. Between them that cut development time by around 45 per cent.'
+        'The whole experience is one scene, and the scene had a ceiling of 60,000 polygons. A budget that tight is won or lost in retopology, so I ran it two ways: by hand where the silhouette mattered, and with AI retopology where it did not. Between them that cut development time by around 45 percent.'
       ] }
     ],
     credits: [
@@ -264,7 +264,7 @@ export const projects = [
       video: '/assets/media/smurfs/hero.mp4',
       poster: '/assets/media/smurfs/poster.webp',
       ratio: '16/9',
-      caption: 'Turntables on a grey backdrop: Brainy and his boba, Smurfette and her camera, Papa Smurf.'
+      caption: 'Turntables on a gray backdrop: Brainy and his boba, Smurfette and her camera, Papa Smurf.'
     },
     sections: [
       { h: 'Overview', p: [
@@ -272,16 +272,16 @@ export const projects = [
         'I was the 3D artist: the characters, their wardrobe, the world they stand in, and the rigs and animation underneath all of it.'
       ] },
       { h: 'The characters', p: [
-        'Each one turns on a plain grey backdrop, where a model has nowhere to hide. The accessories are what give each character away: Brainy carries a boba with the pearls settled in the bottom of the cup, Smurfette has a camera hanging at her hip.',
+        'Each one turns on a plain gray backdrop, where a model has nowhere to hide. The accessories are what give each character away: Brainy carries a boba with the pearls settled in the bottom of the cup, Smurfette has a camera hanging at her hip.',
         'Seven outfits and thirteen accessories, all textured by hand.'
       ] },
       { h: 'One skeleton', p: [
         'Everything a player can change — outfit, accessory, headwear, facial expression, body part — is bound to a single skeleton and driven by a single animation. Swap any of it while the animation is playing and nothing is allowed to break: no gap where a sleeve meets a wrist, no mesh pushing through another, no part that stops reading as a Smurf.',
-        'That one constraint decides how every piece gets built. A garment cannot be modelled to fit one body and corrected later, it has to fit every combination it can land in, hold the house style, stay inside the engine budget, and still look presentable in close-up. Most of the work on this project is in that sentence.'
+        'That one constraint decides how every piece gets built. A garment cannot be modeled to fit one body and corrected later, it has to fit every combination it can land in, hold the house style, stay inside the engine budget, and still look presentable in close-up. Most of the work on this project is in that sentence.'
       ] },
       { h: 'Building a world that already exists', p: [
         'Nothing in the environment existed to copy. A conveyor belt, stands, gears, plants, flowers — all built from scratch, and all of it had to look as though it had always been in the Smurfs’ world rather than borrowed into it.',
-        'That is an art direction problem before it is a modelling one: you decide what the rules of the world are, then obey them. Then every object gets optimised for the engine all over again.'
+        'That is an art direction problem before it is a modeling one: you decide what the rules of the world are, then obey them. Then every object gets optimized for the engine all over again.'
       ] }
     ],
     clips: {
@@ -343,7 +343,7 @@ export const projects = [
         'The film above is Tactical’s case film for the festival as a whole, not for my part of it. The first twenty seconds are the event itself: the grounds from the air, the stages, the crowd. The AR starts around 0:22 and runs to the end.'
       ] },
       { h: 'My part', p: [
-        'I directed the AR activation, and worked hands-on on parts of Friend Finder: the VFX particles, 3D modelling and storyboarding. The brief was to make one experience out of two visual languages: the festival’s and Snapchat’s.',
+        'I directed the AR activation, and worked hands-on on parts of Friend Finder: the VFX particles, 3D modeling and storyboarding. The brief was to make one experience out of two visual languages: the festival’s and Snapchat’s.',
         'I reported directly to the creative director at Snapchat. The face in the Friend Finder preview is mine.'
       ] }
     ],
@@ -485,7 +485,7 @@ export const projects = [
       ['Worth', 'A tested mix of node-based AI, 3D and prompt engineering, plus a body of concept visuals to pitch the approach with.']
     ],
     sections: [
-      { h: 'The problem', p: ['Brand storytelling still runs on long production cycles. The research asked how AI could accelerate ideation while keeping the art direction recognisably Nike.'] },
+      { h: 'The problem', p: ['Brand storytelling still runs on long production cycles. The research asked how AI could accelerate ideation while keeping the art direction recognizably Nike.'] },
       { h: 'What I built', p: ['A pipeline that combined node-based generation in ComfyUI, Adobe Firefly and 3D in Blender, so concepts could move from sketch to motion test quickly.'] },
       { h: 'How it was made', p: [
         'The motion is a soft body simulation in Blender, blocked out so the movement stays mine rather than something a model guesses at.',
@@ -501,7 +501,7 @@ export const projects = [
       items: [
         { src: '/assets/media/nike/clips/nike_3d_1.mp4', alt: 'Soft bodies drifting around a glowing swoosh on black.' },
         { src: '/assets/media/nike/clips/nike_3d_2.mp4', alt: 'The Blender viewport, spheres colliding around the swoosh while the simulation runs.' },
-        { src: '/assets/media/nike/clips/nike_3d_3.mp4', alt: 'The same shot as a depth pass: white shapes on flat grey, no light and no colour.' }
+        { src: '/assets/media/nike/clips/nike_3d_3.mp4', alt: 'The same shot as a depth pass: white shapes on flat gray, no light and no color.' }
       ]
     },
     plates: {
@@ -560,7 +560,7 @@ export const projects = [
       lead: 'The blocking pass, then two renders made from it. Short, silent, on a loop.',
       ratio: '16/9',
       items: [
-        { src: '/assets/media/lexus/clips/lexus_3d_1.mp4', alt: 'Untextured grey car turning on a plain studio floor: the Blender blocking pass.' },
+        { src: '/assets/media/lexus/clips/lexus_3d_1.mp4', alt: 'Untextured gray car turning on a plain studio floor: the Blender blocking pass.' },
         { src: '/assets/media/lexus/clips/lexus_3d_2.mp4', alt: 'The car driving a wet night road, headlights on.' },
         { src: '/assets/media/lexus/clips/lexus_3d_3.mp4', alt: 'The car throwing dust across desert sand at sunset.' }
       ]
@@ -619,7 +619,7 @@ export const experiments = [
         h: 'How it knows where the floor is',
         p: [
           'A photograph has no depth, so the tool has to be told where the ground is. You mark four points on the floor in the image, and they are matched to the corners of a flat rectangle. That pair gives a homography: a 3×3 matrix that maps any point on that plane in the photograph to a point on the plane in space, and back again.',
-          'Once it has that matrix the tool knows where the ground runs, how it recedes, and how large a metre is at any depth in the frame. The model then stands on the plane instead of floating in front of the picture.'
+          'Once it has that matrix the tool knows where the ground runs, how it recedes, and how large a meter is at any depth in the frame. The model then stands on the plane instead of floating in front of the picture.'
         ],
         figure: {
           src: '/assets/media/configurator/set-floor.mp4',

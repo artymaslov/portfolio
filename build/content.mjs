@@ -832,7 +832,10 @@ export const about = {
   cvLabel: 'Download CV (PDF)',
   /* The file is dropped in by hand. The button renders only when it is actually
      there, so a missing PDF is a missing button rather than a dead link. */
-  cvHref: '/cv/artem-maslov-resume.pdf'
+  cvHref: '/cv/artem-maslov-resume.pdf',
+  /* The URL is lowercase and hyphenated because it is a link people read and
+     retype; this is the name the file lands under when they save it. */
+  cvFile: 'Artem Maslov — Resume.pdf'
 };
 
 /* Not rendered. Kept so the writing is not lost if it comes back. */

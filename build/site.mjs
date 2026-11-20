@@ -682,7 +682,7 @@ ${pageHead('Resources', null)}
    than a button that goes nowhere. */
 const cvReady = () => Boolean(about.cvHref) && existsSync(join(ROOT, about.cvHref.replace(/^\//, '')));
 const cvButton = (cls = 'btn') => cvReady()
-  ? `<a class="${cls}" href="${v(about.cvHref)}" download>${esc(about.cvLabel)}</a>`
+  ? `<a class="${cls}" href="${v(about.cvHref)}" download="${esc(about.cvFile)}" type="application/pdf">${esc(about.cvLabel)}</a>`
   : '';
 
 const aboutToggle = (view) => `<div class="abar">

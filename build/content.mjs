@@ -19,6 +19,15 @@ export const site = {
    done it on, and what I am open to. It runs in the band at the top of the home
    page, it is the dialog behind it, and its first sentence is that page's meta
    description \u2014 so sentence one has to stand on its own. */
+/* The meta descriptions, written rather than borrowed from the first line of
+   something else: these are what a search result and a pasted link show, and
+   155 characters is where both stop reading. */
+export const meta = {
+  home: 'Art director and creative technologist. I art-direct images and build the systems that make them — keeping the look intact where technology pushes back.',
+  work: 'Selected client work in AI video, 3D, AR and immersive production, art-directed and built. Seven projects, two of them self-initiated R&D.',
+  about: 'Artem Maslov, art director and creative technologist in Edmonton. Nine years across AR, 3D and AI, and the systems that hold a look. Open to work.'
+};
+
 export const statement = [
   { t: 'I art-direct images and build the systems that make them \u2014 keeping the look intact where the technology pushes back.' },
   { t: 'Nine years across AR, 3D and AI for Snap, Universal Pictures, Paramount Animation, Dior and Visit Dubai.' },

@@ -5,7 +5,7 @@ import { writeFileSync, mkdirSync, statSync, readFileSync, existsSync } from 'no
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  site, statement, reel, projects, experiments, clients,
+  site, meta, statement, reel, projects, experiments, clients,
   nav, lab, about, awards, press, graph
 } from './content.mjs';
 
@@ -455,7 +455,7 @@ ${reelBlock({ lead: true })}
 </section>
 `;
 
-  return page({ title: `${site.name} — ${site.role}`, desc: statement[0].t, current: null, body, band: true,
+  return page({ title: `${site.name} — ${site.role}`, desc: meta.home, current: null, body, band: true,
     share: '/assets/media/og-home.jpg', path: '' });
 }
 
@@ -472,7 +472,11 @@ ${workFilter()}
   <p><a class="btn" href="mailto:${site.email}">${esc(site.email)}</a></p>
 </section>`;
 
-  return page({ title: `Work — ${site.name}`, desc: 'Selected client work: AI video, 3D, AR and immersive production.', current: 'Work', body, path: 'work/' });
+  /* Work and both About views carry the site's own share image: a link to
+     any of them pasted into LinkedIn or Slack should show a card, not a bare
+     URL. */
+  return page({ title: `Work — ${site.name}`, desc: meta.work, current: 'Work', body,
+    share: '/assets/media/og-home.jpg', path: 'work/' });
 }
 
 function projectPage(p) {
@@ -745,7 +749,8 @@ ${/* Availability sits directly under the bio, where a reader who has just
   </table>
 </section>`;
 
-  return page({ title: `About — ${site.name}`, desc: about.bio[0], current: 'About', body, path: 'about/' });
+  return page({ title: `About — ${site.name}`, desc: meta.about, current: 'About', body,
+    share: '/assets/media/og-home.jpg', path: 'about/' });
 }
 
 function nodesPage() {
@@ -800,7 +805,7 @@ ${aboutToggle('nodes')}
   return page({
     title: `About, node view — ${site.name}`,
     desc: 'The same biography as a node graph.',
-    current: 'About', body, path: 'about/nodes/',
+    current: 'About', body, path: 'about/nodes/', share: '/assets/media/og-home.jpg',
     script: `\n<script src="${v('/assets/nodes.js')}" defer></script>`
   });
 }

@@ -812,6 +812,28 @@ ${aboutToggle('nodes')}
 
 /* ── write ─────────────────────────────────────────────────── */
 
+/* legacy/ is the previous site and reference/ is the original mockups. Both are
+   deployed with everything else and both are full of [TODO] markers and old
+   copy, so they are kept out of search results. Nothing is deleted: the files
+   are still there and still reachable by their own URL. */
+out('robots.txt', `User-agent: *
+Disallow: /legacy/
+Disallow: /reference/
+Allow: /
+
+Sitemap: ${site.origin}/sitemap.xml
+`);
+
+/* Every page the nav can reach, so a crawler does not have to guess at the
+   list or find it through legacy/. */
+const SITEMAP = ['', 'work/', ...projects.map((p) => `work/${p.slug}/`),
+  'lab/', ...experiments.map((e) => `lab/${e.slug}/`), 'about/', 'about/nodes/'];
+out('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${SITEMAP.map((u) => `  <url><loc>${site.origin}/${u}</loc></url>`).join('\n')}
+</urlset>
+`);
+
 out('index.html', home());
 out('work/index.html', workIndexPage());
 projects.forEach((p) => out(`work/${p.slug}/index.html`, projectPage(p)));

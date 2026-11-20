@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /legacy/
+Disallow: /reference/
+Allow: /
+
+Sitemap: https://artmaslov.com/sitemap.xml

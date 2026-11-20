@@ -420,6 +420,15 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
   font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4);
   max-width: var(--w-lead); text-wrap: pretty;
 }
+/* A fact line under the standfirst: body size, running-text colour, held to a
+   glance's worth of measure. It has to read as the page's first sentence, not
+   as a second, longer tagline, so it is a step smaller than .case__tag. */
+.case__lead {
+  margin-top: var(--s4); color: var(--ink);
+  font-size: var(--t3); line-height: var(--lh3);
+  max-width: var(--w-text); text-wrap: pretty;
+}
+
 .case__meta {
   margin-top: var(--s5); padding-top: var(--s3);
   border-top: 1px solid var(--rule);

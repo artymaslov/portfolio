@@ -187,6 +187,9 @@ export const projects = [
     cardRole: '3D artist, animator',
     title: 'Jurassic World: Rebirth',
     tagline: 'A Snapchat lens that ran on a cinema lobby screen, not a phone.',
+    /* The role here is 3D artist and animator, and it stays that. What the
+       page opens with is the engineering the role does not say out loud. */
+    lead: 'A lobby-screen lens with the whole scene inside a 60,000-polygon budget. Retopology ran two ways \u2014 by hand where the silhouette mattered, AI where it did not \u2014 and cut development time by about 45 percent.',
     client: 'Universal Pictures, with Pretty Big Monster',
     role: '3D artist, animator',
     year: '2025',
@@ -235,6 +238,7 @@ export const projects = [
     cardRole: '3D artist, animator',
     title: 'Smurfs',
     tagline: 'Seven outfits, thirteen accessories, one skeleton, no gaps.',
+    lead: 'Seven outfits and thirteen accessories on one skeleton and one animation: swap any of them while it plays and nothing breaks. The lens is still live.',
     client: 'Paramount Animation, with Pretty Big Monster',
     role: '3D artist, animator',
     year: '2025',

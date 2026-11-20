@@ -483,6 +483,10 @@ function projectPage(p) {
   <header class="case__head">
     <h1>${esc(p.title)}</h1>
     ${p.summary ? '' : `<p class="case__tag">${esc(p.tagline)}</p>`}
+    ${/* The constraint the project was really built against, before the meta
+          table and before the reel: on a page whose role line says 3D artist,
+          this is where the engineering gets said. */ ''}
+    ${p.lead ? `<p class="case__lead">${todo(p.lead)}</p>` : ''}
     <dl class="case__meta">
       ${p.client ? `<div><dt>Client</dt><dd>${todo(p.client)}</dd></div>` : ''}
       ${/* speculative work names no client: it says what it is instead */ ''}

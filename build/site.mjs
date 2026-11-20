@@ -555,14 +555,14 @@ ${pageHead('Lab', lab.intro)}
   ${expList(experiments)}
 </section>
 
-<section class="block" id="playground">
+${lab.playground.show ? `<section class="block" id="playground">
   <div class="block__head"><h2>Playground</h2></div>
   <p class="block__lead">${esc(lab.playground.body)}</p>
   <div class="empty">
     <p class="empty__h">Under construction.</p>
     <p>${esc(lab.playground.next)}</p>
   </div>
-</section>`;
+</section>` : ''}`;
 
   return page({ title: `Lab — ${site.name}`, desc: lab.intro, current: 'Lab', body,
     share: '/assets/media/og-lab.jpg', path: 'lab/' });

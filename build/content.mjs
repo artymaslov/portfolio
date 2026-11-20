@@ -765,6 +765,9 @@ export const nav = [
 export const lab = {
   intro: 'Things I build for myself, usually to answer a question. Each one is written up the same way: what I set out to do, what I built, what came out.',
   playground: {
+    /* Off until Face Pong is a thing someone can actually play. The section is
+       written and kept; set this to true and it is back on the page. */
+    show: false,
     body: 'Small things that exist only to be played with.',
     next: 'First on the bench: Face Pong. The paddles are photographs of my face, and the expression changes on every hit.'
   }

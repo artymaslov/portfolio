@@ -4,7 +4,7 @@ Static site. Plain HTML, CSS and JS, generated from one content file. No framewo
 no runtime dependency; Node is only used to render the pages.
 
 ```bash
-node build/site.mjs      # regenerate all 17 pages
+node build/site.mjs      # regenerate all 16 pages
 python3 build/serve.py   # preview on http://localhost:4322
 ```
 
@@ -20,7 +20,7 @@ serve you yesterday's page.
 | `/` | Home: who I am, the reel, recent work, lab |
 | `/work/` | All work, filterable by how it was made |
 | `/work/<slug>/` | One project, seven of them |
-| `/lab/` | All experiments, then the playground |
+| `/lab/` | All experiments. The playground is written but switched off in `lab.playground.show` until Face Pong is playable |
 | `/lab/<slug>/` | One experiment: question, what I built, result |
 | `/resources/` | Under construction, and out of the nav until there is something on it |
 | `/about/` | Portrait, bio, spec, awards |
@@ -305,17 +305,22 @@ gap is a visible `[TODO: …]`.
 - Raft: no gaps. Every line on that page is checked against the Devpost submission and the
   Devpost interview, both linked in its credits. The award is Best New User Onboarding
   Experience, from the Meta Horizon Creator Competition: Mobile Innovation.
-- Web configurator: the front-end stack, and which ComfyUI models and nodes the workflow uses
-  plus how long a frame takes
+- Web configurator: the front end is read off the live build — Next.js and React, three.js in
+  the viewport, Tailwind for the interface. Which ComfyUI models and nodes the render workflow
+  uses, and how long a frame takes, is still unknown; the line asking for it has been taken
+  off the page rather than left standing as a placeholder.
 - Cat Therapy (`/lab/csgo/`): it has **no entry in `content/projects.json`**, so the copy was
   written from the boards and the film plus what Artem said — a personal entry to the
   Counter-Strike twentieth-anniversary contest, 2019. What the texture and the renders were
-  made in is still `[TODO]`, and how the entry placed is not recorded.
+  made in is still unknown — the half-sentence asking for it is off the page, and the Tools
+  line now stops at the paint. How the entry placed is not recorded.
 - The last row is a placeholder for the next experiment; delete it or fill it
 
 **About**
 - `[TODO: course and years]` — NAIT; `[TODO: degree]` — Odesa
-- `[TODO: CV link]` — the button in the About bar
+- The CV: `about.cvHref` is `/cv/artem-maslov-resume.pdf`, and `cvButton()` renders the
+  button — in the About bar and in the availability block — only when that file is actually
+  in the repository. Drop the PDF in and rebuild; take it out and the button disappears.
 - Both award rows are real now. The Fast Company one is **Tactical's award, not Artem's** —
   he was on the team, art directing, and the Apple Vision Pro work the citation names is the
   Visit Dubai project. The row says so in its own line; do not let that line get edited out.

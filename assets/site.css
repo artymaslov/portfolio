@@ -395,6 +395,27 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
 .exp__s { color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); }
 .exp__s[data-state="shipped"], .exp__s[data-state="winner"] { color: var(--accent); }
 
+/* Availability. The one panel on the site with a ground of its own, because it
+   is the one thing a reader may have come to the page for, and everything round
+   it is set as running text. The rule down the left is the accent at a
+   hairline: enough to mark the block, not enough to shout over the work. */
+.avail {
+  margin-top: var(--s8);
+  padding: var(--s5) var(--s6);
+  background: var(--hl); border-radius: var(--r3);
+  border-left: 3px solid var(--accent);
+}
+.avail h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
+.avail__b { margin-top: var(--s3); font-size: var(--t3); line-height: var(--lh3); max-width: var(--w-text); }
+.avail__t {
+  margin-top: var(--s2); color: var(--fg2);
+  font-size: var(--t2); line-height: var(--lh2); max-width: var(--w-text);
+}
+.avail__t span { color: var(--fg3); }
+/* The button and the address sit on one line and wrap together on a phone. */
+.avail__a { margin-top: var(--s5); display: flex; flex-wrap: wrap; align-items: center; gap: var(--s3) var(--s5); }
+.avail__a .btn { margin-top: 0; }
+
 .clients {
   margin-top: var(--s4);
   display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5);

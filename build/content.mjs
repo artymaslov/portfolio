@@ -789,9 +789,11 @@ export const about = {
      the home page, where it is the site's one claim. Put a sentence back here
      and it renders as the page's standfirst. */
   h1: 'About',
+  /* Paragraph one is the positioning, the same claim the home page opens with,
+     said at length and with the constraints named. The history follows it. */
   bio: [
-    'I am Artem Maslov, a creative technologist in Edmonton. For nine years I made images for brands, studios and platforms: senior concept artist at Snap, associate art director at Tactical, and my own studio, ARNI.',
-    'Since 2024 I write the other half: code, node graphs and generative pipelines, approached the way a lab approaches a problem — a question, a test, a measurement. Both halves are on this site, because the second is what keeps the first current.',
+    'I am Artem Maslov, an art director and creative technologist in Edmonton. I art-direct images and build the systems that make them, and most of the work happens where the technology pushes back: a phone lens that cannot run particles, a 60,000-polygon budget, a headset that cannot do bloom, a jeweler’s phone photograph that has to come out as a catalog frame. Holding the look under a constraint like that is the art direction; making it repeatable is the engineering. They are two halves of one job, not two titles.',
+    'For nine years I made images for brands, studios and platforms: senior concept artist at Snap, associate art director at Tactical, and my own studio, ARNI. Since 2024 I write the other half: code, node graphs and generative pipelines, approached the way a lab approaches a problem — a question, a test, a measurement. Both halves are on this site, because the second is what keeps the first current.',
     'Both halves run on the same habit: take something, put it where it does not belong, and keep a straight face long enough to see what happens. Sometimes that is a bar stool carried into a forest. More often it is a tool used for a job it was not built for, which is where most of the work on this site started.'
   ],
   /* Two states of one person. The first frame is the hand: a stool carried into a
@@ -804,12 +806,20 @@ export const about = {
     w: 900, h: 1125
   },
   spec: [
-    ['Role', ['Creative technologist']],
+    ['Role', ['Creative Technologist & Art Director']],
     ['Practice', ['AI video, 3D, AR, generative pipelines']],
     ['Previously', ['Senior concept artist, Snap', 'Associate art director, Tactical', 'Founder, ARNI']],
     ['Teaching', ['Casual instructor, NAIT, from 2026', 'GDEV 1015, Visual Assets for Games']],
     ['Education', ['BFA, Odesa State Academy of Civil Engineering and Architecture']]
   ],
+  /* What I am open to, said in one place and not buried in a paragraph. The
+     CV button here renders on the same condition as the one in the bar: only
+     when the file is actually in the repository. */
+  open: {
+    h: 'Open to work',
+    body: 'Open to full-time Art Director / Creative Technologist roles and select freelance projects.',
+    terms: ['Authorized to work in Canada', 'open to relocation', 'remote-friendly']
+  },
   cvLabel: 'Download CV (PDF)',
   /* The file is dropped in by hand. The button renders only when it is actually
      there, so a missing PDF is a missing button rather than a dead link. */
@@ -920,7 +930,7 @@ export const graph = {
     { id: 'freelance', kind: 'sampler', title: 'freelance', x: 1416, y: 16,
       in: [['experience', 'experience'], ['pipelines', 'pipelines']],
       out: [['experience', 'experience']],
-      rows: [['role', 'AI art director, creative technologist'], ['years', '2025 to now'], ['place', 'Edmonton']] },
+      rows: [['role', 'Creative Technologist & Art Director'], ['years', '2025 to now'], ['place', 'Edmonton']] },
 
     { id: 'nait', kind: 'save', title: 'NAIT', x: 1696, y: 16,
       in: [['experience', 'experience']],
@@ -934,7 +944,7 @@ export const graph = {
 
     { id: 'output', kind: 'output', title: 'output, 2026', x: 1976, y: 150,
       in: [['artist', 'artist'], ['teaching', 'teaching']],
-      rows: [['name', 'Artem Maslov'], ['role', 'Creative technologist'], ['email', 'artem@artmaslov.com']] }
+      rows: [['name', 'Artem Maslov'], ['role', 'Creative Technologist & Art Director'], ['email', 'artem@artmaslov.com']] }
   ],
   /* [from node, from socket, to node, to socket] */
   wires: [

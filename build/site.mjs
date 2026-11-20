@@ -706,6 +706,16 @@ ${pageHead(about.h1, null)}
   </div>
 </section>
 
+${/* Availability sits directly under the bio, where a reader who has just
+      decided they like the work finds out whether I am available and how to
+      get the CV. */ ''}
+<section class="avail" aria-labelledby="avail-h">
+  <h2 id="avail-h">${esc(about.open.h)}</h2>
+  <p class="avail__b">${esc(about.open.body)}</p>
+  <p class="avail__t">${about.open.terms.map(esc).join(' <span aria-hidden="true">\u00b7</span> ')}</p>
+  <p class="avail__a">${cvButton('btn')}<a href="mailto:${site.email}">${esc(site.email)}</a></p>
+</section>
+
 <section class="block">
   <div class="block__head"><h2>Worked with</h2></div>
   <ul class="clients">${clients.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>

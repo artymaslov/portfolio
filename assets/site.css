@@ -24,6 +24,12 @@
      read as disabled, lighter than --fg3 — so light mode takes the same hue
      (190°) darkened to 4.7:1. Dark mode can wear the band colour as it is. */
   --accent:#0C7F96;
+  /* What a thing turns when the pointer is on it. The band's cyan, opened up:
+     bright enough that the wordmark reads as lit rather than as a darker,
+     muddier black. It is a hover state and never running text, so it is held
+     apart from --accent, which still colours the things that are coloured at
+     rest — the current page in the rail, a Winner row, a link in a standfirst. */
+  --hover: #5EC6E4;
   --ph:    #DCDCD9;
   --ph-l:  #55554F;
   --hl:    #EFEFEB;
@@ -138,7 +144,7 @@ a { color: inherit; text-decoration: none; }
 }
 .case__p a:hover, .block__lead a:hover, .empty a:hover, .cap a:hover,
 .exp__d a:hover, .case__sum a:hover,
-.case__meta dd a:hover, .spec dd a:hover, .credits dd a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.case__meta dd a:hover, .spec dd a:hover, .credits dd a:hover { color: var(--hover); text-decoration-color: currentColor; }
 /* :where() keeps this at zero specificity, so a component's own radius
    wins and nothing changes shape when it takes focus. */
 :where(a, button, input):focus-visible {
@@ -215,7 +221,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .id a { display: inline-block; }
-.id a:hover { color: var(--accent); }
+.id a:hover { color: var(--hover); }
 .id__sub {
   color: var(--fg2); margin-top: var(--s3);
   font-size: var(--t2); line-height: var(--lh2);
@@ -323,7 +329,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
 /* A project title wraps to two lines often enough that it cannot be set at the
    leading of a single-line heading. */
 .fig__t { font-size: var(--t3); line-height: 1.3; letter-spacing: var(--ls3); }
-.fig a:hover .fig__t, .fig.is-linked .fig__t { color: var(--accent); }
+.fig a:hover .fig__t, .fig.is-linked .fig__t { color: var(--hover); }
 .fig__d { color: var(--fg2); font-size: var(--t2); line-height: var(--lh2); margin-top: var(--s1); max-width: 46ch; }
 /* Role, then year, on one line that wraps on a narrow card. The dot between
    them is scenery: it is marked away from assistive software, which reads the
@@ -390,7 +396,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
   .exp__row { grid-template-columns: 15rem minmax(0, 1fr) 7rem; align-items: baseline; align-content: initial; }
 }
 .exp__t { font-weight: 500; }
-.exp__row:hover .exp__t { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.exp__row:hover .exp__t { color: var(--hover); text-decoration: underline; text-underline-offset: 3px; }
 .exp__d { color: var(--fg2); }
 .exp__s { color: var(--fg3); font-size: var(--t1); letter-spacing: var(--ls1); }
 .exp__s[data-state="shipped"], .exp__s[data-state="winner"] { color: var(--accent); }
@@ -505,7 +511,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
 .pager a { display: block; min-height: 44px; }
 .pager a:last-child { text-align: right; }
 .pager span { display: block; color: var(--fg3); font-size: var(--t1); }
-.pager a:hover { color: var(--accent); }
+.pager a:hover { color: var(--hover); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition-duration: 1ms !important; animation-duration: 1ms !important; }
@@ -568,7 +574,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
    by sitting on a rule. */
 .block__head h2 { font-size: var(--t4); letter-spacing: var(--ls4); line-height: var(--lh4); }
 .more { color: var(--fg2); font-size: var(--t2); text-decoration: underline; text-underline-offset: 3px; }
-.more:hover { color: var(--accent); }
+.more:hover { color: var(--hover); }
 /* The other thing that sits at the end of a section head: not a way out of the
    section, but the facts about what is in it. Year, running time, whether it
    makes a sound — the same meta line a figure carries, moved up to the rule.
@@ -597,12 +603,12 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
   transition: background var(--t);
 }
 .btn { border-radius: var(--r-full); }
-.btn:hover { background: var(--accent); }
+.btn:hover { background: var(--hover); color: #0F1114; }
 .btn .todo { color: inherit; opacity: .7; }
 
 .crumb { margin-bottom: var(--s5); font-size: var(--t2); }
 .crumb a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
-.crumb a:hover { color: var(--accent); }
+.crumb a:hover { color: var(--hover); }
 
 /* ── empty / under construction ───────────────────────── */
 .empty {
@@ -675,7 +681,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
   text-decoration-color: var(--fg3); text-underline-offset: 3px;
   transition: color var(--t), text-decoration-color var(--t);
 }
-.awards a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.awards a:hover { color: var(--hover); text-decoration-color: currentColor; }
 .awards__n { display: block; margin-top: var(--s1); color: var(--fg3); font-size: var(--t2); }
 
 /* ── node graph ──────────────────────────────────────────────
@@ -720,7 +726,7 @@ body[data-filter="machine"] [data-made]:not([data-made~="machine"]) { display: n
 
 .graph__hint { color: var(--fg3); font-size: var(--t2); margin-bottom: var(--s4); }
 .graph__hint a { color: var(--fg2); text-decoration: underline; text-underline-offset: 3px; }
-.graph__hint a:hover { color: var(--accent); }
+.graph__hint a:hover { color: var(--hover); }
 @media (max-width: 57.99rem) { .canvasonly { display: none; } }
 
 /* The window. It is sized so the whole graph fits inside it on load and the
@@ -1165,7 +1171,7 @@ html:has(.lb[open]) { overflow: hidden; }
   cursor: pointer;
   transition: background var(--t);
 }
-.said__x:hover { background: var(--accent); }
+.said__x:hover { background: var(--hover); color: #0F1114; }
 
 /* ── the drawings beside the menu ────────────────────────────
    At rest each link carries the drawing its file holds. On hover, and on

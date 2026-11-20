@@ -681,8 +681,14 @@ ${pageHead('Resources', null)}
    the availability block; take it away and nothing renders, which is better
    than a button that goes nowhere. */
 const cvReady = () => Boolean(about.cvHref) && existsSync(join(ROOT, about.cvHref.replace(/^\//, '')));
+/* No ?v= on this one. The cache-buster is for the stylesheet and the script,
+   where a stale copy breaks the page; a CV is a file people save, and a query
+   string on it only muddies the URL and the name some browsers save it under.
+   target is the fallback: where a browser honours `download` it is ignored,
+   and where it does not the PDF opens in a tab instead of nothing happening. */
 const cvButton = (cls = 'btn') => cvReady()
-  ? `<a class="${cls}" href="${v(about.cvHref)}" download="${esc(about.cvFile)}" type="application/pdf">${esc(about.cvLabel)}</a>`
+  ? `<a class="${cls}" href="${about.cvHref}" download="${esc(about.cvFile)}" type="application/pdf"
+       target="_blank" rel="noopener">${esc(about.cvLabel)}</a>`
   : '';
 
 const aboutToggle = (view) => `<div class="abar">

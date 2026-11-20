@@ -16,7 +16,9 @@
   --fg3:   #70757C;
   --rule:  #E2E2DF;
   --rule2: #EFEFEC;
-  --cyan:  #1BC9E8;   /* the statement band: cyan pushed a step towards the accent blue */
+  --cyan:  #3AA3C1;   /* the statement band. One value with --hover below: the band and
+                         the wordmark it sits above are the same cyan, which is the only
+                         way two cyans on one screen do not read as a mistake. */
   --band:  34px;      /* the depth of the bar the home page opens with */
   --ink:   #23262B;   /* running text: a hair off the heading black, so the heading still leads */
   /* The accent is the band's cyan, carried over at the lightness each ground
@@ -24,11 +26,12 @@
      read as disabled, lighter than --fg3 — so light mode takes the same hue
      (190°) darkened to 4.7:1. Dark mode can wear the band colour as it is. */
   --accent:#0C7F96;
-  /* What a thing turns when the pointer is on it: the band's cyan taken down
-     to where it still reads as lit rather than washed out — 2.9:1 on white,
-     against 2:1 for the band colour itself. It is held apart from --accent,
-     which keeps colouring the things that are coloured at rest: the current
-     page in the rail, a Winner row, a link in a standfirst. */
+  /* What a thing turns when the pointer is on it — the same cyan the band is
+     filled with, so the wordmark lighting up matches the bar above it. It
+     works in both jobs: 2.9:1 as ink on white, and 6.5:1 under the black the
+     band sets its type in. It stays apart from --accent, which keeps colouring
+     what is coloured at rest: the current page in the rail, a Winner row, a
+     link in a standfirst. */
   --hover: #3AA3C1;
   --ph:    #DCDCD9;
   --ph-l:  #55554F;
